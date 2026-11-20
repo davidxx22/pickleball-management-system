@@ -165,9 +165,6 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
   .sidebar-note p { margin-top: .5rem; color: var(--muted); font-size: .75rem; }
   .small-court { position: absolute; width: 3rem; height: 4rem; border: 1px solid #cad6bc; top: -.5rem; right: -.75rem; transform: rotate(30deg); }
   .small-court::before { content: ""; position: absolute; inset: 40% 0; border-block: 1px solid #cad6bc; }
-  .sidebar-footer { display: flex; align-items: center; gap: .4rem; margin: 1rem .9rem 0; padding-top: 1rem; border-top: 1px solid var(--line); font-size: .75rem; color: var(--muted); }
-  .sidebar-footer > span:last-child { margin-left: auto; }
-  .sidebar-footer .status-dot { color: #739255; }
   .mobile-brand { display: none; }
   .breadcrumb { display: block; }
   .topbar { height: 4.75rem; }

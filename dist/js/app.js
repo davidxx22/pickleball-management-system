@@ -127,7 +127,7 @@ function openSettings() {
 }
 
 function openMore() {
-  dialog.open('Your clubhouse', `<div class="more-menu"><button class="button button-outline" data-feature="leaderboard">${icon('trophy')}Leaderboard</button><button class="button button-outline" data-feature="tournaments">${icon('flag')}Tournaments</button><button class="button button-outline" data-action="booking">${icon('ticket')}My bookings</button><button class="button button-outline" data-feature="statistics">${icon('chart')}My statistics</button><button class="button button-outline" data-action="profile">${icon('user')}My profile</button><button class="button button-outline" data-action="settings">${icon('settings')}Business preview</button><a class="button button-outline" href="design-system.html">${icon('layers')}Component library</a></div>`);
+  dialog.open('Your clubhouse', `<div class="more-menu"><button class="button button-outline" data-feature="leaderboard">${icon('trophy')}Leaderboard</button><button class="button button-outline" data-feature="tournaments">${icon('flag')}Tournaments</button><button class="button button-outline" data-action="booking">${icon('ticket')}My bookings</button><button class="button button-outline" data-feature="statistics">${icon('chart')}My statistics</button><button class="button button-outline" data-action="profile">${icon('user')}My profile</button></div>`);
 }
 
 document.addEventListener('click', async event => {

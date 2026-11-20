@@ -287,9 +287,6 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
   .sidebar-note p { margin-top: .5rem; color: var(--muted); font-size: .75rem; }
   .small-court { position: absolute; width: 3rem; height: 4rem; border: 1px solid #cad6bc; top: -.5rem; right: -.75rem; transform: rotate(30deg); }
   .small-court::before { content: ""; position: absolute; inset: 40% 0; border-block: 1px solid #cad6bc; }
-  .sidebar-footer { display: flex; align-items: center; gap: .4rem; margin: 1rem .9rem 0; padding-top: 1rem; border-top: 1px solid var(--line); font-size: .75rem; color: var(--muted); }
-  .sidebar-footer > span:last-child { margin-left: auto; }
-  .sidebar-footer .status-dot { color: #739255; }
   .mobile-brand { display: none; }
   .breadcrumb { display: block; }
   .topbar { height: 4.75rem; }
@@ -535,9 +532,6 @@ Place at: `courtline-app/dist/index.html`.
       </nav>
       <div class="sidebar-bottom">
         <div class="sidebar-note"><span class="small-court" aria-hidden="true"></span><strong>A little play. A better day.</strong><p>Your next rally is waiting.</p></div>
-        <a class="nav-item" href="design-system.html"><span data-icon="layers"></span>Component library</a>
-        <button class="nav-item" data-action="settings"><span data-icon="settings"></span>Business preview</button>
-        <div class="sidebar-footer"><span class="status-dot"></span>Frontend demo <span>v0.1</span></div>
       </div>
     </aside>
 
@@ -718,7 +712,7 @@ function openSettings() {
 }
 
 function openMore() {
-  dialog.open('Your clubhouse', `<div class="more-menu"><button class="button button-outline" data-feature="leaderboard">${icon('trophy')}Leaderboard</button><button class="button button-outline" data-feature="tournaments">${icon('flag')}Tournaments</button><button class="button button-outline" data-action="booking">${icon('ticket')}My bookings</button><button class="button button-outline" data-feature="statistics">${icon('chart')}My statistics</button><button class="button button-outline" data-action="profile">${icon('user')}My profile</button><button class="button button-outline" data-action="settings">${icon('settings')}Business preview</button><a class="button button-outline" href="design-system.html">${icon('layers')}Component library</a></div>`);
+  dialog.open('Your clubhouse', `<div class="more-menu"><button class="button button-outline" data-feature="leaderboard">${icon('trophy')}Leaderboard</button><button class="button button-outline" data-feature="tournaments">${icon('flag')}Tournaments</button><button class="button button-outline" data-action="booking">${icon('ticket')}My bookings</button><button class="button button-outline" data-feature="statistics">${icon('chart')}My statistics</button><button class="button button-outline" data-action="profile">${icon('user')}My profile</button></div>`);
 }
 
 document.addEventListener('click', async event => {

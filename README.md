@@ -68,7 +68,7 @@ courtline-app/
 - Hero illustration drawn as local SVG/CSS, sample upcoming session, player summary, configurable court cards, activity chart, and community event.
 - Court status filters with pressed state and an announced result count.
 - Court/session/event/profile/notification dialogs. Native dialog focus containment, Escape dismissal, a visible close button, and focus restoration.
-- Business preview changes the name, primary/accent colors, and court count **in memory only**. Reload or Reset restores defaults. Contrast validation protects primary color combinations.
+- Customer navigation omits the Component library, Business preview, and Frontend demo/version footer. The component reference remains available directly at `/design-system.html`; temporary branding-preview code is retained for future development.
 - Component reference with buttons, forms, badges, cards, dialogs, layout breakpoints, and browser-only form validation.
 - Reduced-motion support, skip links, semantic landmarks, visible focus styles, labeled fields, and icons with text alternatives on icon-only controls.
 
@@ -84,6 +84,6 @@ Navigation for future modules opens a “Planned stage” explanation; it does n
 
 Edit `dist/js/config/business.js`. Court count comes from the courts array. Every court has a stable ID, editable name, type, and hourly rate. Business identity, logo URL, colors, address, contact information, locale, currency, timezone, operating hours, and booking rules live together. The optional logo accepts a safe local or HTTPS image; a failed image falls back to the shared symbol.
 
-Use a dark primary color with light accent and white text. Preview validation requires a contrast ratio of 4.5:1. Keep sample fixtures synchronized with stable court IDs. Newly added courts without fixture records show “No sample data.” The business preview is a design tool; the owner-facing branding/settings interface belongs to the Admin stage.
+Use a dark primary color with light accent and white text. The retained preview validation requires a contrast ratio of 4.5:1. Keep sample fixtures synchronized with stable court IDs. Newly added courts without fixture records show “No sample data.” The temporary business preview is hidden from customer navigation; the owner-facing branding/settings interface belongs to the Admin stage.
 
 For the backend integration and next stages, see the documents in `docs/`.
