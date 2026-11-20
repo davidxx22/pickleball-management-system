@@ -19,6 +19,8 @@ Dates are ISO 8601 timestamps with an offset. Format using the business timezone
 
 ## Backend ownership
 
+Court photographs are optional data: `courtPhotos` maps an environment label to `{ src, alt, position }`, while `courts[].image` overrides its environment default with the same shape. `src` can be a local asset or HTTPS URL; `position` is a CSS object-position value. Replace illustrative stock images with the business's actual court photographs when integrating. Missing/failed images show a neutral placeholder and preserve the status badge and court details.
+
 - Tenant lookup, configuration validation, tenant isolation, permissions, and authoritative business rules.
 - Authentication, registration, session management, password recovery, and authorized profile updates. Never put secrets in frontend files.
 - Availability, booking creation/cancellation, capacity, overlap validation, payments if required, and concurrent booking protection. UI availability is advisory; the server must validate every reservation.

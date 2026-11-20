@@ -19,6 +19,11 @@ export const businessConfig = {
   },
   operatingHours: { open: '06:00', close: '22:00', days: [0, 1, 2, 3, 4, 5, 6] },
   bookingRules: { slotMinutes: 60, minDurationMinutes: 60, maxDurationMinutes: 120, advanceDays: 14, maxPlayers: 4, cancellationNoticeHours: 12 },
+  // Environment defaults; court.image can override with { src, alt, position }.
+  courtPhotos: {
+    Outdoor: { src: 'assets/courts/outdoor.jpg', alt: 'Illustrative outdoor pickleball courts with blue and green surfacing, trees, and natural daylight', position: 'center center' },
+    Covered: { src: 'assets/courts/covered.jpg', alt: 'Illustrative covered pickleball courts beneath metal roof beams and overhead lighting fixtures', position: 'center 60%' },
+  },
   courts: [
     { id: 'court-1', name: 'Court 01', type: 'Outdoor', hourlyRate: 400 },
     { id: 'court-2', name: 'Court 02', type: 'Outdoor', hourlyRate: 400 },

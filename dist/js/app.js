@@ -52,11 +52,28 @@ function renderStats() {
   document.querySelector('#stats-grid').innerHTML = state.dashboard.stats.map(stat => `<article class="stat-card"><h2 class="stat-top"><span class="stat-icon">${icon(stat.icon)}</span>${esc(stat.label)}</h2><div class="stat-value"><strong>${esc(stat.value)}</strong><span>${esc(stat.unit)}</span></div><p class="stat-caption ${stat.positive ? 'positive' : ''}">${esc(stat.caption)}</p></article>`).join('');
 }
 
+function courtPhoto(court) {
+  const photo = court.image || state.business.courtPhotos?.[court.type];
+  if (!photo?.src) return '<span class="court-photo-fallback">Photo unavailable</span>';
+  let url;
+  try { url = new URL(photo.src, location.href); } catch { return '<span class="court-photo-fallback">Photo unavailable</span>'; }
+  if (!['http:', 'https:'].includes(url.protocol) || (url.origin !== location.origin && url.protocol !== 'https:')) return '<span class="court-photo-fallback">Photo unavailable</span>';
+  return `<img class="court-photo" src="${esc(url.href)}" alt="${esc(photo.alt || `${court.type} pickleball court`)}" data-image-position="${esc(photo.position || 'center center')}" loading="lazy" decoding="async">`;
+}
+
 function renderCourts() {
   const courts = state.business.courts.map(c => ({ ...c, ...(state.dashboard.courtSnapshots.find(s => s.courtId === c.id) || { status: 'unavailable', label: 'No sample data', note: 'Availability not connected' }) }));
   const filtered = state.courtFilter === 'all' ? courts : courts.filter(c => c.status === state.courtFilter);
   document.querySelector('#court-count').textContent = `${courts.length} ${courts.length === 1 ? 'court' : 'courts'}`;
-  document.querySelector('#court-grid').innerHTML = filtered.length ? filtered.map(c => `<article class="court-card"><div class="court-visual ${esc(c.status)}"><div class="court-diagram" aria-hidden="true"><div class="court-lines"><i></i></div></div>${badge(c.label, c.status === 'available' ? 'success' : c.status === 'in-use' ? 'warning' : 'neutral', true)}</div><div class="court-details"><div class="court-title-row"><h3>${esc(c.name)}</h3><span class="court-type">${esc(c.type)}</span></div><p>${esc(c.note)}</p><div class="court-card-footer"><span class="court-price">${esc(money(c.hourlyRate))}<small> / hr</small></span><button class="text-button" data-court="${esc(c.id)}" aria-label="View ${esc(c.name)} details">View court</button></div></div></article>`).join('') : '<div class="empty-state">No courts match this filter. Try All courts.</div>';
+  document.querySelector('#court-grid').innerHTML = filtered.length ? filtered.map(c => `<article class="court-card"><div class="court-visual ${esc(c.status)}">${courtPhoto(c)}${badge(c.label, c.status === 'available' ? 'success' : c.status === 'in-use' ? 'warning' : 'neutral', true)}</div><div class="court-details"><div class="court-title-row"><h3>${esc(c.name)}</h3><span class="court-type">${esc(c.type)}</span></div><p>${esc(c.note)}</p><div class="court-card-footer"><span class="court-price">${esc(money(c.hourlyRate))}<small> / hr</small></span><button class="text-button" data-court="${esc(c.id)}" aria-label="View ${esc(c.name)} details">View court</button></div></div></article>`).join('') : '<div class="empty-state">No courts match this filter. Try All courts.</div>';
+  document.querySelectorAll('.court-photo').forEach(img => {
+    img.style.objectPosition = img.dataset.imagePosition;
+    img.addEventListener('error', () => {
+      const fallback = document.createElement('span');
+      fallback.className = 'court-photo-fallback'; fallback.textContent = 'Photo unavailable';
+      img.replaceWith(fallback);
+    }, { once: true });
+  });
   document.querySelector('#court-results').textContent = `${filtered.length} of ${courts.length} courts shown.`;
   document.querySelectorAll('[data-court-filter]').forEach(button => { const selected = button.dataset.courtFilter === state.courtFilter; button.classList.toggle('selected', selected); button.setAttribute('aria-pressed', String(selected)); });
 }
