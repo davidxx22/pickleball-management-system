@@ -1,0 +1,13 @@
+{
+  "name": "pickleball-frontend-starter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Stage 1 configurable pickleball frontend, without runtime dependencies",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "check": "node scripts/check.mjs",
+    "code": "node scripts/export-code.mjs"
+  },
+  "engines": { "node": ">=20" }
+}

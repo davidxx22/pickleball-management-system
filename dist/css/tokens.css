@@ -1,0 +1,62 @@
+/* Business colors are set from js/config/business.js. These are safe defaults. */
+:root {
+  color-scheme: light;
+  --brand: #183d35;
+  --brand-hover: #245347;
+  --brand-soft: #eaf0eb;
+  --accent: #d5ee95;
+  --accent-ink: #183d35;
+  --canvas: #f5f7f8;
+  --surface: #ffffff;
+  --ink: #202e2b;
+  --muted: #68766f;
+  --line: #e5eae7;
+  --success: #397247;
+  --success-bg: #edf5e8;
+  --warning: #89611c;
+  --warning-bg: #fff5df;
+  --danger: #aa3636;
+  --danger-bg: #fff0ef;
+  --radius-sm: .5rem;
+  --radius: .875rem;
+  --radius-lg: 1.125rem;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --font: "Segoe UI", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --shadow: 0 4px 24px #173b3109;
+  --sidebar-width: 15.5rem;
+  --transition: 160ms ease;
+}
+/* Layout breakpoints: 600px, 900px, 1200px, 1600px. */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scrollbar-gutter: stable; }
+body { margin: 0; background: var(--canvas); color: var(--ink); font: 1rem/1.5 var(--font); -webkit-font-smoothing: antialiased; }
+button, input, select, textarea { font: inherit; }
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+button, a { touch-action: manipulation; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: .5; }
+a { color: inherit; }
+button { color: inherit; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { line-height: 1.2; }
+h1 { font-size: clamp(2rem, 4vw, 2.5rem); font-weight: 650; letter-spacing: -.055em; }
+h2 { font-size: 1.25rem; font-weight: 650; letter-spacing: -.035em; }
+h3 { font-size: 1rem; font-weight: 650; letter-spacing: -.015em; }
+svg { display: block; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 3px solid #427fcb; outline-offset: 4px; }
+::selection { background: var(--accent); color: var(--accent-ink); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.skip-link { position: fixed; z-index: 100; top: -5rem; left: 1rem; background: var(--brand); color: white; padding: .8rem 1rem; border-radius: var(--radius-sm); }
+.skip-link:focus { top: 1rem; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}

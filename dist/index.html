@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#183d35">
+  <meta name="description" content="Your pickleball day, all in one place. A configurable frontend dashboard demonstration.">
+  <title>Home · Courtline</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to dashboard</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Application sidebar">
+      <a class="brand" href="./" aria-label="Home"><span class="brand-mark" data-icon="brand"></span><span data-business-name>Courtline</span><span class="brand-period">.</span></a>
+      <div class="workspace-label">YOUR GAME. YOUR COMMUNITY.</div>
+      <nav aria-label="Main navigation" class="primary-nav">
+        <a class="nav-item active" href="./" aria-current="page"><span data-icon="grid"></span>Overview</a>
+        <button class="nav-item" data-feature="booking"><span data-icon="calendar"></span>Book a court<span class="nav-soon">Next</span></button>
+        <button class="nav-item" data-feature="queue"><span data-icon="queue"></span>Live queue</button>
+        <button class="nav-item" data-feature="scoring"><span data-icon="score"></span>Live matches</button>
+        <button class="nav-item" data-feature="leaderboard"><span data-icon="trophy"></span>Leaderboard</button>
+        <button class="nav-item" data-feature="tournaments"><span data-icon="flag"></span>Tournaments</button>
+      </nav>
+      <div class="nav-section-label">MY CORNER</div>
+      <nav aria-label="Player navigation" class="primary-nav">
+        <button class="nav-item" data-action="booking"><span data-icon="ticket"></span>My bookings</button>
+        <button class="nav-item" data-feature="statistics"><span data-icon="chart"></span>My statistics</button>
+        <button class="nav-item" data-action="profile"><span data-icon="user"></span>My profile</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-note"><span class="small-court" aria-hidden="true"></span><strong>A little play. A better day.</strong><p>Your next rally is waiting.</p></div>
+        <a class="nav-item" href="design-system.html"><span data-icon="layers"></span>Component library</a>
+        <button class="nav-item" data-action="settings"><span data-icon="settings"></span>Business preview</button>
+        <div class="sidebar-footer"><span class="status-dot"></span>Frontend demo <span>v0.1</span></div>
+      </div>
+    </aside>
+
+    <div class="app-content">
+      <header class="topbar">
+        <a class="mobile-brand brand" href="./"><span class="brand-mark" data-icon="brand"></span><span data-business-name>Courtline</span><span class="brand-period">.</span></a>
+        <div class="breadcrumb">Your clubhouse <span>/</span> <strong>Overview</strong></div>
+        <div class="topbar-actions"><span class="demo-pill">Sample data</span><button class="icon-button notification-button" data-action="notifications" aria-label="View sample notifications"><span data-icon="bell"></span><span class="notification-dot"></span></button><button class="profile-trigger" data-action="profile" aria-label="Open player profile"><span class="avatar" data-player-initials>AL</span><span class="profile-name" data-player-name>Alex Lee</span><span class="profile-chevron" data-icon="chevron"></span></button></div>
+      </header>
+
+      <main id="main" tabindex="-1">
+        <div class="page-heading"><div><div class="eyebrow">LET’S GET YOU ON COURT</div><h1>Hey, <span data-player-first>Alex</span><span class="greeting-wave" aria-hidden="true">✳</span></h1><p>A good day starts with a great game.</p></div><div class="today-label"><span data-icon="calendar"></span><time id="demo-date" datetime="2026-11-20">Friday, November 20</time><span class="subtle">Demo day</span></div></div>
+
+        <div id="load-error" class="notice error-notice" role="alert" hidden></div>
+        <div id="dashboard-content" aria-busy="true">
+          <section class="hero-grid" aria-label="Start playing">
+            <div class="play-hero">
+              <div class="hero-copy"><span class="hero-tag"><span class="status-dot"></span>MAKE TIME FOR PLAY</span><h2>Less scrolling.<br>More <em>rallying.</em></h2><p>Find your court, bring your people,<br class="desktop-break"> and make your next game a good one.</p><button class="button button-lime" data-feature="booking"><span data-icon="plus"></span>Book a court</button><div class="hero-footnote"><span class="avatar-stack" aria-hidden="true"><b>JM</b><b>KC</b><b>SR</b></span><span><strong id="community-count">32</strong> players in the sample clubhouse</span></div></div>
+              <div class="hero-art" aria-hidden="true"><svg viewBox="0 0 500 440" fill="none"><defs><pattern id="dot-grid" width="19" height="19" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#FFFFFF" opacity=".10"/></pattern><linearGradient id="court-gradient" x1="40" y1="0" x2="370" y2="440" gradientUnits="userSpaceOnUse"><stop stop-color="#5B8A65"/><stop offset="1" stop-color="#2F614D"/></linearGradient></defs><path fill="url(#dot-grid)" d="M0 0h500v440H0z"/><g transform="translate(110 10) rotate(26 155 205)"><rect x="4" y="30" width="284" height="400" rx="5" fill="#0C3028" opacity=".6"/><rect x="-8" y="10" width="284" height="400" rx="5" fill="url(#court-gradient)"/><path d="M17 35h234v350H17z" fill="#3B7155" stroke="#C7DABB" stroke-width="3"/><path d="M17 153h234v114H17z" fill="#A6BE7D" fill-opacity=".75"/><path d="M17 153h234M17 267h234M134 35v118m0 114v118" stroke="#DCE7CF" stroke-width="3"/><path d="M-19 210h306" stroke="#D9E7CF" stroke-width="5"/><path d="M-19 210h306" stroke="#102F28" stroke-width="2" stroke-dasharray="2 3"/><circle cx="202" cy="105" r="13" fill="#DBF38F"/><circle cx="199" cy="100" r="2" fill="#5C7847"/><circle cx="206" cy="107" r="2" fill="#5C7847"/><circle cx="197" cy="110" r="2" fill="#5C7847"/><g transform="translate(22 290) rotate(-26)"><rect x="24" y="49" width="13" height="57" rx="5" fill="#D5B993"/><rect width="62" height="69" rx="23" fill="#D4EB8B"/><path d="M8 18c7-14 36-14 46 0" stroke="#9EBF5E" stroke-width="2"/><path d="M27 79h7m-7 8h7m-7 8h7" stroke="#1B4035" stroke-width="2"/></g></g><path d="M382 325l12 9m-1-25l5 8m3 29l14 1" stroke="#D9EF9C" stroke-width="2" stroke-linecap="round"/></svg><span class="art-caption">MEET YOU AT THE KITCHEN.</span></div>
+            </div>
+            <article class="panel next-session" aria-labelledby="next-session-title"><div class="card-heading"><h2 id="next-session-title">Your next session</h2><span class="icon-soft" data-icon="calendar"></span></div><div id="next-booking" class="loading-placeholder">Loading sample session…</div></article>
+          </section>
+
+          <section class="stats-grid" id="stats-grid" aria-label="Your pickleball at a glance"></section>
+
+          <section class="court-section" aria-labelledby="courts-title"><div class="section-heading"><div><div class="section-title-line"><h2 id="courts-title">Find your court</h2><span class="badge badge-neutral" id="court-count">4 courts</span></div><p>A snapshot of what’s happening at the clubhouse.</p></div><div class="segmented-control" role="group" aria-label="Filter courts"><button class="selected" data-court-filter="all" aria-pressed="true">All courts</button><button data-court-filter="available" aria-pressed="false">Available</button><button data-court-filter="in-use" aria-pressed="false">In play</button></div></div><div class="court-grid" id="court-grid"></div><p id="court-results" class="sr-only" role="status"></p><div class="section-footnote"><span data-icon="info"></span>Demo snapshot · Availability is not connected to a live booking system.</div></section>
+
+          <div class="lower-grid">
+            <section class="panel activity-panel" aria-labelledby="activity-title"><div class="card-heading"><div><h2 id="activity-title">A little better, every game.</h2><p>Your last 7 days on court</p></div><span class="icon-soft" data-icon="chart"></span></div><div class="activity-body"><div class="activity-summary"><div><strong>4.5<span>hrs</span></strong><p>Time well spent</p></div><span class="positive-chip">+1.5 hrs vs. last week</span><button class="text-button" data-feature="statistics">Explore your stats</button></div><div class="activity-chart" id="activity-chart" role="img" aria-label="Sample court hours by day: Saturday 0.5, Sunday 1, Monday 0, Tuesday 1.5, Wednesday 0, Thursday 1, Friday 0.5. Total 4.5 hours."></div></div></section>
+            <section class="panel community-panel" aria-labelledby="community-title"><div class="card-heading"><h2 id="community-title">Around the clubhouse</h2><span class="badge badge-neutral">UP NEXT</span></div><div class="event-content"><div class="event-date"><strong>28</strong><span>NOV</span></div><div><span class="event-category">SOCIAL PLAY</span><h3>Saturday Social Doubles</h3><p>Good rallies. New friends. All levels.</p><div class="event-meta"><span data-icon="clock"></span>8:00 AM – 12:00 PM</div></div></div><div class="event-footer"><span><span class="status-dot"></span>Sample community event</span><button class="text-button" data-action="event">View details</button></div></section>
+          </div>
+          <footer class="page-footer"><span><span data-business-name>Courtline</span> · Built around your game.</span><span>Frontend preview <span class="footer-dot">·</span> No real reservations or payments</span></footer>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <nav class="bottom-nav" aria-label="Mobile navigation"><a href="./" aria-current="page"><span data-icon="grid"></span>Home</a><button data-feature="booking"><span data-icon="calendar"></span>Book</button><button data-feature="queue"><span data-icon="queue"></span>Queue</button><button data-feature="scoring"><span data-icon="score"></span>Matches</button><button data-action="more"><span data-icon="more"></span>More</button></nav>
+  <dialog id="app-dialog" class="dialog" aria-labelledby="dialog-title"><div class="dialog-header"><h2 id="dialog-title"></h2><button class="icon-button" data-close-dialog aria-label="Close dialog"><span data-icon="close"></span></button></div><div id="dialog-content" class="dialog-content"></div></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <noscript><div class="notice noscript-notice">Enable JavaScript to load the sample dashboard. This frontend uses JavaScript modules and must be served over HTTP.</div></noscript>
+</body>
+</html>
