@@ -179,8 +179,6 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
 .hero-grid { display: grid; gap: 1rem; }
 .play-hero { overflow: hidden; min-height: 21rem; position: relative; border-radius: var(--radius-lg); background: var(--brand); color: white; isolation: isolate; }
 .hero-copy { position: relative; z-index: 1; padding: 1.75rem; }
-.hero-tag { display: inline-flex; align-items: center; gap: .5rem; color: #d2e2c1; font-size: .75rem; font-weight: 600; letter-spacing: .14em; }
-.hero-tag .status-dot { width: .3rem; height: .3rem; background: var(--accent); }
 .play-hero h2 { margin-top: .8rem; font-size: clamp(2.5rem, 5vw, 3.1rem); font-weight: 550; letter-spacing: -.055em; line-height: 1.04; }
 .play-hero h2 em { font-style: normal; color: var(--accent); }
 .play-hero p { margin-top: .9rem; max-width: 16rem; font-size: .875rem; color: #c7d8d0; line-height: 1.65; }
@@ -188,9 +186,8 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
 .hero-footnote { display: flex; align-items: center; gap: .6rem; margin-top: 1.35rem; font-size: .75rem; color: #d7e2dc; }
 .hero-footnote > span:last-child { max-width: 10rem; }
 .hero-footnote strong { color: white; font-weight: 600; }
-.hero-art { position: absolute; width: 26rem; aspect-ratio: 500 / 440; right: -15rem; top: .7rem; opacity: .55; z-index: -1; }
-.hero-photo { position: absolute; inset: -4rem 0; width: 100%; height: calc(100% + 8rem); object-fit: cover; object-position: right center; -webkit-mask-image: linear-gradient(to right, transparent, #000 22%); mask-image: linear-gradient(to right, transparent, #000 22%); }
-.art-caption { position: absolute; bottom: .8rem; right: 3rem; font-size: .75rem; letter-spacing: .18em; color: #bdd0be; }
+.hero-art { position: absolute; inset: 0; z-index: -1; }
+.hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; -webkit-mask-image: linear-gradient(to right, #00000038 0%, #0000003d 76%, #000 100%); mask-image: linear-gradient(to right, #00000038 0%, #0000003d 76%, #000 100%); }
 .next-session { display: flex; flex-direction: column; padding: 1.4rem; }
 #next-booking { display: flex; flex-direction: column; flex: 1; }
 .booking-date { display: flex; align-items: center; gap: 1rem; padding: 1.4rem 0 1rem; }
@@ -287,9 +284,9 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
 .more-menu { display: grid; gap: .5rem; }
 .more-menu .button { justify-content: flex-start; }
 @media (min-width: 600px) {
+  .hero-photo { -webkit-mask-image: linear-gradient(to right, #00000052 0%, #0000007a 42%, #000 76%); mask-image: linear-gradient(to right, #00000052 0%, #0000007a 42%, #000 76%); }
   main { padding: 2rem; }
   .topbar { padding: 0 2rem; }
-  .hero-art { right: -2rem; width: 25rem; top: -.5rem; opacity: .9; }
   .hero-copy { padding: 2rem; }
   .hero-footnote > span:last-child { max-width: none; }
   .play-hero p { max-width: 16rem; }
@@ -334,7 +331,6 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
   .hero-grid { grid-template-columns: minmax(0, 1.95fr) minmax(16.5rem,1fr); gap: 1.25rem; }
   .next-session { display: flex; }
   .hero-copy { padding: 1.8rem; }
-  .hero-art { width: 26rem; right: -7rem; top: -1.8rem; }
   .play-hero { min-height: 22rem; }
   .hero-footnote { margin-top: 1.2rem; }
   .hero-footnote > span:last-child { max-width: 9.5rem; }
@@ -352,7 +348,6 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
   main { padding: 2rem 2.75rem; }
   .topbar { padding-inline: 2.75rem; }
   .hero-copy { padding: 2rem; }
-  .hero-art { right: -1rem; width: 27rem; }
   .play-hero { min-height: 22.5rem; }
   .play-hero h2 { font-size: 3.2rem; }
   .hero-footnote > span:last-child { max-width: none; }
@@ -360,8 +355,7 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
   .court-diagram { width: 9.25rem; height: 5.5rem; }
   .court-type { font-size: .75rem; }
 }
-@media (min-width: 1800px) { .hero-art { right: 1rem; width: 30rem; } }
-@media (max-width: 360px) { .hero-copy { padding: 1.4rem; } .hero-art { right: -16rem; } .stat-card { padding: .9rem; } .activity-body { display: block; } .activity-chart { margin-top: 1rem; } }
+@media (max-width: 360px) { .hero-copy { padding: 1.4rem; } .stat-card { padding: .9rem; } .activity-body { display: block; } .activity-chart { margin-top: 1rem; } }
 
 ```
 
@@ -577,8 +571,8 @@ Place at: `courtline-app/dist/index.html`.
         <div id="dashboard-content" aria-busy="true">
           <section class="hero-grid" aria-label="Start playing">
             <div class="play-hero">
-              <div class="hero-copy"><span class="hero-tag"><span class="status-dot"></span>MAKE TIME FOR PLAY</span><h2>Less scrolling.<br>More <em>rallying.</em></h2><p>Find your court, bring your people,<br class="desktop-break"> and make your next game a good one.</p><button class="button button-lime" data-feature="booking"><span data-icon="plus"></span>Book a court</button><div class="hero-footnote"><span class="avatar-stack" aria-hidden="true"><b>JM</b><b>KC</b><b>SR</b></span><span><strong id="community-count">32</strong> players in the sample clubhouse</span></div></div>
-              <div class="hero-art" aria-hidden="true"><img class="hero-photo" src="assets/hero-padel-court.png" alt="" width="1024" height="691" fetchpriority="high" decoding="async"><span class="art-caption">MEET YOU AT THE KITCHEN.</span></div>
+              <div class="hero-copy"><h2>Less scrolling.<br>More <em>rallying.</em></h2><p>Find your court, bring your people,<br class="desktop-break"> and make your next game a good one.</p><button class="button button-lime" data-feature="booking">Book a court</button><div class="hero-footnote"><span class="avatar-stack" aria-hidden="true"><b>JM</b><b>KC</b><b>SR</b></span><span><strong id="community-count">32</strong> players in the sample clubhouse</span></div></div>
+              <div class="hero-art" aria-hidden="true"><img class="hero-photo" src="assets/hero-padel-court.png" alt="" width="1024" height="691" fetchpriority="high" decoding="async"></div>
             </div>
             <article class="panel next-session" aria-labelledby="next-session-title"><div class="card-heading"><h2 id="next-session-title">Your next session</h2><span class="icon-soft" data-icon="calendar"></span></div><div id="next-booking" class="loading-placeholder">Loading sample session…</div></article>
           </section>
