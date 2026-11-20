@@ -1,5 +1,6 @@
 import { repository } from './services/repository.js';
 import { icon, hydrateIcons } from './shared/icons.js';
+import { brandMark } from './shared/branding.js';
 import { badge, escapeHTML as esc, createDialogController, showToast, contrastRatio } from './shared/components.js';
 
 const dialog = createDialogController(document.querySelector('#app-dialog'));
@@ -27,13 +28,13 @@ function applyBranding() {
   document.querySelector('meta[name="theme-color"]').content = b.colors.primary;
   // Accept safe local/HTTPS logo URLs, and use the shared symbol if invalid.
   document.querySelectorAll('.brand-mark').forEach(el => {
-    el.innerHTML = icon('brand');
+    el.innerHTML = brandMark();
     if (!b.logoUrl) return;
     let url;
     try { url = new URL(b.logoUrl, location.href); } catch { return; }
     if (url.protocol !== 'https:' && url.origin !== location.origin) return;
     const img = document.createElement('img');
-    img.src = url.href; img.alt = ''; img.addEventListener('error', () => { el.innerHTML = icon('brand'); }, { once: true });
+    img.src = url.href; img.alt = ''; img.addEventListener('error', () => { el.innerHTML = brandMark(); }, { once: true });
     el.replaceChildren(img);
   });
 }

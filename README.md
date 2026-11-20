@@ -44,7 +44,9 @@ courtline-app/
       config/business.js        Tenant identity, courts, colors, business rules
       data/mock-data.js         Fixed fictional dashboard fixtures
       services/repository.js    Async data boundary to replace with APIs
-      shared/icons.js           Local SVG icons
+      shared/icons.js           Semantic mappings and Iconsax Linear renderer
+      shared/iconsax-linear.js  Selected official Iconsax Linear SVG paths
+      shared/branding.js        Default tenant logo, separate from UI symbols
       shared/components.js      Safe text, badge, dialog, toast, contrast utilities
       app.js                    Dashboard rendering and frontend interactions
       design-system.js          Component reference interactions
@@ -72,6 +74,7 @@ courtline-app/
 - Customer navigation omits the Component library, Business preview, and Frontend demo/version footer. The component reference remains available directly at `/design-system.html`; temporary branding-preview code is retained for future development.
 - Component reference with buttons, forms, badges, cards, dialogs, layout breakpoints, and browser-only form validation.
 - Reduced-motion support, skip links, semantic landmarks, visible focus styles, labeled fields, and icons with text alternatives on icon-only controls.
+- Iconsax Linear throughout navigation, statistics, buttons, dialogs, and select controls. Selected SVGs are bundled locally and inherit app colors. See `THIRD_PARTY_NOTICES.md` for source and attribution. Tenant logos, favicon, and court illustrations are separate branding/artwork.
 
 ## Frontend-only demonstration
 

@@ -44,7 +44,7 @@
 .field label, .field-label { font-size: .875rem; font-weight: 600; }
 .field input, .field select, .field textarea { width: 100%; border: 1px solid #cbd5ce; background: white; color: var(--ink); border-radius: var(--radius-sm); padding: .7rem .85rem; min-height: 2.875rem; }
 .field input[type="color"] { padding: .3rem; }
-.field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%2368766f' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .7rem center; padding-right: 2.5rem; }
+.field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M19.9201%208.9502L13.4001%2015.4702C12.6301%2016.2402%2011.3701%2016.2402%2010.6001%2015.4702L4.08008%208.9502%22%20stroke%3D%22%2368766f%22%20stroke-width%3D%221.5%22%20stroke-miterlimit%3D%2210%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right .7rem center; padding-right: 2.5rem; }
 .field textarea { resize: vertical; min-height: 5rem; }
 .field small { color: var(--muted); font-size: .8125rem; }
 .field [aria-invalid="true"] { border-color: var(--danger); }

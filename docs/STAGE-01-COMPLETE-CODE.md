@@ -18,6 +18,33 @@ artifacts/
 
 ```
 
+## THIRD_PARTY_NOTICES.md
+
+Place at: `courtline-app/THIRD_PARTY_NOTICES.md`.
+
+```text
+# Third-party notices
+
+## Iconsax Linear
+
+Icon designs are copyright Iconsax. Website: https://iconsax.io/.
+
+This application integrates selected free **Linear** SVGs from the official `iconsax` npm package, version **0.1.1**, linked from the Iconsax website:
+
+- Package: https://www.npmjs.com/package/iconsax
+- Source archive: https://registry.npmjs.org/iconsax/-/iconsax-0.1.1.tgz
+- Iconsax usage terms: https://docs.iconsax.io/license-and-terms/license
+
+The SVGs are functional parts of this application, not a separately offered icon library or asset pack. Keep this copyright and source notice with redistributed application source. Iconsax retains authorship of its icon designs.
+
+Selected paths are stored in `dist/js/shared/iconsax-linear.js`, with semantic mappings in `icons.js`. Original Linear geometry and stroke attributes are retained. Colors are normalized to `currentColor`, and redundant viewport clipping wrappers are removed to avoid duplicate SVG IDs. The select-field chevron is the same Iconsax Linear asset embedded in application CSS.
+
+`scripts/sync-icons.mjs` regenerates the integration from the pinned archive, verifying its SHA-512 integrity before reading it. No Iconsax package code executes in the application and no CDN is required.
+
+Tenant logos, favicon, and court illustrations are separate application branding/artwork.
+
+```
+
 ## dist/assets/mark.svg
 
 Place at: `courtline-app/dist/assets/mark.svg`.
@@ -78,7 +105,7 @@ Place at: `courtline-app/dist/css/components.css`.
 .field label, .field-label { font-size: .875rem; font-weight: 600; }
 .field input, .field select, .field textarea { width: 100%; border: 1px solid #cbd5ce; background: white; color: var(--ink); border-radius: var(--radius-sm); padding: .7rem .85rem; min-height: 2.875rem; }
 .field input[type="color"] { padding: .3rem; }
-.field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%2368766f' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .7rem center; padding-right: 2.5rem; }
+.field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M19.9201%208.9502L13.4001%2015.4702C12.6301%2016.2402%2011.3701%2016.2402%2010.6001%2015.4702L4.08008%208.9502%22%20stroke%3D%22%2368766f%22%20stroke-width%3D%221.5%22%20stroke-miterlimit%3D%2210%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right .7rem center; padding-right: 2.5rem; }
 .field textarea { resize: vertical; min-height: 5rem; }
 .field small { color: var(--muted); font-size: .8125rem; }
 .field [aria-invalid="true"] { border-color: var(--danger); }
@@ -124,7 +151,8 @@ Place at: `courtline-app/dist/css/dashboard.css`.
 .app-content { min-width: 0; }
 .topbar { height: 4.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: var(--surface); border-bottom: 1px solid var(--line); padding: 0 1rem; }
 .brand { display: flex; align-items: center; gap: .55rem; color: var(--brand); font-size: 1.45rem; font-weight: 750; letter-spacing: -.06em; text-decoration: none; }
-.brand-mark .icon { width: 1.65rem; height: 1.65rem; }
+.brand-mark { display: inline-flex; flex-shrink: 0; }
+.brand-mark .brand-symbol { width: 1.65rem; height: 1.65rem; }
 .brand img { max-width: 2rem; max-height: 2rem; object-fit: contain; }
 .brand [data-business-name] { min-width: 0; overflow-wrap: anywhere; line-height: 1.15; }
 .mobile-brand [data-business-name] { max-width: 8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -137,7 +165,8 @@ Place at: `courtline-app/dist/css/dashboard.css`.
 main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
 .page-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.65rem; }
 .page-heading h1 { margin-top: .35rem; }
-.greeting-wave { display: inline-block; margin-left: .55rem; font-size: 1.8rem; font-weight: 400; color: #7b9957; vertical-align: .15rem; }
+.greeting-wave { margin-left: .55rem; color: #7b9957; vertical-align: .05rem; }
+.greeting-wave .icon { width: 1.65rem; height: 1.65rem; }
 .page-heading p { margin-top: .5rem; color: var(--muted); font-size: .9375rem; }
 .today-label { display: none; align-items: center; gap: .5rem; color: var(--muted); font-size: .8125rem; }
 .today-label .subtle { padding-left: .5rem; border-left: 1px solid #cbd5ce; font-size: .75rem; }
@@ -267,7 +296,7 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
   .app-shell { display: grid; grid-template-columns: var(--sidebar-width) minmax(0,1fr); }
   .sidebar { display: flex; flex-direction: column; height: 100dvh; position: sticky; top: 0; padding: 2rem 1rem 1rem; background: var(--surface); border-right: 1px solid var(--line); overflow-y: auto; }
   .sidebar .brand { margin-left: .8rem; font-size: 1.8rem; }
-  .sidebar .brand-mark .icon { width: 1.9rem; height: 1.9rem; }
+  .sidebar .brand-mark .brand-symbol { width: 1.9rem; height: 1.9rem; }
   .workspace-label { margin: .65rem .8rem 2.25rem; font-size: .75rem; color: var(--muted); letter-spacing: .13em; font-weight: 600; }
   .primary-nav { display: grid; gap: .3rem; }
   .nav-item { display: flex; align-items: center; gap: .8rem; width: 100%; min-height: 2.9rem; padding: .7rem .9rem; border: 0; background: transparent; border-radius: .55rem; text-align: left; text-decoration: none; font-size: .875rem; color: var(--muted); }
@@ -508,7 +537,7 @@ Place at: `courtline-app/dist/index.html`.
   <a class="skip-link" href="#main">Skip to dashboard</a>
   <div class="app-shell">
     <aside class="sidebar" aria-label="Application sidebar">
-      <a class="brand" href="./" aria-label="Home"><span class="brand-mark" data-icon="brand"></span><span data-business-name>Courtline</span><span class="brand-period">.</span></a>
+      <a class="brand" href="./" aria-label="Home"><span class="brand-mark"></span><span data-business-name>Courtline</span><span class="brand-period">.</span></a>
       <div class="workspace-label">YOUR GAME. YOUR COMMUNITY.</div>
       <nav aria-label="Main navigation" class="primary-nav">
         <a class="nav-item active" href="./" aria-current="page"><span data-icon="grid"></span>Overview</a>
@@ -531,12 +560,12 @@ Place at: `courtline-app/dist/index.html`.
 
     <div class="app-content">
       <header class="topbar">
-        <a class="mobile-brand brand" href="./"><span class="brand-mark" data-icon="brand"></span><span data-business-name>Courtline</span><span class="brand-period">.</span></a>
+        <a class="mobile-brand brand" href="./"><span class="brand-mark"></span><span data-business-name>Courtline</span><span class="brand-period">.</span></a>
         <div class="topbar-actions"><button class="icon-button notification-button" data-action="notifications" aria-label="View sample notifications"><span data-icon="bell"></span><span class="notification-dot"></span></button><button class="profile-trigger" data-action="profile" aria-label="Open player profile"><span class="avatar" data-player-initials>AL</span><span class="profile-chevron" data-icon="chevron"></span></button></div>
       </header>
 
       <main id="main" tabindex="-1">
-        <div class="page-heading"><div><div class="eyebrow">LET’S GET YOU ON COURT</div><h1>Hey, <span data-player-first>Alex</span><span class="greeting-wave" aria-hidden="true">✳</span></h1><p>A good day starts with a great game.</p></div><div class="today-label"><span data-icon="calendar"></span><time id="demo-date" datetime="2026-11-20">Friday, November 20</time><span class="subtle">Demo day</span></div></div>
+        <div class="page-heading"><div><div class="eyebrow">LET’S GET YOU ON COURT</div><h1>Hey, <span data-player-first>Alex</span><span class="greeting-wave" data-icon="sun" aria-hidden="true"></span></h1><p>A good day starts with a great game.</p></div><div class="today-label"><span data-icon="calendar"></span><time id="demo-date" datetime="2026-11-20">Friday, November 20</time><span class="subtle">Demo day</span></div></div>
 
         <div id="load-error" class="notice error-notice" role="alert" hidden></div>
         <div id="dashboard-content" aria-busy="true">
@@ -578,6 +607,7 @@ Place at: `courtline-app/dist/js/app.js`.
 ```javascript
 import { repository } from './services/repository.js';
 import { icon, hydrateIcons } from './shared/icons.js';
+import { brandMark } from './shared/branding.js';
 import { badge, escapeHTML as esc, createDialogController, showToast, contrastRatio } from './shared/components.js';
 
 const dialog = createDialogController(document.querySelector('#app-dialog'));
@@ -605,13 +635,13 @@ function applyBranding() {
   document.querySelector('meta[name="theme-color"]').content = b.colors.primary;
   // Accept safe local/HTTPS logo URLs, and use the shared symbol if invalid.
   document.querySelectorAll('.brand-mark').forEach(el => {
-    el.innerHTML = icon('brand');
+    el.innerHTML = brandMark();
     if (!b.logoUrl) return;
     let url;
     try { url = new URL(b.logoUrl, location.href); } catch { return; }
     if (url.protocol !== 'https:' && url.origin !== location.origin) return;
     const img = document.createElement('img');
-    img.src = url.href; img.alt = ''; img.addEventListener('error', () => { el.innerHTML = icon('brand'); }, { once: true });
+    img.src = url.href; img.alt = ''; img.addEventListener('error', () => { el.innerHTML = brandMark(); }, { once: true });
     el.replaceChildren(img);
   });
 }
@@ -866,6 +896,18 @@ export const repository = {
 
 ```
 
+## dist/js/shared/branding.js
+
+Place at: `courtline-app/dist/js/shared/branding.js`.
+
+```javascript
+/** Default tenant logo. Branding artwork is separate from UI iconography. */
+export function brandMark() {
+  return '<svg class="brand-symbol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><g transform="rotate(-25 12 12)"><rect x="6" y="3" width="12" height="18" rx="1"/><path d="M6 9h12M6 15h12M12 3v6m0 6v6M4 12h16"/></g></svg>';
+}
+
+```
+
 ## dist/js/shared/components.js
 
 Place at: `courtline-app/dist/js/shared/components.js`.
@@ -939,35 +981,65 @@ export function contrastRatio(hexA, hexB) {
 Place at: `courtline-app/dist/js/shared/icons.js`.
 
 ```javascript
-/** Local SVG symbols. Decorative icons always accompany visible text or labels. */
-const paths = {
-  brand: '<g transform="rotate(-25 12 12)"><rect x="6" y="3" width="12" height="18" rx="1"/><path d="M6 9h12M6 15h12M12 3v6m0 6v6M4 12h16"/></g>',
-  grid: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
-  calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-13 4h2m4 0h2m-8 3h2"/>',
-  queue: '<circle cx="8" cy="7" r="3"/><path d="M2 21v-3a6 6 0 0 1 12 0v3m2-17a3 3 0 0 1 0 6m2 4a5 5 0 0 1 4 5v2"/>',
-  score: '<rect x="2" y="5" width="20" height="15" rx="2"/><path d="M12 5v15M7 2v6m10-6v6M6 12h2v4H6m10-4h2v4h-2"/>',
-  trophy: '<path d="M7 3h10v6a5 5 0 0 1-10 0V3Zm0 2H3v3a4 4 0 0 0 5 4m9-7h4v3a4 4 0 0 1-5 4m-4 2v7m-5 0h10"/>',
-  flag: '<path d="M5 22V3m0 0c5-5 9 5 15 0v11c-6 5-10-5-15 0"/>',
-  ticket: '<path d="M3 5h18v5a2 2 0 0 0 0 4v5H3v-5a2 2 0 0 0 0-4V5Zm12 0v3m0 3v2m0 3v3"/>',
-  chart: '<path d="M4 3v17h17M8 15l4-4 4 2 5-7"/>',
-  user: '<circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3"/>',
-  layers: '<path d="m12 2 10 6-10 6L2 8l10-6Zm-10 11 10 6 10-6M2 18l10 6 10-6"/>',
-  settings: '<path d="m10 2-.6 3-2 .9-2.7-.9-2 3.5 2.2 2v3L2.7 16l2 3.5 2.7-.9 2 .9.6 2.5h4l.6-2.5 2-.9 2.7.9 2-3.5-2.2-2.5v-3l2.2-2-2-3.5-2.7.9-2-.9L14 2h-4Z"/><circle cx="12" cy="12" r="3"/>',
-  bell: '<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>',
-  chevron: '<path d="m8 10 4 4 4-4"/>',
-  plus: '<path d="M12 5v14M5 12h14"/>',
-  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/>',
-  pin: '<path d="M19 10c0 6-7 12-7 12S5 16 5 10a7 7 0 0 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/>',
-  paddle: '<path d="m5 16-3 4 2 2 4-4m-3-2c-4-5-2-10 1-12s8-2 11 1 3 8 0 11-7 4-12 0Z"/><path d="m11 6 4 4"/>',
-  info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v.1"/>',
-  close: '<path d="m6 6 12 12M6 18 18 6"/>',
-  more: '<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>',
-  check: '<path d="m5 12 4 4L19 6"/>',
-};
+import { iconsaxLinear } from './iconsax-linear.js';
+
+/** All UI symbols use Iconsax Linear. Copyright Iconsax, https://iconsax.io/.
+ * Semantic app names keep views independent of library naming.
+ * Source and reuse notice: THIRD_PARTY_NOTICES.md.
+ */
+export const iconNames = Object.freeze({
+  grid: 'category', calendar: 'calendar', queue: 'people', score: 'monitor',
+  trophy: 'cup', flag: 'flag', ticket: 'ticket', chart: 'chart-2', user: 'user',
+  layers: 'layer', settings: 'setting-2', bell: 'notification',
+  chevron: 'arrow-down-02', plus: 'add', clock: 'clock', pin: 'location',
+  paddle: 'medal', info: 'info-circle', close: 'close-circle',
+  more: 'more-square', check: 'tick-circle', sun: 'sun',
+});
+
 export function icon(name) {
-  return `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name] || paths.info}</svg>`;
+  const sourceName = iconNames[name] || iconNames.info;
+  return `<svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" data-icon-library="iconsax" data-icon-variant="linear" data-iconsax="${sourceName}">${iconsaxLinear[sourceName]}</svg>`;
 }
-export function hydrateIcons(root = document) { root.querySelectorAll('[data-icon]').forEach(el => { el.innerHTML = icon(el.dataset.icon); }); }
+
+export function hydrateIcons(root = document) {
+  root.querySelectorAll('[data-icon]').forEach(el => { el.innerHTML = icon(el.dataset.icon); });
+}
+
+```
+
+## dist/js/shared/iconsax-linear.js
+
+Place at: `courtline-app/dist/js/shared/iconsax-linear.js`.
+
+```javascript
+/** Iconsax Linear · selected free icons from official iconsax@0.1.1.
+ * Copyright Iconsax. https://iconsax.io/ · See THIRD_PARTY_NOTICES.md.
+ * Generated by scripts/sync-icons.mjs; retain the Linear variant.
+ */
+export const iconsaxLinear = Object.freeze({
+  "category": "<path d=\"M5 10H7C9 10 10 9 10 7V5C10 3 9 2 7 2H5C3 2 2 3 2 5V7C2 9 3 10 5 10Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M17 10H19C21 10 22 9 22 7V5C22 3 21 2 19 2H17C15 2 14 3 14 5V7C14 9 15 10 17 10Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M17 22H19C21 22 22 21 22 19V17C22 15 21 14 19 14H17C15 14 14 15 14 17V19C14 21 15 22 17 22Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M5 22H7C9 22 10 21 10 19V17C10 15 9 14 7 14H5C3 14 2 15 2 17V19C2 21 3 22 5 22Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+  "calendar": "<path d=\"M8 2V5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M16 2V5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M3.5 9.08984H20.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M21 8.5V17C21 20 19.5 22 16 22H8C4.5 22 3 20 3 17V8.5C3 5.5 4.5 3.5 8 3.5H16C19.5 3.5 21 5.5 21 8.5Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M15.6947 13.6992H15.7037\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M15.6947 16.6992H15.7037\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M11.9955 13.6992H12.0045\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M11.9955 16.6992H12.0045\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M8.29431 13.6992H8.30329\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M8.29431 16.6992H8.30329\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+  "people": "<path d=\"M18.0001 7.16C17.9401 7.15 17.8701 7.15 17.8101 7.16C16.4301 7.11 15.3301 5.98 15.3301 4.58C15.3301 3.15 16.4801 2 17.9101 2C19.3401 2 20.4901 3.16 20.4901 4.58C20.4801 5.98 19.3801 7.11 18.0001 7.16Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M16.9699 14.4402C18.3399 14.6702 19.8499 14.4302 20.9099 13.7202C22.3199 12.7802 22.3199 11.2402 20.9099 10.3002C19.8399 9.59016 18.3099 9.35016 16.9399 9.59016\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M5.96998 7.16C6.02998 7.15 6.09998 7.15 6.15998 7.16C7.53998 7.11 8.63998 5.98 8.63998 4.58C8.63998 3.15 7.48998 2 6.05998 2C4.62998 2 3.47998 3.16 3.47998 4.58C3.48998 5.98 4.58998 7.11 5.96998 7.16Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M6.99994 14.4402C5.62994 14.6702 4.11994 14.4302 3.05994 13.7202C1.64994 12.7802 1.64994 11.2402 3.05994 10.3002C4.12994 9.59016 5.65994 9.35016 7.02994 9.59016\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M12.0001 14.6297C11.9401 14.6197 11.8701 14.6197 11.8101 14.6297C10.4301 14.5797 9.33008 13.4497 9.33008 12.0497C9.33008 10.6197 10.4801 9.46973 11.9101 9.46973C13.3401 9.46973 14.4901 10.6297 14.4901 12.0497C14.4801 13.4497 13.3801 14.5897 12.0001 14.6297Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M9.09021 17.7794C7.68021 18.7194 7.68021 20.2594 9.09021 21.1994C10.6902 22.2694 13.3102 22.2694 14.9102 21.1994C16.3202 20.2594 16.3202 18.7194 14.9102 17.7794C13.3202 16.7194 10.6902 16.7194 9.09021 17.7794Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+  "monitor": "<path d=\"M6.44 2H17.55C21.11 2 22 2.89 22 6.44V12.77C22 16.33 21.11 17.21 17.56 17.21H6.44C2.89 17.22 2 16.33 2 12.78V6.44C2 2.89 2.89 2 6.44 2Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M12 17.2207V22.0007\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M2 13H22\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M7.5 22H16.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+  "cup": "<path d=\"M12.15 16.5V18.6\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M7.15002 22H17.15V21C17.15 19.9 16.25 19 15.15 19H9.15002C8.05002 19 7.15002 19.9 7.15002 21V22V22Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\"/> <path d=\"M6.15002 22H18.15\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M12 16C8.13 16 5 12.87 5 9V6C5 3.79 6.79 2 9 2H15C17.21 2 19 3.79 19 6V9C19 12.87 15.87 16 12 16Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M5.47004 11.6496C4.72004 11.4096 4.06004 10.9696 3.54004 10.4496C2.64004 9.44961 2.04004 8.24961 2.04004 6.84961C2.04004 5.44961 3.14004 4.34961 4.54004 4.34961H5.19004C4.99004 4.80961 4.89004 5.31961 4.89004 5.84961V8.84961C4.89004 9.84961 5.10004 10.7896 5.47004 11.6496Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M18.53 11.6496C19.28 11.4096 19.94 10.9696 20.46 10.4496C21.36 9.44961 21.96 8.24961 21.96 6.84961C21.96 5.44961 20.86 4.34961 19.46 4.34961H18.81C19.01 4.80961 19.11 5.31961 19.11 5.84961V8.84961C19.11 9.84961 18.9 10.7896 18.53 11.6496Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+  "flag": "<path d=\"M5.15002 2V22\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M5.15002 4H16.35C19.05 4 19.65 5.5 17.75 7.4L16.55 8.6C15.75 9.4 15.75 10.7 16.55 11.4L17.75 12.6C19.65 14.5 18.95 16 16.35 16H5.15002\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+  "ticket": "<path d=\"M19.5 12.5C19.5 11.12 20.62 10 22 10V9C22 5 21 4 17 4H7C3 4 2 5 2 9V9.5C3.38 9.5 4.5 10.62 4.5 12C4.5 13.38 3.38 14.5 2 14.5V15C2 19 3 20 7 20H17C21 20 22 19 22 15C20.62 15 19.5 13.88 19.5 12.5Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M10 4L10 20\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-dasharray=\"5 5\"/>",
+  "chart-2": "<path d=\"M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M15.5 18.5C16.6 18.5 17.5 17.6 17.5 16.5V7.5C17.5 6.4 16.6 5.5 15.5 5.5C14.4 5.5 13.5 6.4 13.5 7.5V16.5C13.5 17.6 14.39 18.5 15.5 18.5Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M8.5 18.5C9.6 18.5 10.5 17.6 10.5 16.5V13C10.5 11.9 9.6 11 8.5 11C7.4 11 6.5 11.9 6.5 13V16.5C6.5 17.6 7.39 18.5 8.5 18.5Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+  "user": "<path d=\"M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M20.5901 22C20.5901 18.13 16.7402 15 12.0002 15C7.26015 15 3.41016 18.13 3.41016 22\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+  "layer": "<path d=\"M13.01 2.92031L18.91 5.54031C20.61 6.29031 20.61 7.53031 18.91 8.28031L13.01 10.9003C12.34 11.2003 11.24 11.2003 10.57 10.9003L4.67002 8.28031C2.97002 7.53031 2.97002 6.29031 4.67002 5.54031L10.57 2.92031C11.24 2.62031 12.34 2.62031 13.01 2.92031Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M3 11C3 11.84 3.63 12.81 4.4 13.15L11.19 16.17C11.71 16.4 12.3 16.4 12.81 16.17L19.6 13.15C20.37 12.81 21 11.84 21 11\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M3 16C3 16.93 3.55 17.77 4.4 18.15L11.19 21.17C11.71 21.4 12.3 21.4 12.81 21.17L19.6 18.15C20.45 17.77 21 16.93 21 16\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+  "setting-2": "<path d=\"M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M2 12.8794V11.1194C2 10.0794 2.85 9.21945 3.9 9.21945C5.71 9.21945 6.45 7.93945 5.54 6.36945C5.02 5.46945 5.33 4.29945 6.24 3.77945L7.97 2.78945C8.76 2.31945 9.78 2.59945 10.25 3.38945L10.36 3.57945C11.26 5.14945 12.74 5.14945 13.65 3.57945L13.76 3.38945C14.23 2.59945 15.25 2.31945 16.04 2.78945L17.77 3.77945C18.68 4.29945 18.99 5.46945 18.47 6.36945C17.56 7.93945 18.3 9.21945 20.11 9.21945C21.15 9.21945 22.01 10.0694 22.01 11.1194V12.8794C22.01 13.9194 21.16 14.7794 20.11 14.7794C18.3 14.7794 17.56 16.0594 18.47 17.6294C18.99 18.5394 18.68 19.6994 17.77 20.2194L16.04 21.2094C15.25 21.6794 14.23 21.3994 13.76 20.6094L13.65 20.4194C12.75 18.8494 11.27 18.8494 10.36 20.4194L10.25 20.6094C9.78 21.3994 8.76 21.6794 7.97 21.2094L6.24 20.2194C5.33 19.6994 5.02 18.5294 5.54 17.6294C6.45 16.0594 5.71 14.7794 3.9 14.7794C2.85 14.7794 2 13.9194 2 12.8794Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+  "notification": "<path d=\"M12.02 2.91016C8.70997 2.91016 6.01997 5.60016 6.01997 8.91016V11.8002C6.01997 12.4102 5.75997 13.3402 5.44997 13.8602L4.29997 15.7702C3.58997 16.9502 4.07997 18.2602 5.37997 18.7002C9.68997 20.1402 14.34 20.1402 18.65 18.7002C19.86 18.3002 20.39 16.8702 19.73 15.7702L18.58 13.8602C18.28 13.3402 18.02 12.4102 18.02 11.8002V8.91016C18.02 5.61016 15.32 2.91016 12.02 2.91016Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\"/> <path d=\"M13.87 3.19945C13.56 3.10945 13.24 3.03945 12.91 2.99945C11.95 2.87945 11.03 2.94945 10.17 3.19945C10.46 2.45945 11.18 1.93945 12.02 1.93945C12.86 1.93945 13.58 2.45945 13.87 3.19945Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M15.02 19.0605C15.02 20.7105 13.67 22.0605 12.02 22.0605C11.2 22.0605 10.44 21.7205 9.90002 21.1805C9.36002 20.6405 9.02002 19.8805 9.02002 19.0605\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\"/>",
+  "arrow-down-02": "<path d=\"M19.9201 8.9502L13.4001 15.4702C12.6301 16.2402 11.3701 16.2402 10.6001 15.4702L4.08008 8.9502\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+  "add": "<path d=\"M6 12H18\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M12 18V6\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+  "clock": "<path d=\"M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2C17.52 2 22 6.48 22 12Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M15.71 15.1798L12.61 13.3298C12.07 13.0098 11.63 12.2398 11.63 11.6098V7.50977\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+  "location": "<path d=\"M12 13.4295C13.7231 13.4295 15.12 12.0326 15.12 10.3095C15.12 8.58633 13.7231 7.18945 12 7.18945C10.2769 7.18945 8.88 8.58633 8.88 10.3095C8.88 12.0326 10.2769 13.4295 12 13.4295Z\" stroke=\"currentColor\" stroke-width=\"1.5\"/> <path d=\"M3.61995 8.49C5.58995 -0.169998 18.42 -0.159997 20.38 8.5C21.53 13.58 18.37 17.88 15.6 20.54C13.59 22.48 10.41 22.48 8.38995 20.54C5.62995 17.88 2.46995 13.57 3.61995 8.49Z\" stroke=\"currentColor\" stroke-width=\"1.5\"/>",
+  "medal": "<path d=\"M12 15C15.7279 15 18.75 12.0899 18.75 8.5C18.75 4.91015 15.7279 2 12 2C8.27208 2 5.25 4.91015 5.25 8.5C5.25 12.0899 8.27208 15 12 15Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M7.51999 13.5198L7.51001 20.8998C7.51001 21.7998 8.14001 22.2398 8.92001 21.8698L11.6 20.5999C11.82 20.4899 12.19 20.4899 12.41 20.5999L15.1 21.8698C15.87 22.2298 16.51 21.7998 16.51 20.8998V13.3398\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+  "info-circle": "<path d=\"M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M12 8V13\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M11.9945 16H12.0035\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+  "close-circle": "<path d=\"M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M9.17004 14.8299L14.83 9.16992\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M14.83 14.8299L9.17004 9.16992\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+  "more-square": "<path d=\"M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M15.9965 12H16.0054\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M11.9955 12H12.0045\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M7.99451 12H8.00349\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+  "tick-circle": "<path d=\"M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M7.75 11.9999L10.58 14.8299L16.25 9.16992\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
+  "sun": "<path d=\"M12 18.5C15.5899 18.5 18.5 15.5899 18.5 12C18.5 8.41015 15.5899 5.5 12 5.5C8.41015 5.5 5.5 8.41015 5.5 12C5.5 15.5899 8.41015 18.5 12 18.5Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M19.14 19.14L19.01 19.01M19.01 4.99L19.14 4.86L19.01 4.99ZM4.86 19.14L4.99 19.01L4.86 19.14ZM12 2.08V2V2.08ZM12 22V21.92V22ZM2.08 12H2H2.08ZM22 12H21.92H22ZM4.99 4.99L4.86 4.86L4.99 4.99Z\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>"
+});
 
 ```
 
@@ -1059,7 +1131,7 @@ async function walk(folder) {
   const entries = await fs.readdir(folder, { withFileTypes: true });
   return (await Promise.all(entries.map(e => e.isDirectory() ? walk(path.join(folder, e.name)) : path.join(folder, e.name)))).flat();
 }
-const source = [...await walk(path.join(root, 'dist')), ...await walk(path.join(root, 'scripts')), path.join(root, 'package.json'), path.join(root, 'vercel.json'), path.join(root, '.gitignore')].sort();
+const source = [...await walk(path.join(root, 'dist')), ...await walk(path.join(root, 'scripts')), path.join(root, 'package.json'), path.join(root, 'vercel.json'), path.join(root, 'THIRD_PARTY_NOTICES.md'), path.join(root, '.gitignore')].sort();
 let output = '# Stage 1 · Complete code\n\nCreate `courtline-app/`, then place every file at the relative path shown below. No npm dependencies are required. Run `npm run dev` inside that folder and open http://127.0.0.1:4173/. Do not open the HTML using file:// because it uses JavaScript modules.\n\nThis is a frontend preview. All data is fictional. Business preview changes live only in memory. Booking, queue, scoring, leaderboard, tournaments, authentication, admin, facility display, and PWA installation are later stages.\n\n';
 for (const file of source) {
   const relative = path.relative(root, file).replaceAll('\\', '/');
@@ -1101,6 +1173,62 @@ const server = http.createServer(async (req, res) => {
 });
 server.on('error', error => { console.error(error.message); process.exitCode = 1; });
 server.listen(port, '127.0.0.1', () => console.log(`Local: http://127.0.0.1:${port}\nServing dist/ · development only`));
+
+```
+
+## scripts/sync-icons.mjs
+
+Place at: `courtline-app/scripts/sync-icons.mjs`.
+
+```javascript
+/** Imports selected free Linear SVGs from the official, pinned Iconsax package.
+ * npm pack iconsax@0.1.1 --ignore-scripts --pack-destination .preview
+ * node scripts/sync-icons.mjs .preview/iconsax-0.1.1.tgz
+ * No package code executes and no runtime dependency is installed.
+ */
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { gunzipSync } from 'node:zlib';
+import { createHash } from 'node:crypto';
+const root = fileURLToPath(new URL('../', import.meta.url));
+const expectedIntegrity = '/HXomG+SuhytKH/Yw4ZdunDGyWP02Osuk/pjony1k9CCMOsg7dUpnomu7HZUOHNu0yK0b3phErjH2IgUTJFjPA==';
+if (!process.argv[2]) throw new Error('Provide the local iconsax-0.1.1.tgz path.');
+const archive = await fs.readFile(process.argv[2]);
+if (createHash('sha512').update(archive).digest('base64') !== expectedIntegrity) throw new Error('Archive does not match pinned iconsax@0.1.1.');
+// Read regular tar entries in memory; never extract archive paths to disk.
+const tar = gunzipSync(archive), files = new Map();
+for (let offset = 0; offset + 512 <= tar.length;) {
+  const header = tar.subarray(offset, offset + 512);
+  const name = header.toString('utf8', 0, 100).replace(/\0.*$/, '');
+  if (!name) break;
+  const size = parseInt(header.toString('ascii', 124, 136).replace(/\0.*$/, '').trim(), 8) || 0;
+  if (header[156] === 0 || header[156] === 48) files.set(name, tar.toString('utf8', offset + 512, offset + 512 + size));
+  offset += 512 + Math.ceil(size / 512) * 512;
+}
+const manifest = JSON.parse(files.get('package/dist/manifest.json'));
+const names = ['category', 'calendar', 'people', 'monitor', 'cup', 'flag', 'ticket', 'chart-2', 'user', 'layer', 'setting-2', 'notification', 'arrow-down-02', 'add', 'clock', 'location', 'medal', 'info-circle', 'close-circle', 'more-square', 'tick-circle', 'sun'];
+const selected = {};
+for (const name of names) {
+  const metadata = manifest[name];
+  if (!metadata?.styles.includes('linear')) throw new Error(`Missing Linear icon: ${name}`);
+  const category = JSON.parse(files.get(`package/dist/data/${metadata.category}.json`));
+  const svg = category[name].linear;
+  // Remove redundant 24x24 viewport clips and repeated IDs. Preserve geometry.
+  const body = svg.replace(/<svg\b[^>]*>|<\/svg>/g, '').replace(/<defs>[\s\S]*?<\/defs>/g, '').replace(/\sclip-path="[^"]*"/g, '').replace(/<\/?g\b[^>]*>/g, '').replace(/(stroke|fill)="white"/g, '$1="currentColor"').trim();
+  if (/\bid=|url\(|<script|<image|<foreignObject|\bon\w+=/i.test(body)) throw new Error(`Unexpected SVG content: ${name}`);
+  selected[name] = body;
+}
+const header = '/** Iconsax Linear · selected free icons from official iconsax@0.1.1.\n * Copyright Iconsax. https://iconsax.io/ · See THIRD_PARTY_NOTICES.md.\n * Generated by scripts/sync-icons.mjs; retain the Linear variant.\n */\n';
+await fs.writeFile(path.join(root, 'dist/js/shared/iconsax-linear.js'), `${header}export const iconsaxLinear = Object.freeze(${JSON.stringify(selected, null, 2)});\n`);
+// Native select uses the same official chevron, embedded in the application CSS.
+const selectSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">${selected['arrow-down-02'].replaceAll('currentColor', '#68766f')}</svg>`;
+const cssPath = path.join(root, 'dist/css/components.css');
+const css = await fs.readFile(cssPath, 'utf8');
+const pattern = /(\.field select \{[^\n]*background-image: )url\("[^"]*"\)/;
+if (!pattern.test(css)) throw new Error('Cannot locate the select icon background.');
+await fs.writeFile(cssPath, css.replace(pattern, (_, prefix) => `${prefix}url("data:image/svg+xml,${encodeURIComponent(selectSVG)}")`));
+console.log(`Imported ${names.length} Iconsax Linear icons and matching select chevron.`);
 
 ```
 

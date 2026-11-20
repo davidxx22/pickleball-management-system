@@ -19,6 +19,14 @@ Verified November 20, 2026.
 - Component form validates locally and explicitly reports that nothing was sent.
 - A single-button dialog keeps Tab focus inside the dialog after an explicit focus-loop fix.
 
+## Iconsax Linear update
+
+- Source checks passed with nine browser JavaScript modules.
+- Every icon referenced by the current views, dialogs, and fixture data resolves to the locally bundled Iconsax Linear subset.
+- Browser inspection found no empty UI SVGs, non-Linear UI icons, or duplicate SVG IDs.
+- Desktop navigation, notification dialog, mobile More menu, and component reference were checked. The native select uses the same official Linear chevron embedded in CSS.
+- No browser console errors or warnings were observed during these checks. Tenant logos and court illustrations remain separate branding/artwork.
+
 ## Limits
 
 This is browser preview QA, not an exhaustive accessibility audit or testing on physical iOS/Android devices. There is no backend, authentication, actual live feed, write transaction, installability, service worker, or offline behavior to validate in Stage 1. Dedicated large-screen facility behavior belongs to its later stage.
