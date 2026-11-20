@@ -12,6 +12,10 @@ let output = '# Stage 1 · Complete code\n\nCreate `courtline-app/`, then place 
 for (const file of source) {
   const relative = path.relative(root, file).replaceAll('\\', '/');
   const ext = path.extname(file);
+  if (['.png', '.jpg', '.jpeg', '.webp', '.gif', '.ico'].includes(ext)) {
+    output += `## ${relative}\n\nPlace at: \`courtline-app/${relative}\`.\n\nBinary image asset supplied in the source ZIP: [open asset](../${relative}). Copy the image file to this path; do not paste binary content into a code file.\n\n`;
+    continue;
+  }
   const language = ({ '.html': 'html', '.css': 'css', '.js': 'javascript', '.mjs': 'javascript', '.json': 'json', '.svg': 'xml' })[ext] || 'text';
   output += `## ${relative}\n\nPlace at: \`courtline-app/${relative}\`.\n\n\`\`\`${language}\n${await fs.readFile(file, 'utf8')}\n\`\`\`\n\n`;
 }

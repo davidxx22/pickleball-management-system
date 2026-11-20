@@ -45,6 +45,12 @@ Tenant logos, favicon, and court illustrations are separate application branding
 
 ```
 
+## dist/assets/hero-padel-court.png
+
+Place at: `courtline-app/dist/assets/hero-padel-court.png`.
+
+Binary image asset supplied in the source ZIP: [open asset](../dist/assets/hero-padel-court.png). Copy the image file to this path; do not paste binary content into a code file.
+
 ## dist/assets/mark.svg
 
 Place at: `courtline-app/dist/assets/mark.svg`.
@@ -182,8 +188,8 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
 .hero-footnote { display: flex; align-items: center; gap: .6rem; margin-top: 1.35rem; font-size: .75rem; color: #d7e2dc; }
 .hero-footnote > span:last-child { max-width: 10rem; }
 .hero-footnote strong { color: white; font-weight: 600; }
-.hero-art { position: absolute; width: 26rem; right: -15rem; top: .7rem; opacity: .55; z-index: -1; }
-.hero-art svg { width: 100%; }
+.hero-art { position: absolute; width: 26rem; aspect-ratio: 500 / 440; right: -15rem; top: .7rem; opacity: .55; z-index: -1; }
+.hero-photo { position: absolute; inset: -4rem 0; width: 100%; height: calc(100% + 8rem); object-fit: cover; object-position: right center; -webkit-mask-image: linear-gradient(to right, transparent, #000 22%); mask-image: linear-gradient(to right, transparent, #000 22%); }
 .art-caption { position: absolute; bottom: .8rem; right: 3rem; font-size: .75rem; letter-spacing: .18em; color: #bdd0be; }
 .next-session { display: flex; flex-direction: column; padding: 1.4rem; }
 #next-booking { display: flex; flex-direction: column; flex: 1; }
@@ -572,7 +578,7 @@ Place at: `courtline-app/dist/index.html`.
           <section class="hero-grid" aria-label="Start playing">
             <div class="play-hero">
               <div class="hero-copy"><span class="hero-tag"><span class="status-dot"></span>MAKE TIME FOR PLAY</span><h2>Less scrolling.<br>More <em>rallying.</em></h2><p>Find your court, bring your people,<br class="desktop-break"> and make your next game a good one.</p><button class="button button-lime" data-feature="booking"><span data-icon="plus"></span>Book a court</button><div class="hero-footnote"><span class="avatar-stack" aria-hidden="true"><b>JM</b><b>KC</b><b>SR</b></span><span><strong id="community-count">32</strong> players in the sample clubhouse</span></div></div>
-              <div class="hero-art" aria-hidden="true"><svg viewBox="0 0 500 440" fill="none"><defs><pattern id="dot-grid" width="19" height="19" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#FFFFFF" opacity=".10"/></pattern><linearGradient id="court-gradient" x1="40" y1="0" x2="370" y2="440" gradientUnits="userSpaceOnUse"><stop stop-color="#5B8A65"/><stop offset="1" stop-color="#2F614D"/></linearGradient></defs><path fill="url(#dot-grid)" d="M0 0h500v440H0z"/><g transform="translate(110 10) rotate(26 155 205)"><rect x="4" y="30" width="284" height="400" rx="5" fill="#0C3028" opacity=".6"/><rect x="-8" y="10" width="284" height="400" rx="5" fill="url(#court-gradient)"/><path d="M17 35h234v350H17z" fill="#3B7155" stroke="#C7DABB" stroke-width="3"/><path d="M17 153h234v114H17z" fill="#A6BE7D" fill-opacity=".75"/><path d="M17 153h234M17 267h234M134 35v118m0 114v118" stroke="#DCE7CF" stroke-width="3"/><path d="M-19 210h306" stroke="#D9E7CF" stroke-width="5"/><path d="M-19 210h306" stroke="#102F28" stroke-width="2" stroke-dasharray="2 3"/><circle cx="202" cy="105" r="13" fill="#DBF38F"/><circle cx="199" cy="100" r="2" fill="#5C7847"/><circle cx="206" cy="107" r="2" fill="#5C7847"/><circle cx="197" cy="110" r="2" fill="#5C7847"/><g transform="translate(22 290) rotate(-26)"><rect x="24" y="49" width="13" height="57" rx="5" fill="#D5B993"/><rect width="62" height="69" rx="23" fill="#D4EB8B"/><path d="M8 18c7-14 36-14 46 0" stroke="#9EBF5E" stroke-width="2"/><path d="M27 79h7m-7 8h7m-7 8h7" stroke="#1B4035" stroke-width="2"/></g></g><path d="M382 325l12 9m-1-25l5 8m3 29l14 1" stroke="#D9EF9C" stroke-width="2" stroke-linecap="round"/></svg><span class="art-caption">MEET YOU AT THE KITCHEN.</span></div>
+              <div class="hero-art" aria-hidden="true"><img class="hero-photo" src="assets/hero-padel-court.png" alt="" width="1024" height="691" fetchpriority="high" decoding="async"><span class="art-caption">MEET YOU AT THE KITCHEN.</span></div>
             </div>
             <article class="panel next-session" aria-labelledby="next-session-title"><div class="card-heading"><h2 id="next-session-title">Your next session</h2><span class="icon-soft" data-icon="calendar"></span></div><div id="next-booking" class="loading-placeholder">Loading sample session…</div></article>
           </section>
@@ -1136,6 +1142,10 @@ let output = '# Stage 1 · Complete code\n\nCreate `courtline-app/`, then place 
 for (const file of source) {
   const relative = path.relative(root, file).replaceAll('\\', '/');
   const ext = path.extname(file);
+  if (['.png', '.jpg', '.jpeg', '.webp', '.gif', '.ico'].includes(ext)) {
+    output += `## ${relative}\n\nPlace at: \`courtline-app/${relative}\`.\n\nBinary image asset supplied in the source ZIP: [open asset](../${relative}). Copy the image file to this path; do not paste binary content into a code file.\n\n`;
+    continue;
+  }
   const language = ({ '.html': 'html', '.css': 'css', '.js': 'javascript', '.mjs': 'javascript', '.json': 'json', '.svg': 'xml' })[ext] || 'text';
   output += `## ${relative}\n\nPlace at: \`courtline-app/${relative}\`.\n\n\`\`\`${language}\n${await fs.readFile(file, 'utf8')}\n\`\`\`\n\n`;
 }

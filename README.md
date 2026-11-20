@@ -68,7 +68,7 @@ courtline-app/
 
 - Customer Home Dashboard with a sports app layout and responsive desktop sidebar/mobile bottom navigation.
 - Minimal white top bar with notification bell, circular initials avatar, and chevron aligned right; mobile retains the business logo on the left.
-- Hero illustration drawn as local SVG/CSS, sample upcoming session, player summary, configurable court cards, activity chart, and community event.
+- Hero featuring the user-supplied court photograph, sample upcoming session, player summary, configurable court cards, activity chart, and community event. The photograph is bundled at `dist/assets/hero-padel-court.png`; the caption and hero copy retain their existing positions.
 - Court status filters with pressed state and an announced result count.
 - Court/session/event/profile/notification dialogs. Native dialog focus containment, Escape dismissal, a visible close button, and focus restoration.
 - Customer navigation omits the Component library, Business preview, and Frontend demo/version footer. The component reference remains available directly at `/design-system.html`; temporary branding-preview code is retained for future development.

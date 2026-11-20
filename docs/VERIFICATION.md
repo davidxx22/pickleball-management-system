@@ -27,6 +27,14 @@ Verified November 20, 2026.
 - Desktop navigation, notification dialog, mobile More menu, and component reference were checked. The native select uses the same official Linear chevron embedded in CSS.
 - No browser console errors or warnings were observed during these checks. Tenant logos and court illustrations remain separate branding/artwork.
 
+## Hero photograph update
+
+- The attached PNG was copied unchanged to `dist/assets/hero-padel-court.png`; source and copied file hashes match.
+- Removed the hero SVG court artwork and dot-grid pattern. The caption keeps the former artwork's 500:440 positioning box; the photograph is cropped and blended within that presentation area.
+- Before/after browser measurements matched exactly for the hero tag, heading, paragraph, CTA, player footnote, avatar stack, caption, and artwork box at desktop (1280px), tablet (768px), and phone (390px) widths.
+- The photo loads, no hero SVG/pattern elements remain, no tablet horizontal overflow was observed, and the browser reported no console errors or warnings.
+- Source checks passed. The code exporter now links binary image assets rather than treating them as text.
+
 ## Limits
 
 This is browser preview QA, not an exhaustive accessibility audit or testing on physical iOS/Android devices. There is no backend, authentication, actual live feed, write transaction, installability, service worker, or offline behavior to validate in Stage 1. Dedicated large-screen facility behavior belongs to its later stage.

@@ -33,8 +33,8 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
 .hero-footnote { display: flex; align-items: center; gap: .6rem; margin-top: 1.35rem; font-size: .75rem; color: #d7e2dc; }
 .hero-footnote > span:last-child { max-width: 10rem; }
 .hero-footnote strong { color: white; font-weight: 600; }
-.hero-art { position: absolute; width: 26rem; right: -15rem; top: .7rem; opacity: .55; z-index: -1; }
-.hero-art svg { width: 100%; }
+.hero-art { position: absolute; width: 26rem; aspect-ratio: 500 / 440; right: -15rem; top: .7rem; opacity: .55; z-index: -1; }
+.hero-photo { position: absolute; inset: -4rem 0; width: 100%; height: calc(100% + 8rem); object-fit: cover; object-position: right center; -webkit-mask-image: linear-gradient(to right, transparent, #000 22%); mask-image: linear-gradient(to right, transparent, #000 22%); }
 .art-caption { position: absolute; bottom: .8rem; right: 3rem; font-size: .75rem; letter-spacing: .18em; color: #bdd0be; }
 .next-session { display: flex; flex-direction: column; padding: 1.4rem; }
 #next-booking { display: flex; flex-direction: column; flex: 1; }
