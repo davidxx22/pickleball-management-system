@@ -70,7 +70,6 @@ courtline-app/
 - Minimal white top bar with notification bell, circular initials avatar, and chevron aligned right; mobile retains the business logo on the left.
 - Hero featuring the user-supplied court photograph with a light horizontal fade, the original headline/subtext and player row, and a text-only “Book a court” CTA. The eyebrow and watermark are omitted. The photograph is bundled at `dist/assets/hero-padel-court.png`. The dashboard also includes a sample upcoming session, player summary, configurable court cards, activity chart, and community event.
 - Court status filters with pressed state and an announced result count.
-- Court headers use local illustrative photographs matched to Outdoor/Covered environments, with `object-fit: cover` cropping and floating white status badges. Configure defaults in `businessConfig.courtPhotos` or override a court with `court.image = { src, alt, position }`.
 - Court/session/event/profile/notification dialogs. Native dialog focus containment, Escape dismissal, a visible close button, and focus restoration.
 - Customer navigation omits the Component library, Business preview, and Frontend demo/version footer. The component reference remains available directly at `/design-system.html`; temporary branding-preview code is retained for future development.
 - Component reference with buttons, forms, badges, cards, dialogs, layout breakpoints, and browser-only form validation.

@@ -43,28 +43,7 @@ Selected paths are stored in `dist/js/shared/iconsax-linear.js`, with semantic m
 
 Tenant logos, favicon, and court illustrations are separate application branding/artwork.
 
-## Court card photographs
-
-The sample court images are illustrative stock photographs, not photographs of a real tenant's Court 01–04. They are bundled locally as functional image content in this application under the [Pexels License](https://www.pexels.com/license/).
-
-- `dist/assets/courts/outdoor.jpg`: Pexels photo 37143606, an outdoor overview with blue/green pickleball courts, daylight, fencing, and trees. [Source photo](https://www.pexels.com/photo/37143606/).
-- `dist/assets/courts/covered.jpg`: Xuân Nguyễn, Pexels photo 37618103, covered pickleball courts beneath a metal roof. [Source photo](https://www.pexels.com/photo/indoor-tennis-court-with-pickleball-branding-37618103/).
-
-Images are cropped only through CSS `object-fit: cover` and configurable focal positions. No photographer or depicted facility endorses this demo. Businesses can replace these images through tenant configuration.
-
 ```
-
-## dist/assets/courts/covered.jpg
-
-Place at: `courtline-app/dist/assets/courts/covered.jpg`.
-
-Binary image asset supplied in the source ZIP: [open asset](../dist/assets/courts/covered.jpg). Copy the image file to this path; do not paste binary content into a code file.
-
-## dist/assets/courts/outdoor.jpg
-
-Place at: `courtline-app/dist/assets/courts/outdoor.jpg`.
-
-Binary image asset supplied in the source ZIP: [open asset](../dist/assets/courts/outdoor.jpg). Copy the image file to this path; do not paste binary content into a code file.
 
 ## dist/assets/hero-padel-court.png
 
@@ -242,10 +221,21 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
 .court-grid { display: grid; gap: .85rem; }
 .court-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: box-shadow var(--transition), transform var(--transition); }
 .court-card:hover { box-shadow: 0 5px 22px #173b3110; transform: translateY(-2px); }
-.court-visual { position: relative; height: 8rem; overflow: hidden; border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0; background: #edf1ed; }
-.court-photo { display: block; width: 100%; height: 100%; object-fit: cover; }
-.court-photo-fallback { display: grid; place-items: center; width: 100%; height: 100%; padding: 1rem; color: var(--muted); font-size: .875rem; }
-.court-visual > .badge { position: absolute; right: .65rem; top: .65rem; z-index: 1; font-size: .875rem; background: #fff; box-shadow: 0 2px 8px #142f2526; }
+.court-visual { position: relative; display: grid; place-items: center; height: 8rem; background: #edf1ed; }
+.court-visual.in-use { background: #f1f0ea; }
+.court-visual.maintenance { background: #eef0f1; }
+.court-visual > .badge { position: absolute; right: .65rem; top: .65rem; font-size: .875rem; background: #ffffffed; }
+.court-diagram { width: 8.75rem; height: 5.3rem; padding: .6rem; border-radius: .25rem; background: #b1c3a6; transform: rotate(-9deg); box-shadow: 0 5px 0 #a1b396; }
+.court-visual.in-use .court-diagram { background: #c0c4ab; box-shadow: 0 5px 0 #acb098; }
+.court-visual.maintenance .court-diagram { background: #bdc6c7; box-shadow: 0 5px 0 #aab5b6; }
+.court-lines { position: relative; display: flex; width: 100%; height: 100%; border: 1.5px solid #ffffffe0; background: #5d8064; }
+.court-lines::before { content: ""; position: absolute; inset: -5px auto -5px 50%; z-index: 1; width: 2px; background: #fff; box-shadow: 2px 0 0 #34534144; }
+.court-lines::after { content: ""; position: absolute; left: 34%; right: 34%; top: 0; bottom: 0; background: #a5b88a; border-left: 1px solid #ffffffe0; border-right: 1px solid #ffffffe0; }
+.court-lines i { position: absolute; height: 1px; width: 100%; top: 50%; background: #ffffffe0; }
+.court-visual.in-use .court-lines { background: #7e8468; }
+.court-visual.in-use .court-lines::after { background: #b5b995; }
+.court-visual.maintenance .court-lines { background: #849697; }
+.court-visual.maintenance .court-lines::after { background: #adbdbe; }
 .court-details { padding: 1rem 1.1rem .8rem; }
 .court-title-row { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
 .court-type { font-size: .75rem; color: var(--muted); }
@@ -362,6 +352,7 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
   .play-hero h2 { font-size: 3.2rem; }
   .hero-footnote > span:last-child { max-width: none; }
   .court-visual { height: 8.75rem; }
+  .court-diagram { width: 9.25rem; height: 5.5rem; }
   .court-type { font-size: .75rem; }
 }
 @media (max-width: 360px) { .hero-copy { padding: 1.4rem; } .stat-card { padding: .9rem; } .activity-body { display: block; } .activity-chart { margin-top: 1rem; } }
@@ -668,28 +659,11 @@ function renderStats() {
   document.querySelector('#stats-grid').innerHTML = state.dashboard.stats.map(stat => `<article class="stat-card"><h2 class="stat-top"><span class="stat-icon">${icon(stat.icon)}</span>${esc(stat.label)}</h2><div class="stat-value"><strong>${esc(stat.value)}</strong><span>${esc(stat.unit)}</span></div><p class="stat-caption ${stat.positive ? 'positive' : ''}">${esc(stat.caption)}</p></article>`).join('');
 }
 
-function courtPhoto(court) {
-  const photo = court.image || state.business.courtPhotos?.[court.type];
-  if (!photo?.src) return '<span class="court-photo-fallback">Photo unavailable</span>';
-  let url;
-  try { url = new URL(photo.src, location.href); } catch { return '<span class="court-photo-fallback">Photo unavailable</span>'; }
-  if (!['http:', 'https:'].includes(url.protocol) || (url.origin !== location.origin && url.protocol !== 'https:')) return '<span class="court-photo-fallback">Photo unavailable</span>';
-  return `<img class="court-photo" src="${esc(url.href)}" alt="${esc(photo.alt || `${court.type} pickleball court`)}" data-image-position="${esc(photo.position || 'center center')}" loading="lazy" decoding="async">`;
-}
-
 function renderCourts() {
   const courts = state.business.courts.map(c => ({ ...c, ...(state.dashboard.courtSnapshots.find(s => s.courtId === c.id) || { status: 'unavailable', label: 'No sample data', note: 'Availability not connected' }) }));
   const filtered = state.courtFilter === 'all' ? courts : courts.filter(c => c.status === state.courtFilter);
   document.querySelector('#court-count').textContent = `${courts.length} ${courts.length === 1 ? 'court' : 'courts'}`;
-  document.querySelector('#court-grid').innerHTML = filtered.length ? filtered.map(c => `<article class="court-card"><div class="court-visual ${esc(c.status)}">${courtPhoto(c)}${badge(c.label, c.status === 'available' ? 'success' : c.status === 'in-use' ? 'warning' : 'neutral', true)}</div><div class="court-details"><div class="court-title-row"><h3>${esc(c.name)}</h3><span class="court-type">${esc(c.type)}</span></div><p>${esc(c.note)}</p><div class="court-card-footer"><span class="court-price">${esc(money(c.hourlyRate))}<small> / hr</small></span><button class="text-button" data-court="${esc(c.id)}" aria-label="View ${esc(c.name)} details">View court</button></div></div></article>`).join('') : '<div class="empty-state">No courts match this filter. Try All courts.</div>';
-  document.querySelectorAll('.court-photo').forEach(img => {
-    img.style.objectPosition = img.dataset.imagePosition;
-    img.addEventListener('error', () => {
-      const fallback = document.createElement('span');
-      fallback.className = 'court-photo-fallback'; fallback.textContent = 'Photo unavailable';
-      img.replaceWith(fallback);
-    }, { once: true });
-  });
+  document.querySelector('#court-grid').innerHTML = filtered.length ? filtered.map(c => `<article class="court-card"><div class="court-visual ${esc(c.status)}"><div class="court-diagram" aria-hidden="true"><div class="court-lines"><i></i></div></div>${badge(c.label, c.status === 'available' ? 'success' : c.status === 'in-use' ? 'warning' : 'neutral', true)}</div><div class="court-details"><div class="court-title-row"><h3>${esc(c.name)}</h3><span class="court-type">${esc(c.type)}</span></div><p>${esc(c.note)}</p><div class="court-card-footer"><span class="court-price">${esc(money(c.hourlyRate))}<small> / hr</small></span><button class="text-button" data-court="${esc(c.id)}" aria-label="View ${esc(c.name)} details">View court</button></div></div></article>`).join('') : '<div class="empty-state">No courts match this filter. Try All courts.</div>';
   document.querySelector('#court-results').textContent = `${filtered.length} of ${courts.length} courts shown.`;
   document.querySelectorAll('[data-court-filter]').forEach(button => { const selected = button.dataset.courtFilter === state.courtFilter; button.classList.toggle('selected', selected); button.setAttribute('aria-pressed', String(selected)); });
 }
@@ -834,11 +808,6 @@ export const businessConfig = {
   },
   operatingHours: { open: '06:00', close: '22:00', days: [0, 1, 2, 3, 4, 5, 6] },
   bookingRules: { slotMinutes: 60, minDurationMinutes: 60, maxDurationMinutes: 120, advanceDays: 14, maxPlayers: 4, cancellationNoticeHours: 12 },
-  // Environment defaults; court.image can override with { src, alt, position }.
-  courtPhotos: {
-    Outdoor: { src: 'assets/courts/outdoor.jpg', alt: 'Illustrative outdoor pickleball courts with blue and green surfacing, trees, and natural daylight', position: 'center center' },
-    Covered: { src: 'assets/courts/covered.jpg', alt: 'Illustrative covered pickleball courts beneath metal roof beams and overhead lighting fixtures', position: 'center 60%' },
-  },
   courts: [
     { id: 'court-1', name: 'Court 01', type: 'Outdoor', hourlyRate: 400 },
     { id: 'court-2', name: 'Court 02', type: 'Outdoor', hourlyRate: 400 },
