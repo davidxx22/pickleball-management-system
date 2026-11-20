@@ -14,6 +14,7 @@ node_modules/
 *.tar.gz
 .preview/
 artifacts/
+.vercel/
 
 ```
 
@@ -1072,7 +1073,7 @@ async function walk(folder) {
   const entries = await fs.readdir(folder, { withFileTypes: true });
   return (await Promise.all(entries.map(e => e.isDirectory() ? walk(path.join(folder, e.name)) : path.join(folder, e.name)))).flat();
 }
-const source = [...await walk(path.join(root, 'dist')), ...await walk(path.join(root, 'scripts')), path.join(root, 'package.json'), path.join(root, '.gitignore')].sort();
+const source = [...await walk(path.join(root, 'dist')), ...await walk(path.join(root, 'scripts')), path.join(root, 'package.json'), path.join(root, 'vercel.json'), path.join(root, '.gitignore')].sort();
 let output = '# Stage 1 · Complete code\n\nCreate `courtline-app/`, then place every file at the relative path shown below. No npm dependencies are required. Run `npm run dev` inside that folder and open http://127.0.0.1:4173/. Do not open the HTML using file:// because it uses JavaScript modules.\n\nThis is a frontend preview. All data is fictional. Business preview changes live only in memory. Booking, queue, scoring, leaderboard, tournaments, authentication, admin, facility display, and PWA installation are later stages.\n\n';
 for (const file of source) {
   const relative = path.relative(root, file).replaceAll('\\', '/');
@@ -1114,6 +1115,21 @@ const server = http.createServer(async (req, res) => {
 });
 server.on('error', error => { console.error(error.message); process.exitCode = 1; });
 server.listen(port, '127.0.0.1', () => console.log(`Local: http://127.0.0.1:${port}\nServing dist/ · development only`));
+
+```
+
+## vercel.json
+
+Place at: `courtline-app/vercel.json`.
+
+```json
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "",
+  "installCommand": "",
+  "outputDirectory": "dist"
+}
 
 ```
 

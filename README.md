@@ -19,6 +19,14 @@ Open http://127.0.0.1:4173/. No `npm install` or build is needed. The Node scrip
 
 Serve over HTTP; JavaScript modules will not load correctly from `file://`.
 
+## Deploy to Vercel from GitHub
+
+Import `davidxx22/pickleball-management-system` in Vercel and select the `main` branch. The contents of this folder are at the repository root, so leave Root Directory at `./` (do not select `dist` or enter `courtline-app`).
+
+The included `vercel.json` sets Framework Preset to Other, Output Directory to `dist`, and skips both the install and build steps. This frontend has no dependencies to install and no build step. No environment variables are required for the current mock-data preview. You can review those settings and click Deploy yourself.
+
+Only `dist/` is served publicly. Documentation, helper scripts, and hosting metadata are outside the served output. Deployment makes the Stage 1 preview available; it does not add the future backend, booking transactions, authentication, or PWA installation/offline support.
+
 ## Folder structure
 
 ```text
@@ -49,6 +57,7 @@ courtline-app/
     check.mjs                   Syntax, assets, data and shared utility checks
     export-code.mjs             Rebuild complete code companion
   package.json
+  vercel.json                    Static Vercel deployment configuration
 ```
 
 `dist/` is the source for this buildless project. Edit it directly. It can be served by any static HTTP host. `.openai/hosting.json` binds this working copy to its private preview host; that service-specific identity is not required to reuse the frontend and is excluded from the source ZIP.
