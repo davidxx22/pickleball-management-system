@@ -65,6 +65,7 @@ courtline-app/
 ## What works in this stage
 
 - Customer Home Dashboard with a sports app layout and responsive desktop sidebar/mobile bottom navigation.
+- Minimal white top bar with notification bell, circular initials avatar, and chevron aligned right; mobile retains the business logo on the left.
 - Hero illustration drawn as local SVG/CSS, sample upcoming session, player summary, configurable court cards, activity chart, and community event.
 - Court status filters with pressed state and an announced result count.
 - Court/session/event/profile/notification dialogs. Native dialog focus containment, Escape dismissal, a visible close button, and focus restoration.

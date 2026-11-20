@@ -62,7 +62,6 @@ function renderCourts() {
 
 function renderDashboard() {
   const { dashboard: d } = state;
-  document.querySelectorAll('[data-player-name]').forEach(el => { el.textContent = `${d.player.firstName} ${d.player.lastName}`; });
   document.querySelectorAll('[data-player-first]').forEach(el => { el.textContent = d.player.firstName; });
   document.querySelectorAll('[data-player-initials]').forEach(el => { el.textContent = `${d.player.firstName[0]}${d.player.lastName[0]}`; });
   document.querySelector('#demo-date').textContent = date(d.snapshotAt, { weekday: 'long', month: 'long', day: 'numeric' });
