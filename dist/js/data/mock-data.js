@@ -19,5 +19,10 @@ export const mockDashboard = {
   ],
   activity: [ { day: 'Sat', hours: .5 }, { day: 'Sun', hours: 1 }, { day: 'Mon', hours: 0 }, { day: 'Tue', hours: 1.5 }, { day: 'Wed', hours: 0 }, { day: 'Thu', hours: 1 }, { day: 'Fri', hours: .5 } ],
   previousWeekHours: 3,
+  bookingBusyPeriods: [
+    { courtId: 'court-2', day: '2026-11-20', from: '14:00', to: '16:00' },
+    { courtId: 'court-3', day: '2026-11-20', from: '18:00', to: '19:00' },
+    { courtId: 'court-4', day: '2026-11-20', from: '14:30', to: '15:30' },
+  ],
   event: { id: 'event-demo', name: 'Saturday Social Doubles', category: 'Social play', summary: 'Good rallies. New friends. All levels.', startsAt: '2026-11-28T08:00:00+08:00', endsAt: '2026-11-28T12:00:00+08:00', level: 'All levels welcome', description: 'A relaxed morning of rotating doubles. Bring a friend or meet a new playing partner. This is a sample event; registration is not open.' },
 };

@@ -1,6 +1,6 @@
 # Pickleball frontend · Stage 1
 
-A reusable HTML5, CSS3, and vanilla JavaScript foundation and Customer Home Dashboard. **Courtline is an editable sample business**, not a permanent product identity. There are no runtime dependencies, external fonts, tracking scripts, production APIs, or backend services.
+A reusable HTML5, CSS3, and vanilla JavaScript foundation and Customer Home Dashboard. **Courtline is an editable sample business**, not a permanent product identity. There are no JavaScript runtime dependencies, tracking scripts, production APIs, or backend services. Plus Jakarta Sans (600/700) and Inter (400/500) load from Google Fonts with system fallbacks.
 
 ## Run
 
@@ -44,6 +44,7 @@ courtline-app/
       config/business.js        Tenant identity, courts, colors, business rules
       data/mock-data.js         Fixed fictional dashboard fixtures
       services/repository.js    Async data boundary to replace with APIs
+      services/booking-preview.js Pure fictional slot generation and date bounds
       shared/icons.js           Semantic mappings and Iconsax Linear renderer
       shared/iconsax-linear.js  Selected official Iconsax Linear SVG paths
       shared/branding.js        Default tenant logo, separate from UI symbols
@@ -66,12 +67,12 @@ courtline-app/
 
 ## What works in this stage
 
-- Customer Home Dashboard with a sports app layout and responsive desktop sidebar/mobile bottom navigation.
-- Minimal white top bar with notification bell, circular initials avatar, and chevron aligned right; mobile retains the business logo on the left.
-- Hero featuring the user-supplied court photograph with a light horizontal fade, the original headline/subtext and player row, and a text-only “Book a court” CTA. The eyebrow and watermark are omitted. The photograph is bundled at `dist/assets/hero-padel-court.png`. The dashboard also includes a sample upcoming session, player summary, configurable court cards, activity chart, and community event.
-- Court status filters with pressed state and an announced result count.
-- Court/session/event/profile/notification dialogs. Native dialog focus containment, Escape dismissal, a visible close button, and focus restoration.
-- Customer navigation omits the Component library, Business preview, and Frontend demo/version footer. The component reference remains available directly at `/design-system.html`; temporary branding-preview code is retained for future development.
+- Responsive blue-and-lime Customer Home Dashboard with desktop top navigation and mobile bottom navigation. The configurable tenant name/logo remain separate from UI icons.
+- Full-bleed supplied blue-court artwork (`dist/assets/hero-blue-court.jpg`), centered headline, dual pill CTAs, player avatars, integrated metrics strip, and compact upcoming session. Set `heroArtwork` in business configuration to swap imagery for another business.
+- Four configurable court cards retain their flat illustrations, with glass surfaces, textual status badges, prices, supported formats, and direct booking triggers. All / Available / Doubles / Singles filters include pressed states and announced results.
+- Interactive **frontend booking preview**: court, date, duration and player selection; fictional slots; sample price; review/edit; and a demo-only finish. No reservation is written, held, or added to history. The fixed snapshot date drives the date range.
+- Sample community programme and RSVP preview, 7-day activity chart, and retained session/profile/notification dialogs. Queue, scoring, rankings and later module explanations remain reachable from My Corner.
+- Native dialog focus containment, Escape dismissal, a visible close button, and focus restoration. Customer navigation omits the Component library and Business preview; the component reference remains directly available at `/design-system.html`.
 - Component reference with buttons, forms, badges, cards, dialogs, layout breakpoints, and browser-only form validation.
 - Reduced-motion support, skip links, semantic landmarks, visible focus styles, labeled fields, and icons with text alternatives on icon-only controls.
 - Iconsax Linear throughout navigation, statistics, buttons, dialogs, and select controls. Selected SVGs are bundled locally and inherit app colors. See `THIRD_PARTY_NOTICES.md` for source and attribution. Tenant logos, favicon, and court illustrations are separate branding/artwork.
@@ -80,14 +81,22 @@ courtline-app/
 
 All people, reservations, prices, notifications, statistics, availability, and events are fictional. The fixed demo day is November 20, 2026, in the sample tenant's timezone. The dashboard does not claim these are real-time values. A court shown as available is not reserved by interacting with the page.
 
-Navigation for future modules opens a “Planned stage” explanation; it does not simulate success. There is no authentication, data submission, payment, booking cancellation, tournament registration, or persistent tenant settings. The sample booking and event cannot be modified.
+Future modules open a “Planned stage” explanation. Booking and RSVP previews explicitly finish as simulations; they submit no data and do not change the sample upcoming session, availability or event. There is no authentication, payment, cancellation, persistent tenant settings, or production registration.
 
 **This stage is not yet installable or offline-capable.** As requested, manifest, application icons, service worker, caching, offline page, and install behavior will be added after the interfaces. The current SVG is a favicon, not the completed PWA icon set.
 
 ## Customize a tenant
 
-Edit `dist/js/config/business.js`. Court count comes from the courts array. Every court has a stable ID, editable name, type, and hourly rate. Business identity, logo URL, colors, address, contact information, locale, currency, timezone, operating hours, and booking rules live together. The optional logo accepts a safe local or HTTPS image; a failed image falls back to the shared symbol.
+Edit `dist/js/config/business.js`. Court count comes from the courts array. Every court has a stable ID, editable name, type, supported `formats`, and hourly rate. Formats drive the Doubles/Singles filters; they do not create separate inventories. Business identity, logo URL, colors, address, contact information, locale, currency, timezone, operating hours, and booking rules live together. The optional logo accepts a safe local or HTTPS image; a failed image falls back to the shared symbol.
 
 Use a dark primary color with light accent and white text. The retained preview validation requires a contrast ratio of 4.5:1. Keep sample fixtures synchronized with stable court IDs. Newly added courts without fixture records show “No sample data.” The temporary business preview is hidden from customer navigation; the owner-facing branding/settings interface belongs to the Admin stage.
 
 For the backend integration and next stages, see the documents in `docs/`.
+
+## Redesign and booking handoff
+
+The default palette uses court blue `#1E4985` / `#163663`, navy `#0D1B2A`, and lime `#D9F93D`. Display text uses Plus Jakarta Sans with -0.02em tracking; body and controls use Inter. Layout breakpoints are 600, 900 and 1200 CSS pixels. Respect reduced motion and retain textual status and demo labels.
+
+`repository.getBookingSlots({ courtId, day, durationMinutes })` returns fictional `{ start, end, available, total, source: 'mock' }` records. Day/time are business-local strings, total is in configured currency major units. Mock conflict periods live in `mockDashboard.bookingBusyPeriods`. `previewDateRange()` uses the business timezone and fixed snapshot; slots respect opening days/hours, duration, booking window, and sample overlaps. These calculations demonstrate the UI and are **not authoritative availability**.
+
+Your backend will replace that read method, revalidate availability/prices/rules at submission, and add a real booking write endpoint. The current Finish demo button has no write method or persistence. For real time data, add subscriptions/polling and freshness/error handling at the data boundary; update all demo labels and date sources together. Event RSVP requires its own authenticated registration endpoint and capacity validation.

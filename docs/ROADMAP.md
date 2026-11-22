@@ -5,7 +5,7 @@ Preserve completed shared components. Extend them when a concrete screen require
 | Stage | Scope | Status |
 | --- | --- | --- |
 | 1 | Folder structure, tokens, typography, buttons, forms, cards, navigation, responsive layout, shared utilities, Customer Home Dashboard | Complete |
-| 2 | Customer availability calendar, slot selection, booking review, booking history; isolated frontend booking simulation | Next |
+| 2 | Customer availability calendar, slot selection, booking review, booking history; isolated frontend booking simulation | Compact selection/review preview included in redesign; full calendar/history remain next |
 | 3 | Live queue, join/leave UI, queue position, assignment preview, explicit simulation controls | Planned |
 | 4 | Match overview, live scoring UI, scoreboard controls and scoring rules | Planned |
 | 5 | Leaderboard, filters, player ranking details | Planned |

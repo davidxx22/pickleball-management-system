@@ -7,7 +7,8 @@ export const businessConfig = {
   id: 'sample-club',
   name: 'Courtline',
   logoUrl: null,
-  colors: { primary: '#183d35', primaryHover: '#245347', accent: '#d5ee95', accentInk: '#183d35' },
+  heroArtwork: { src: 'assets/hero-blue-court.jpg', alt: 'Overhead view of two pickleball players rallying on a blue court.' },
+  colors: { primary: '#163663', primaryHover: '#1e4985', accent: '#d9f93d', accentInk: '#0d1b2a' },
   information: {
     tagline: 'Built around your game.',
     address: '18 Park Avenue, Metro Manila',
@@ -20,9 +21,9 @@ export const businessConfig = {
   operatingHours: { open: '06:00', close: '22:00', days: [0, 1, 2, 3, 4, 5, 6] },
   bookingRules: { slotMinutes: 60, minDurationMinutes: 60, maxDurationMinutes: 120, advanceDays: 14, maxPlayers: 4, cancellationNoticeHours: 12 },
   courts: [
-    { id: 'court-1', name: 'Court 01', type: 'Outdoor', hourlyRate: 400 },
-    { id: 'court-2', name: 'Court 02', type: 'Outdoor', hourlyRate: 400 },
-    { id: 'court-3', name: 'Court 03', type: 'Covered', hourlyRate: 500 },
-    { id: 'court-4', name: 'Court 04', type: 'Covered', hourlyRate: 500 },
+    { id: 'court-1', name: 'Court 01', type: 'Outdoor', formats: ['Doubles', 'Singles'], hourlyRate: 400 },
+    { id: 'court-2', name: 'Court 02', type: 'Outdoor', formats: ['Doubles'], hourlyRate: 400 },
+    { id: 'court-3', name: 'Court 03', type: 'Covered', formats: ['Doubles', 'Singles'], hourlyRate: 500 },
+    { id: 'court-4', name: 'Court 04', type: 'Covered', formats: ['Singles'], hourlyRate: 500 },
   ],
 };
