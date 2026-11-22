@@ -99,3 +99,5 @@ The restored sidebar dashboard keeps its layout, imagery, card structure and moc
 ## Dashboard cleanup
 
 The dashboard keeps the greeting, photo hero, upcoming session, court grid, activity chart and event details. The sidebar tagline, greeting eyebrow/sun/date badge, four-card player summary row, sample-confirmed status, activity header icon, court subtitle, sample event label and page footer are removed. The player row reads “32 players in the clubhouse”; its count still comes from the repository. Dates, stats and status fields remain in the read model for later modules, but removed widgets no longer have renderers or DOM queries. Mobile bottom spacing keeps the last card above navigation; event details and sample booking dialogs remain available.
+
+The pickleball logo and favicon use transparent cutouts for the ball holes. The hero CTA, logo fill and headline emphasis share the configurable lime accent (`#D9F93D` by default). The upcoming-session header has no calendar icon.

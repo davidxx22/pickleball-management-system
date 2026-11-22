@@ -7,7 +7,7 @@ export const businessConfig = {
   id: 'sample-club',
   name: 'Courtline',
   logoUrl: null,
-  colors: { primary: '#183d35', primaryHover: '#245347', accent: '#d5ee95', accentInk: '#0d1b2a' },
+  colors: { primary: '#183d35', primaryHover: '#245347', accent: '#d9f93d', accentInk: '#0d1b2a' },
   information: {
     tagline: 'Built around your game.',
     address: '18 Park Avenue, Metro Manila',

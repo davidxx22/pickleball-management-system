@@ -4,13 +4,13 @@
   --brand: #183d35;
   --brand-hover: #245347;
   --brand-soft: #eaf0eb;
-  --accent: #d5ee95;
+  --accent: #d9f93d;
   --accent-ink: #0d1b2a;
   --canvas: #f5f7f8;
   --surface: #ffffff;
   --ink: #0f172a;
   --muted: #526075;
-  --text-highlight: #d9f93d;
+  --text-highlight: var(--accent);
   --line: #e5eae7;
   --success: #397247;
   --success-bg: #edf5e8;

@@ -56,7 +56,7 @@ Binary image asset supplied in the source ZIP: [open asset](../dist/assets/hero-
 Place at: `courtline-app/dist/assets/mark.svg`.
 
 ```xml
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#163663"/><circle cx="32" cy="32" r="23" fill="#d9f93d"/><g fill="#163663"><ellipse cx="24" cy="20" rx="3" ry="4" transform="rotate(-30 24 20)"/><ellipse cx="42" cy="23" rx="3.5" ry="4" transform="rotate(35 42 23)"/><circle cx="31" cy="35" r="4"/><ellipse cx="18" cy="40" rx="2.5" ry="4" transform="rotate(-25 18 40)"/><ellipse cx="42" cy="45" rx="3" ry="4" transform="rotate(40 42 45)"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><defs><mask id="pickleball-cutouts" x="0" y="0" width="32" height="32" maskUnits="userSpaceOnUse" style="mask-type:luminance"><rect width="32" height="32" fill="white"/><g fill="black"><ellipse cx="11" cy="9" rx="2.1" ry="2.7" transform="rotate(-30 11 9)"/><ellipse cx="22" cy="11" rx="2.3" ry="2.6" transform="rotate(35 22 11)"/><circle cx="15" cy="18" r="2.7"/><ellipse cx="7" cy="21" rx="1.8" ry="2.5" transform="rotate(-25 7 21)"/><ellipse cx="23" cy="24" rx="2" ry="2.5" transform="rotate(40 23 24)"/></g></mask></defs><circle cx="16" cy="16" r="15" fill="#d9f93d" mask="url(#pickleball-cutouts)"/></svg>
 
 ```
 
@@ -385,13 +385,13 @@ Place at: `courtline-app/dist/css/tokens.css`.
   --brand: #183d35;
   --brand-hover: #245347;
   --brand-soft: #eaf0eb;
-  --accent: #d5ee95;
+  --accent: #d9f93d;
   --accent-ink: #0d1b2a;
   --canvas: #f5f7f8;
   --surface: #ffffff;
   --ink: #0f172a;
   --muted: #526075;
-  --text-highlight: #d9f93d;
+  --text-highlight: var(--accent);
   --line: #e5eae7;
   --success: #397247;
   --success-bg: #edf5e8;
@@ -552,7 +552,7 @@ Place at: `courtline-app/dist/index.html`.
               <div class="hero-copy"><h2>Less scrolling.<br>More <em>rallying.</em></h2><p>Find your court, bring your people,<br class="desktop-break"> and make your next game a good one.</p><button class="button button-lime" data-feature="booking">Book a court</button><div class="hero-footnote"><span class="avatar-stack" aria-hidden="true"><b>JM</b><b>KC</b><b>SR</b></span><span><strong id="community-count">32</strong> players in the clubhouse</span></div></div>
               <div class="hero-art" aria-hidden="true"><img class="hero-photo" src="assets/hero-padel-court.png" alt="" width="1024" height="691" fetchpriority="high" decoding="async"></div>
             </div>
-            <article class="panel next-session" aria-labelledby="next-session-title"><div class="card-heading"><h2 id="next-session-title">Your next session</h2><span class="icon-soft" data-icon="calendar"></span></div><div id="next-booking" class="loading-placeholder">Loading sample session…</div></article>
+            <article class="panel next-session" aria-labelledby="next-session-title"><div class="card-heading"><h2 id="next-session-title">Your next session</h2></div><div id="next-booking" class="loading-placeholder">Loading sample session…</div></article>
           </section>
 
           <section class="court-section" aria-labelledby="courts-title"><div class="section-heading"><div><div class="section-title-line"><h2 id="courts-title">Find your court</h2><span class="badge badge-neutral" id="court-count">4 courts</span></div></div><div class="segmented-control" role="group" aria-label="Filter courts"><button class="selected" data-court-filter="all" aria-pressed="true">All courts</button><button data-court-filter="available" aria-pressed="false">Available</button><button data-court-filter="in-use" aria-pressed="false">In play</button></div></div><div class="court-grid" id="court-grid"></div><p id="court-results" class="sr-only" role="status"></p><div class="section-footnote"><span data-icon="info"></span>Demo snapshot · Availability is not connected to a live booking system.</div></section>
@@ -765,7 +765,7 @@ export const businessConfig = {
   id: 'sample-club',
   name: 'Courtline',
   logoUrl: null,
-  colors: { primary: '#183d35', primaryHover: '#245347', accent: '#d5ee95', accentInk: '#0d1b2a' },
+  colors: { primary: '#183d35', primaryHover: '#245347', accent: '#d9f93d', accentInk: '#0d1b2a' },
   information: {
     tagline: 'Built around your game.',
     address: '18 Park Avenue, Metro Manila',
@@ -871,8 +871,12 @@ Place at: `courtline-app/dist/js/shared/branding.js`.
 
 ```javascript
 /** Default editable tenant logo. Brand artwork is separate from Iconsax UI icons. */
+let markInstance = 0;
+
 export function brandMark() {
-  return '<svg class="brand-symbol" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="15" fill="currentColor"/><g fill="var(--brand)"><ellipse cx="11" cy="9" rx="2.1" ry="2.7" transform="rotate(-30 11 9)"/><ellipse cx="22" cy="11" rx="2.3" ry="2.6" transform="rotate(35 22 11)"/><circle cx="15" cy="18" r="2.7"/><ellipse cx="7" cy="21" rx="1.8" ry="2.5" transform="rotate(-25 7 21)"/><ellipse cx="23" cy="24" rx="2" ry="2.5" transform="rotate(40 23 24)"/></g></svg>';
+  // Each logo needs its own mask so sidebar, mobile, and fallback instances coexist.
+  const maskId = `pickleball-cutouts-${++markInstance}`;
+  return `<svg class="brand-symbol" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><defs><mask id="${maskId}" x="0" y="0" width="32" height="32" maskUnits="userSpaceOnUse" style="mask-type:luminance"><rect width="32" height="32" fill="white"/><g fill="black"><ellipse cx="11" cy="9" rx="2.1" ry="2.7" transform="rotate(-30 11 9)"/><ellipse cx="22" cy="11" rx="2.3" ry="2.6" transform="rotate(35 22 11)"/><circle cx="15" cy="18" r="2.7"/><ellipse cx="7" cy="21" rx="1.8" ry="2.5" transform="rotate(-25 7 21)"/><ellipse cx="23" cy="24" rx="2" ry="2.5" transform="rotate(40 23 24)"/></g></mask></defs><circle cx="16" cy="16" r="15" fill="currentColor" mask="url(#${maskId})"/></svg>`;
 }
 
 ```
