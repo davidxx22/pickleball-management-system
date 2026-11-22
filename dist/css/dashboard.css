@@ -13,6 +13,7 @@
 .notification-dot { position: absolute; right: .8rem; top: .7rem; width: .35rem; height: .35rem; background: #c06e46; border: 1px solid white; border-radius: 50%; }
 .profile-trigger { display: flex; align-items: center; gap: .65rem; padding: .2rem; background: transparent; border: 0; }
 .profile-chevron { display: inline-flex; color: var(--muted); }
+.profile-chevron .icon { width: .75rem; height: .75rem; }
 main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem calc(6rem + env(safe-area-inset-bottom)); }
 .page-heading { margin-bottom: 1.25rem; }
 .page-heading h1 { margin: 0; }
