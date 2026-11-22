@@ -538,7 +538,7 @@ Place at: `courtline-app/dist/index.html`.
     <div class="app-content">
       <header class="topbar">
         <a class="mobile-brand brand" href="./"><span class="brand-mark"></span><span data-business-name>Courtline</span><span class="brand-period">.</span></a>
-        <div class="topbar-actions"><button class="icon-button notification-button" data-action="notifications" aria-label="View sample notifications"><span data-icon="bell"></span><span class="notification-dot"></span></button><button class="profile-trigger" data-action="profile" aria-label="Open player profile"><span class="avatar" data-player-initials>AL</span><span class="profile-chevron" data-icon="chevron"></span></button></div>
+        <div class="topbar-actions"><button class="icon-button notification-button" data-action="notifications" aria-label="View sample notifications"><span data-icon="bell"></span><span class="notification-dot"></span></button><button class="profile-trigger" data-action="profile" aria-label="Open player profile"><span class="avatar" data-player-initials>A</span><span class="profile-chevron" data-icon="chevron"></span></button></div>
       </header>
 
       <main id="main" tabindex="-1">
@@ -641,7 +641,7 @@ function renderCourts() {
 function renderDashboard() {
   const { dashboard: d } = state;
   document.querySelectorAll('[data-player-first]').forEach(el => { el.textContent = d.player.firstName; });
-  document.querySelectorAll('[data-player-initials]').forEach(el => { el.textContent = `${d.player.firstName[0]}${d.player.lastName[0]}`; });
+  document.querySelectorAll('[data-player-initials]').forEach(el => { el.textContent = d.player.firstName.charAt(0).toUpperCase(); });
   document.querySelector('#community-count').textContent = d.communityCount;
   renderBooking(); renderCourts();
   const totalHours = d.activity.reduce((sum, item) => sum + item.hours, 0);

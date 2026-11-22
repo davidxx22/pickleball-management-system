@@ -60,7 +60,7 @@ function renderCourts() {
 function renderDashboard() {
   const { dashboard: d } = state;
   document.querySelectorAll('[data-player-first]').forEach(el => { el.textContent = d.player.firstName; });
-  document.querySelectorAll('[data-player-initials]').forEach(el => { el.textContent = `${d.player.firstName[0]}${d.player.lastName[0]}`; });
+  document.querySelectorAll('[data-player-initials]').forEach(el => { el.textContent = d.player.firstName.charAt(0).toUpperCase(); });
   document.querySelector('#community-count').textContent = d.communityCount;
   renderBooking(); renderCourts();
   const totalHours = d.activity.reduce((sum, item) => sum + item.hours, 0);
