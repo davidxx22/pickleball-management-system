@@ -122,14 +122,14 @@ main { padding: 0; }
 .booking-summary small { display: block; color: var(--muted); }
 
 @media (min-width: 600px) {
-  .play-hero { min-height: 0; aspect-ratio: 846 / 493; }
+  .play-hero { min-height: 0; aspect-ratio: 830 / 485; }
   /* Crop the supplied square artwork to its court, without another blue frame.
-     These percentages correspond to x=89..935 and y=226..719 in the 1024px source. */
-  .hero-photo { left: -10.52%; top: -45.84%; width: 121.04%; height: 207.71%; object-fit: fill; }
+     These percentages correspond to x=97..927 and y=234..719 in the 1024px source. */
+  .hero-photo { left: -11.69%; top: -48.25%; width: 123.37%; height: 211.13%; object-fit: fill; }
   .topbar { padding: 1.5cqw 6.8cqw; }
   .brand { font-size: clamp(1.15rem, 2.2cqw, 1.65rem); }
   .brand-symbol, .brand-mark img { width: 2.6cqw; height: 2.6cqw; min-width: 1.4rem; min-height: 1.4rem; }
-  .hero-copy { position: absolute; top: 21.7%; left: 0; padding: 0 1.5rem; transform: translateY(-.75rem); }
+  .hero-copy { position: absolute; top: 20.4%; left: 0; padding: 0 1.5rem; transform: translateY(-.75rem); }
   .hero-status { padding: .3rem .6rem; font-size: clamp(.6875rem, 1cqw, .8125rem); }
   .play-hero h1 { font-size: clamp(2.25rem, 6.2cqw, 4.65rem); margin-top: 1.8cqw; }
   .play-hero p { margin-top: 1.6cqw; font-size: clamp(.875rem, 1.6cqw, 1.125rem); line-height: 1.35; }
