@@ -168,10 +168,10 @@ Place at: `courtline-app/dist/css/dashboard.css`.
 ```css
 /* One artwork-led hero, followed by one flat dashboard surface. */
 html, body { overflow-x: clip; }
-body { padding: 1rem; background: #fffff7; }
-.app-shell { max-width: 1200px; margin: 0 auto; }
+body { padding: 0; background: #fffff7; }
+.app-shell { width: 100%; margin: 0; }
 main { padding: 0; }
-.hero-card { overflow: hidden; border-radius: 20px; background: var(--brand); box-shadow: 0 16px 48px #0f172a0a; }
+.hero-card { overflow: hidden; border-radius: 0; background: var(--brand); }
 .play-hero { position: relative; isolation: isolate; overflow: hidden; container-type: inline-size; min-height: 32rem; background: var(--brand-hover); }
 .hero-photo { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: center; max-width: none; }
 .play-hero::after { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(180deg, #08214308, #08214315 45%, transparent); }
@@ -195,14 +195,14 @@ main { padding: 0; }
 .hero-buttons { display: flex; justify-content: center; gap: .6rem; margin-top: 1.65rem; }
 .hero-buttons .button { padding: .6rem .9rem; min-height: 2.65rem; font-size: .8125rem; white-space: nowrap; }
 .button-glass { background: transparent; border-color: #ffffffa8; backdrop-filter: none; }
-.hero-bottom { background: #fffff7; border-bottom: 1px solid #e2e8f0; }
+.hero-bottom { background: #19375b; }
 .stats-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); max-width: 960px; margin: 0 auto; padding: .5rem .75rem; }
 .stat-card { padding: .9rem .35rem; text-align: center; }
-.stat-value { display: flex; align-items: baseline; justify-content: center; gap: .3rem; color: #0f172a; font: 600 1.65rem/1.2 var(--font-display); letter-spacing: -.02em; }
+.stat-value { display: flex; align-items: baseline; justify-content: center; gap: .3rem; color: var(--accent); font: 600 1.65rem/1.2 var(--font-display); letter-spacing: -.02em; }
 .stat-value strong { font: inherit; }
 .stat-value span { font: 400 .875rem/1.2 var(--font); letter-spacing: 0; }
-.stat-top { color: #526075; font: 400 .75rem/1.5 var(--font); letter-spacing: 0; margin-top: .4rem; }
-.dashboard-surface { --ink: #0f172a; --muted: #526075; --line: #e2e8f0; --surface: #fffff7; color-scheme: light; background: #fffff7; color: var(--ink); border-radius: 24px; margin-top: 1.5rem; padding: 1.5rem; }
+.stat-top { color: white; font: 400 .75rem/1.5 var(--font); letter-spacing: 0; margin-top: .4rem; }
+.dashboard-surface { --ink: #0f172a; --muted: #526075; --line: #e2e8f0; --surface: #fffff7; color-scheme: light; background: #fffff7; color: var(--ink); max-width: 1200px; margin: 1.5rem auto 0; padding: 1.5rem; }
 .dashboard-surface h2 { color: #0f172a; font-weight: 700; }
 .section-kicker { font-size: .6875rem; font-weight: 500; letter-spacing: .12em; color: var(--muted); margin-bottom: .55rem; }
 .section-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.75rem; }
@@ -290,7 +290,6 @@ main { padding: 0; }
 .booking-summary small { display: block; color: var(--muted); }
 
 @media (min-width: 600px) {
-  body { padding: 2rem; }
   .play-hero { min-height: 0; aspect-ratio: 846 / 493; }
   /* Crop the supplied square artwork to its court, without another blue frame.
      These percentages correspond to x=89..935 and y=226..719 in the 1024px source. */
@@ -332,7 +331,7 @@ main { padding: 0; }
 @media (max-width: 899px) { body { padding-bottom: 6rem; } }
 @media (max-width: 599px) { .dialog .form-row { grid-template-columns: 1fr; gap: 0; } }
 @media (max-width: 360px) {
-  body { padding: .75rem .75rem 6rem; }
+  body { padding: 0 0 6rem; }
   .topbar { padding: 1rem .85rem; gap: .5rem; }
   .brand { font-size: 1.2rem; }
   .brand-symbol { width: 1.4rem; height: 1.4rem; }
