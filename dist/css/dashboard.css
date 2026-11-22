@@ -180,3 +180,6 @@ main { padding: 0; }
 
 @media (min-width: 600px) { .court-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media (min-width: 1200px) { .court-grid { grid-template-columns: repeat(4,minmax(0,1fr)); } .court-visual { height: 9.5rem; } }
+@media (max-width: 599px) {
+  .dashboard-surface .segmented-control { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); width: 100%; border-radius: 1.2rem; }
+}
