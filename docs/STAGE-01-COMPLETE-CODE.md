@@ -215,34 +215,28 @@ main { padding: 0; }
 .dashboard-surface .segmented-control button { font-weight: 500; color: #0f172a; padding: .45rem .85rem; min-height: 2.35rem; }
 .dashboard-surface .segmented-control button.selected { background: var(--accent); color: #0f172a; box-shadow: none; }
 .dashboard-surface .segmented-control button:hover { color: #0f172a; background: #e9edda; }
-.availability-toggle { color: #0f172a; background: transparent; border: 1px solid #0f172a; font-size: .8125rem; min-height: 2.8rem; padding: .5rem .85rem; }
-.availability-toggle .icon { width: 1rem; height: 1rem; }
-.availability-toggle.selected { background: var(--accent); }
-.availability-toggle:hover { background: #e9edda; }
-.court-grid { width: 100%; overflow-x: auto; scrollbar-color: #a1acb5 transparent; }
-.availability-table { width: 100%; border-collapse: collapse; text-align: left; font-size: .875rem; }
-.availability-table caption { text-align: left; color: var(--muted); font-size: .75rem; padding-bottom: 1rem; }
-.availability-table th, .availability-table td { border-bottom: 1px solid var(--line); padding: 1.15rem .35rem; }
-.availability-table thead th { color: var(--muted); font-size: .75rem; font-weight: 400; padding-block: .6rem; white-space: nowrap; }
-.availability-table thead th:first-child, .availability-table tbody th { padding-left: 0; }
-.availability-table tbody th { min-width: 10rem; font-weight: 500; }
-.availability-table .timeline-cell { text-align: center; min-width: 4.6rem; }
-.court-title-button { padding: 0; border: 0; background: transparent; font: 700 1rem var(--font-display); color: #0f172a; white-space: nowrap; }
-.court-title-button:hover { text-decoration: underline; text-underline-offset: .3rem; }
-.court-row-meta { display: block; color: var(--muted); font-size: .75rem; margin-top: .5rem; white-space: nowrap; }
-.timeline-slot { width: 100%; min-height: 2.7rem; border: 1px solid #0f172a55; border-radius: .4rem; padding: .4rem; color: #0f172a; font-size: .75rem; transition: background var(--transition), color var(--transition); }
-.slot-open { background: var(--accent); }
-.slot-open:hover { background: #0f172a; color: var(--accent); }
-.slot-busy { background: repeating-linear-gradient(135deg, #eef0e9 0 4px, transparent 4px 8px); color: #64748b; opacity: 1; }
-.court-price { font-weight: 500; white-space: nowrap; padding-left: 1.1rem !important; }
-.row-book { border: 1px solid #0f172a; border-radius: 3rem; color: #0f172a; background: transparent; min-height: 2.7rem; padding: .5rem 1rem; font-size: .8125rem; white-space: nowrap; }
-.row-book:hover { background: var(--accent); }
-.availability-hidden .timeline-cell { display: none; }
-.availability-hidden .availability-table { min-width: 0; }
-.availability-hidden .availability-table tbody th { min-width: 7.5rem; }
-.availability-hidden .row-book { padding-inline: .65rem; }
-.availability-hidden .court-price { padding-left: .35rem !important; }
-.court-empty { padding: 2rem 0; color: var(--muted); border-block: 1px solid var(--line); }
+.court-grid { display: grid; gap: 1rem; }
+.court-card { min-width: 0; border: 1px solid var(--line); background: transparent; border-radius: var(--radius); overflow: hidden; transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition); }
+.court-card:hover { transform: translateY(-4px); border-color: #d9f93666; box-shadow: 0 12px 24px #091b3026; }
+.court-visual { position: relative; height: 10rem; display: grid; place-items: center; background: linear-gradient(135deg, #244e81, #163663); border-bottom: 1px solid var(--line); }
+.court-visual > .badge { position: absolute; right: .8rem; top: .8rem; background: #0e274ce8; border: 1px solid var(--line); font-size: .75rem; }
+.court-diagram { width: 9.5rem; height: 5.4rem; padding: .55rem; background: #214e85; border-radius: .3rem; transform: rotate(-12deg) skewX(7deg); box-shadow: 0 6px 0 #0c2340, 0 12px 24px #071a3540; }
+.court-lines { position: relative; height: 100%; border: 1px solid #d5e6fbd4; background: #1d426f; }
+.court-lines::before { content: ''; position: absolute; top: -10%; bottom: -10%; left: 50%; border-left: 2px solid #d9f93d; box-shadow: 2px 2px 0 #091c37; z-index: 1; }
+.court-lines::after { content: ''; position: absolute; left: 35%; right: 35%; top: 0; bottom: 0; border-inline: 1px solid #e3effbcc; background: #306498; }
+.court-lines i { position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid #e3effbcc; }
+.court-visual.in-use .court-diagram { background: #284971; }
+.court-details { padding: 1.1rem; }
+.court-title-row { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+.court-type { color: var(--muted); font-size: .8125rem; }
+.court-details > p { color: var(--muted); font-size: .8125rem; margin-top: .5rem; }
+.court-formats { margin-top: .7rem; font-size: .75rem; color: var(--muted); }
+.court-card-footer { display: flex; justify-content: space-between; gap: .5rem; align-items: center; margin-top: 1rem; padding-top: .85rem; border-top: 1px solid var(--line); }
+.court-price { font-weight: 500; }
+.court-price small { color: var(--muted); font-size: .75rem; font-weight: 400; }
+.court-card-footer .text-button { color: #0f172a; background: var(--accent); font-size: .8125rem; padding: .5rem .85rem; border: 1px solid #0f172a55; border-radius: 2rem; }
+.court-title-button { padding: 0; border: 0; background: transparent; color: inherit; font: inherit; letter-spacing: inherit; text-align: left; }
+.court-title-button:hover { text-decoration: underline; text-underline-offset: .25rem; }
 .section-footnote { display: flex; gap: .5rem; align-items: center; margin-top: 1rem; color: var(--muted); font-size: .75rem; }
 .section-footnote .icon { width: 1rem; height: 1rem; }
 .lower-grid { display: grid; margin-top: 2rem; border-top: 1px solid var(--line); }
@@ -347,22 +341,13 @@ main { padding: 0; }
   .hero-buttons { gap: .4rem; }
   .hero-buttons .button { font-size: .6875rem; padding-inline: .65rem; }
   .dashboard-surface { padding: 1.1rem; }
-  .availability-toggle { font-size: .75rem; }
   .booking-slots { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
 
-.timeline-slot:disabled { opacity: 1; color: #526075; }
 .chart-bar[style*="--bar-height:0%"] { border: 0; }
-@media (max-width: 899px) {
-  .availability-table th:first-child { position: sticky; left: 0; z-index: 1; background: #fffff7; }
-  .availability-table tbody th { min-width: 8.5rem; }
-}
 
-@media (max-width: 599px) {
-  .availability-hidden .availability-table tbody th { min-width: 0; }
-  .availability-hidden .court-row-meta { max-width: 5.5rem; white-space: normal; }
-  .availability-hidden .row-book { font-size: .75rem; padding-inline: .5rem; }
-}
+@media (min-width: 600px) { .court-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (min-width: 1200px) { .court-grid { grid-template-columns: repeat(4,minmax(0,1fr)); } .court-visual { height: 9.5rem; } }
 
 ```
 
@@ -549,8 +534,8 @@ Place at: `courtline-app/dist/index.html`.
         </section>
         <div class="dashboard-surface">
         <section class="court-section" aria-labelledby="courts-title">
-          <div class="section-heading"><div><div class="section-kicker">ROOM FOR YOUR NEXT RALLY</div><div class="section-title-line"><h2 id="courts-title">Find your court</h2><span class="badge badge-neutral" id="court-count">4 courts</span></div><p>Pick your spot. We’ll see you on the other side of the net.</p></div><div class="segmented-control" role="group" aria-label="Filter courts"><button class="selected" data-court-filter="all" aria-pressed="true">All</button><button data-court-filter="indoor" aria-pressed="false">Indoor</button><button data-court-filter="outdoor" aria-pressed="false">Outdoor</button></div><button class="button availability-toggle selected" data-action="toggle-availability" aria-expanded="true" aria-controls="court-grid"><span data-icon="calendar"></span>Show Availability</button></div>
-          <div class="court-grid" id="court-grid" tabindex="0" role="region" aria-label="Court availability, scroll horizontally to see all hours"></div><p id="court-results" class="sr-only" role="status"></p><div class="section-footnote"><span data-icon="info"></span>Sample availability · Frontend preview, not a live court feed.</div>
+          <div class="section-heading"><div><div class="section-kicker">ROOM FOR YOUR NEXT RALLY</div><div class="section-title-line"><h2 id="courts-title">Find your court</h2><span class="badge badge-neutral" id="court-count">4 courts</span></div><p>Pick your spot. We’ll see you on the other side of the net.</p></div><div class="segmented-control" role="group" aria-label="Filter courts"><button class="selected" data-court-filter="all" aria-pressed="true">All</button><button data-court-filter="available" aria-pressed="false">Available</button><button data-court-filter="doubles" aria-pressed="false">Doubles</button><button data-court-filter="singles" aria-pressed="false">Singles</button></div></div>
+          <div class="court-grid" id="court-grid"></div><p id="court-results" class="sr-only" role="status"></p><div class="section-footnote"><span data-icon="info"></span>Sample availability · Frontend preview, not a live court feed.</div>
         </section>
         <div class="lower-grid">
           <section class="activity-panel" aria-labelledby="activity-title"><div class="card-heading"><div><div class="section-kicker">THE GOOD KIND OF SCREEN TIME</div><h2 id="activity-title">A little better, every game</h2><p>Your last 7 days on court · Sample activity</p></div><span class="icon-soft" data-icon="chart"></span></div><div class="activity-body"><div class="activity-summary"><div><strong>4<span>hrs</span></strong><p>Time well spent</p></div><span class="positive-chip">+2 hrs vs. last week</span><button class="text-button" data-feature="statistics">Explore your stats</button></div><div class="activity-chart" id="activity-chart" role="img" aria-label="Sample court hours by day"></div></div></section>
@@ -582,7 +567,7 @@ import { previewDateRange } from './services/booking-preview.js';
 import { badge, escapeHTML as esc, createDialogController, showToast, contrastRatio } from './shared/components.js';
 
 const dialog = createDialogController(document.querySelector('#app-dialog'));
-const state = { business: null, dashboard: null, courtFilter: 'all', showAvailability: true };
+const state = { business: null, dashboard: null, courtFilter: 'all' };
 const features = {
   booking: { title: 'Book a court', stage: 2, icon: 'calendar', description: 'Choose a day, find an open time, and review your reservation.', items: ['Availability calendar and time slots', 'Booking review and booking history', 'Booking rules from business configuration'], handoff: 'Your backend will provide availability and validate and save reservations.' },
   queue: { title: 'Live queue', stage: 3, icon: 'queue', description: 'Know where you stand before you step on court.', items: ['Waiting list and player position', 'Join and leave interactions with a labeled simulation', 'Court assignment and next players'], handoff: 'Your backend will own queue order and broadcast updates.' },
@@ -637,36 +622,13 @@ function renderStats() {
   document.querySelector('#stats-grid').innerHTML = metrics.map(stat => `<article class="stat-card"><div class="stat-value"><strong>${esc(stat.value)}</strong><span>${esc(stat.unit)}</span></div><h2 class="stat-top">${esc(stat.label)}</h2></article>`).join('');
 }
 
-let courtRequest = 0;
-async function renderCourts() {
-  const request = ++courtRequest;
+function renderCourts() {
   const courts = state.business.courts.map(c => ({ ...c, ...(state.dashboard.courtSnapshots.find(s => s.courtId === c.id) || { status: 'unavailable', label: 'No sample data', note: 'Availability not connected' }) }));
-  const filtered = state.courtFilter === 'all' ? courts : courts.filter(c => c.environment === state.courtFilter);
-  const root = document.querySelector('#court-grid');
-  root.setAttribute('aria-busy', 'true');
+  const filtered = state.courtFilter === 'all' ? courts : courts.filter(c => ['doubles', 'singles'].includes(state.courtFilter) ? (c.formats || []).some(f => f.toLowerCase() === state.courtFilter) : c.status === state.courtFilter);
   document.querySelector('#court-count').textContent = `${courts.length} ${courts.length === 1 ? 'court' : 'courts'}`;
+  document.querySelector('#court-grid').innerHTML = filtered.length ? filtered.map(c => `<article class="court-card"><div class="court-visual ${esc(c.status)}"><div class="court-diagram" aria-hidden="true"><div class="court-lines"><i></i></div></div>${badge(c.label, c.status === 'available' ? 'success' : c.status === 'in-use' ? 'warning' : 'neutral', true)}</div><div class="court-details"><div class="court-title-row"><h3><button class="court-title-button" data-court="${esc(c.id)}" aria-label="View ${esc(c.name)} details">${esc(c.name)}</button></h3><span class="court-type">${esc(c.type)}</span></div><p>${esc(c.note)}</p><div class="court-formats">${esc((c.formats || []).join(' · '))}</div><div class="court-card-footer"><span class="court-price">${esc(money(c.hourlyRate))}<small> / hr</small></span><button class="text-button" data-book-court="${esc(c.id)}" aria-label="Book ${esc(c.name)}">Book court</button></div></div></article>`).join('') : '<div class="empty-state">No courts match this filter. Try All courts.</div>';
+  document.querySelector('#court-results').textContent = `${filtered.length} of ${courts.length} courts shown.`;
   document.querySelectorAll('[data-court-filter]').forEach(button => { const selected = button.dataset.courtFilter === state.courtFilter; button.classList.toggle('selected', selected); button.setAttribute('aria-pressed', String(selected)); });
-  const day = previewDateRange(state.business, state.dashboard).min;
-  try {
-    const schedules = await Promise.all(filtered.map(c => repository.getBookingSlots({ courtId: c.id, day, durationMinutes: state.business.bookingRules.minDurationMinutes })));
-    if (request !== courtRequest) return;
-    const hours = [...new Map(schedules.flat().map(slot => [slot.start, slot])).values()].sort((a, b) => a.start.localeCompare(b.start));
-    root.classList.toggle('availability-hidden', !state.showAvailability);
-    root.innerHTML = filtered.length ? `<table class="availability-table"><caption>Sample court availability · ${esc(date(state.dashboard.snapshotAt, { weekday: 'short', month: 'short', day: 'numeric' }))} · ${esc(state.business.information.timezone)}</caption><thead><tr><th scope="col">Court</th>${hours.map(slot => `<th class="timeline-cell" scope="col">${esc(localClock(slot.start))}</th>`).join('')}<th scope="col">Per hour</th><th scope="col"><span class="sr-only">Booking</span></th></tr></thead><tbody>${filtered.map((c, index) => `<tr><th scope="row"><button class="court-title-button" data-court="${esc(c.id)}" aria-label="View ${esc(c.name)} details">${esc(c.name)}</button><span class="court-row-meta">${esc(c.type)} · ${esc(c.label)}</span></th>${hours.map(hour => { const slot = schedules[index].find(item => item.start === hour.start) || { ...hour, available: false }; return `<td class="timeline-cell"><button class="timeline-slot ${slot.available ? 'slot-open' : 'slot-busy'}" data-book-court="${esc(c.id)}" data-book-time="${esc(slot.start)}" ${slot.available ? '' : 'disabled'} aria-label="${esc(c.name)}, ${esc(localClock(slot.start))} to ${esc(localClock(slot.end))}, ${slot.available ? 'sample available, book a demo session' : 'unavailable in sample'}"><span aria-hidden="true">${slot.available ? 'Open' : 'In use'}</span></button></td>`; }).join('')}<td class="court-price">${esc(money(c.hourlyRate))}</td><td><button class="button row-book" data-book-court="${esc(c.id)}" aria-label="Book ${esc(c.name)}">Book court</button></td></tr>`).join('')}</tbody></table>` : '<p class="court-empty">No courts match this filter. Try All.</p>';
-    document.querySelector('#court-results').textContent = `${filtered.length} of ${courts.length} courts shown.`;
-  } catch {
-    if (request !== courtRequest) return;
-    root.innerHTML = '<p class="court-empty" role="alert">Sample availability could not load. Select a filter to retry.</p>';
-  } finally {
-    if (request === courtRequest) root.setAttribute('aria-busy', 'false');
-  }
-}
-function toggleAvailability() {
-  state.showAvailability = !state.showAvailability;
-  document.querySelector('#court-grid').classList.toggle('availability-hidden', !state.showAvailability);
-  const button = document.querySelector('[data-action="toggle-availability"]');
-  button.setAttribute('aria-expanded', String(state.showAvailability));
-  button.classList.toggle('selected', state.showAvailability);
 }
 
 function renderDashboard() {
@@ -823,7 +785,7 @@ document.addEventListener('click', async event => {
   if (target.dataset.feature) return openFeature(target.dataset.feature);
   if (target.dataset.courtFilter) { state.courtFilter = target.dataset.courtFilter; return renderCourts(); }
   if (target.dataset.court) return openCourt(target.dataset.court);
-  const actions = { booking: openBooking, 'toggle-availability': toggleAvailability, profile: openProfile, notifications: openNotifications, event: openEvent, programmes: openProgrammes, 'rsvp-demo': previewRSVP, 'finish-demo': finishBookingPreview, 'edit-booking': editBookingPreview, settings: openSettings, more: openMore, close: () => dialog.close(), 'reset-brand': async () => { state.business = await repository.getBusiness(); applyBranding(); renderStats(); renderCourts(); dialog.close(); showToast('Default business preview restored.'); } };
+  const actions = { booking: openBooking, profile: openProfile, notifications: openNotifications, event: openEvent, programmes: openProgrammes, 'rsvp-demo': previewRSVP, 'finish-demo': finishBookingPreview, 'edit-booking': editBookingPreview, settings: openSettings, more: openMore, close: () => dialog.close(), 'reset-brand': async () => { state.business = await repository.getBusiness(); applyBranding(); renderStats(); renderCourts(); dialog.close(); showToast('Default business preview restored.'); } };
   actions[target.dataset.action]?.();
 });
 

@@ -5,7 +5,7 @@ import { previewDateRange } from './services/booking-preview.js';
 import { badge, escapeHTML as esc, createDialogController, showToast, contrastRatio } from './shared/components.js';
 
 const dialog = createDialogController(document.querySelector('#app-dialog'));
-const state = { business: null, dashboard: null, courtFilter: 'all', showAvailability: true };
+const state = { business: null, dashboard: null, courtFilter: 'all' };
 const features = {
   booking: { title: 'Book a court', stage: 2, icon: 'calendar', description: 'Choose a day, find an open time, and review your reservation.', items: ['Availability calendar and time slots', 'Booking review and booking history', 'Booking rules from business configuration'], handoff: 'Your backend will provide availability and validate and save reservations.' },
   queue: { title: 'Live queue', stage: 3, icon: 'queue', description: 'Know where you stand before you step on court.', items: ['Waiting list and player position', 'Join and leave interactions with a labeled simulation', 'Court assignment and next players'], handoff: 'Your backend will own queue order and broadcast updates.' },
@@ -60,36 +60,13 @@ function renderStats() {
   document.querySelector('#stats-grid').innerHTML = metrics.map(stat => `<article class="stat-card"><div class="stat-value"><strong>${esc(stat.value)}</strong><span>${esc(stat.unit)}</span></div><h2 class="stat-top">${esc(stat.label)}</h2></article>`).join('');
 }
 
-let courtRequest = 0;
-async function renderCourts() {
-  const request = ++courtRequest;
+function renderCourts() {
   const courts = state.business.courts.map(c => ({ ...c, ...(state.dashboard.courtSnapshots.find(s => s.courtId === c.id) || { status: 'unavailable', label: 'No sample data', note: 'Availability not connected' }) }));
-  const filtered = state.courtFilter === 'all' ? courts : courts.filter(c => c.environment === state.courtFilter);
-  const root = document.querySelector('#court-grid');
-  root.setAttribute('aria-busy', 'true');
+  const filtered = state.courtFilter === 'all' ? courts : courts.filter(c => ['doubles', 'singles'].includes(state.courtFilter) ? (c.formats || []).some(f => f.toLowerCase() === state.courtFilter) : c.status === state.courtFilter);
   document.querySelector('#court-count').textContent = `${courts.length} ${courts.length === 1 ? 'court' : 'courts'}`;
+  document.querySelector('#court-grid').innerHTML = filtered.length ? filtered.map(c => `<article class="court-card"><div class="court-visual ${esc(c.status)}"><div class="court-diagram" aria-hidden="true"><div class="court-lines"><i></i></div></div>${badge(c.label, c.status === 'available' ? 'success' : c.status === 'in-use' ? 'warning' : 'neutral', true)}</div><div class="court-details"><div class="court-title-row"><h3><button class="court-title-button" data-court="${esc(c.id)}" aria-label="View ${esc(c.name)} details">${esc(c.name)}</button></h3><span class="court-type">${esc(c.type)}</span></div><p>${esc(c.note)}</p><div class="court-formats">${esc((c.formats || []).join(' · '))}</div><div class="court-card-footer"><span class="court-price">${esc(money(c.hourlyRate))}<small> / hr</small></span><button class="text-button" data-book-court="${esc(c.id)}" aria-label="Book ${esc(c.name)}">Book court</button></div></div></article>`).join('') : '<div class="empty-state">No courts match this filter. Try All courts.</div>';
+  document.querySelector('#court-results').textContent = `${filtered.length} of ${courts.length} courts shown.`;
   document.querySelectorAll('[data-court-filter]').forEach(button => { const selected = button.dataset.courtFilter === state.courtFilter; button.classList.toggle('selected', selected); button.setAttribute('aria-pressed', String(selected)); });
-  const day = previewDateRange(state.business, state.dashboard).min;
-  try {
-    const schedules = await Promise.all(filtered.map(c => repository.getBookingSlots({ courtId: c.id, day, durationMinutes: state.business.bookingRules.minDurationMinutes })));
-    if (request !== courtRequest) return;
-    const hours = [...new Map(schedules.flat().map(slot => [slot.start, slot])).values()].sort((a, b) => a.start.localeCompare(b.start));
-    root.classList.toggle('availability-hidden', !state.showAvailability);
-    root.innerHTML = filtered.length ? `<table class="availability-table"><caption>Sample court availability · ${esc(date(state.dashboard.snapshotAt, { weekday: 'short', month: 'short', day: 'numeric' }))} · ${esc(state.business.information.timezone)}</caption><thead><tr><th scope="col">Court</th>${hours.map(slot => `<th class="timeline-cell" scope="col">${esc(localClock(slot.start))}</th>`).join('')}<th scope="col">Per hour</th><th scope="col"><span class="sr-only">Booking</span></th></tr></thead><tbody>${filtered.map((c, index) => `<tr><th scope="row"><button class="court-title-button" data-court="${esc(c.id)}" aria-label="View ${esc(c.name)} details">${esc(c.name)}</button><span class="court-row-meta">${esc(c.type)} · ${esc(c.label)}</span></th>${hours.map(hour => { const slot = schedules[index].find(item => item.start === hour.start) || { ...hour, available: false }; return `<td class="timeline-cell"><button class="timeline-slot ${slot.available ? 'slot-open' : 'slot-busy'}" data-book-court="${esc(c.id)}" data-book-time="${esc(slot.start)}" ${slot.available ? '' : 'disabled'} aria-label="${esc(c.name)}, ${esc(localClock(slot.start))} to ${esc(localClock(slot.end))}, ${slot.available ? 'sample available, book a demo session' : 'unavailable in sample'}"><span aria-hidden="true">${slot.available ? 'Open' : 'In use'}</span></button></td>`; }).join('')}<td class="court-price">${esc(money(c.hourlyRate))}</td><td><button class="button row-book" data-book-court="${esc(c.id)}" aria-label="Book ${esc(c.name)}">Book court</button></td></tr>`).join('')}</tbody></table>` : '<p class="court-empty">No courts match this filter. Try All.</p>';
-    document.querySelector('#court-results').textContent = `${filtered.length} of ${courts.length} courts shown.`;
-  } catch {
-    if (request !== courtRequest) return;
-    root.innerHTML = '<p class="court-empty" role="alert">Sample availability could not load. Select a filter to retry.</p>';
-  } finally {
-    if (request === courtRequest) root.setAttribute('aria-busy', 'false');
-  }
-}
-function toggleAvailability() {
-  state.showAvailability = !state.showAvailability;
-  document.querySelector('#court-grid').classList.toggle('availability-hidden', !state.showAvailability);
-  const button = document.querySelector('[data-action="toggle-availability"]');
-  button.setAttribute('aria-expanded', String(state.showAvailability));
-  button.classList.toggle('selected', state.showAvailability);
 }
 
 function renderDashboard() {
@@ -246,7 +223,7 @@ document.addEventListener('click', async event => {
   if (target.dataset.feature) return openFeature(target.dataset.feature);
   if (target.dataset.courtFilter) { state.courtFilter = target.dataset.courtFilter; return renderCourts(); }
   if (target.dataset.court) return openCourt(target.dataset.court);
-  const actions = { booking: openBooking, 'toggle-availability': toggleAvailability, profile: openProfile, notifications: openNotifications, event: openEvent, programmes: openProgrammes, 'rsvp-demo': previewRSVP, 'finish-demo': finishBookingPreview, 'edit-booking': editBookingPreview, settings: openSettings, more: openMore, close: () => dialog.close(), 'reset-brand': async () => { state.business = await repository.getBusiness(); applyBranding(); renderStats(); renderCourts(); dialog.close(); showToast('Default business preview restored.'); } };
+  const actions = { booking: openBooking, profile: openProfile, notifications: openNotifications, event: openEvent, programmes: openProgrammes, 'rsvp-demo': previewRSVP, 'finish-demo': finishBookingPreview, 'edit-booking': editBookingPreview, settings: openSettings, more: openMore, close: () => dialog.close(), 'reset-brand': async () => { state.business = await repository.getBusiness(); applyBranding(); renderStats(); renderCourts(); dialog.close(); showToast('Default business preview restored.'); } };
   actions[target.dataset.action]?.();
 });
 
