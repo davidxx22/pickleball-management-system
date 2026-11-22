@@ -1,6 +1,6 @@
 /** Tenant configuration. Replace with a validated backend response at integration.
  * Courtline is a sample tenant, not the application identity.
- * logoUrl accepts a local/HTTPS image path; null uses the shared court symbol.
+ * logoUrl accepts a local/HTTPS image path; null uses the shared pickleball symbol.
  * Court count is derived from courts.length; never duplicate it in layout code.
  */
 export const businessConfig = {

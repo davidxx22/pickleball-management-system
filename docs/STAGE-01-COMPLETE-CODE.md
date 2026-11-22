@@ -56,7 +56,7 @@ Binary image asset supplied in the source ZIP: [open asset](../dist/assets/hero-
 Place at: `courtline-app/dist/assets/mark.svg`.
 
 ```xml
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#183d35"/><g transform="rotate(-25 32 32)" fill="none" stroke="#d5ee95" stroke-width="3"><rect x="17" y="11" width="30" height="42" rx="2"/><path d="M17 26h30M17 38h30M32 11v15m0 12v15M13 32h38"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#163663"/><circle cx="32" cy="32" r="23" fill="#d9f93d"/><g fill="#163663"><ellipse cx="24" cy="20" rx="3" ry="4" transform="rotate(-30 24 20)"/><ellipse cx="42" cy="23" rx="3.5" ry="4" transform="rotate(35 42 23)"/><circle cx="31" cy="35" r="4"/><ellipse cx="18" cy="40" rx="2.5" ry="4" transform="rotate(-25 18 40)"/><ellipse cx="42" cy="45" rx="3" ry="4" transform="rotate(40 42 45)"/></g></svg>
 
 ```
 
@@ -157,7 +157,7 @@ Place at: `courtline-app/dist/css/dashboard.css`.
 .app-content { min-width: 0; }
 .topbar { height: 4.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: var(--surface); border-bottom: 1px solid var(--line); padding: 0 1rem; }
 .brand { display: flex; align-items: center; gap: .55rem; color: var(--ink); font-family: var(--font-display); font-size: 1.45rem; font-weight: 700; letter-spacing: -.02em; text-decoration: none; }
-.brand-mark { color: var(--brand); display: inline-flex; flex-shrink: 0; }
+.brand-mark { color: var(--text-highlight); display: inline-flex; flex-shrink: 0; }
 .brand-mark .brand-symbol { width: 1.65rem; height: 1.65rem; }
 .brand img { max-width: 2rem; max-height: 2rem; object-fit: contain; }
 .brand [data-business-name] { min-width: 0; overflow-wrap: anywhere; line-height: 1.15; }
@@ -758,7 +758,7 @@ Place at: `courtline-app/dist/js/config/business.js`.
 ```javascript
 /** Tenant configuration. Replace with a validated backend response at integration.
  * Courtline is a sample tenant, not the application identity.
- * logoUrl accepts a local/HTTPS image path; null uses the shared court symbol.
+ * logoUrl accepts a local/HTTPS image path; null uses the shared pickleball symbol.
  * Court count is derived from courts.length; never duplicate it in layout code.
  */
 export const businessConfig = {
@@ -870,9 +870,9 @@ export const repository = {
 Place at: `courtline-app/dist/js/shared/branding.js`.
 
 ```javascript
-/** Default tenant logo. Branding artwork is separate from UI iconography. */
+/** Default editable tenant logo. Brand artwork is separate from Iconsax UI icons. */
 export function brandMark() {
-  return '<svg class="brand-symbol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><g transform="rotate(-25 12 12)"><rect x="6" y="3" width="12" height="18" rx="1"/><path d="M6 9h12M6 15h12M12 3v6m0 6v6M4 12h16"/></g></svg>';
+  return '<svg class="brand-symbol" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="15" fill="currentColor"/><g fill="var(--brand)"><ellipse cx="11" cy="9" rx="2.1" ry="2.7" transform="rotate(-30 11 9)"/><ellipse cx="22" cy="11" rx="2.3" ry="2.6" transform="rotate(35 22 11)"/><circle cx="15" cy="18" r="2.7"/><ellipse cx="7" cy="21" rx="1.8" ry="2.5" transform="rotate(-25 7 21)"/><ellipse cx="23" cy="24" rx="2" ry="2.5" transform="rotate(40 23 24)"/></g></svg>';
 }
 
 ```

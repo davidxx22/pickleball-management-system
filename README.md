@@ -34,7 +34,7 @@ courtline-app/
   dist/                         Editable, deployable static source
     index.html                  Customer Home Dashboard and navigation shell
     design-system.html          Interactive shared component reference
-    assets/mark.svg             Default vector court symbol/favicon
+    assets/mark.svg             Default lime pickleball logo/favicon
     css/
       tokens.css                Colors, typography, spacing, base accessibility
       components.css            Buttons, fields, cards, badges, dialogs, feedback
@@ -86,7 +86,7 @@ Navigation for future modules opens a “Planned stage” explanation; it does n
 
 ## Customize a tenant
 
-Edit `dist/js/config/business.js`. Court count comes from the courts array. Every court has a stable ID, editable name, type, and hourly rate. Business identity, logo URL, colors, address, contact information, locale, currency, timezone, operating hours, and booking rules live together. The optional logo accepts a safe local or HTTPS image; a failed image falls back to the shared symbol.
+Edit `dist/js/config/business.js`. Court count comes from the courts array. Every court has a stable ID, editable name, type, and hourly rate. Business identity, logo URL, colors, address, contact information, locale, currency, timezone, operating hours, and booking rules live together. The optional logo accepts a safe local or HTTPS image; a failed image falls back to the shared pickleball symbol.
 
 Use a dark primary color with light accent and white text. The retained preview validation requires a contrast ratio of 4.5:1. Keep sample fixtures synchronized with stable court IDs. Newly added courts without fixture records show “No sample data.” The temporary business preview is hidden from customer navigation; the owner-facing branding/settings interface belongs to the Admin stage.
 
