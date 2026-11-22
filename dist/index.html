@@ -20,7 +20,6 @@
   <div class="app-shell">
     <aside class="sidebar" aria-label="Application sidebar">
       <a class="brand" href="./" aria-label="Home"><span class="brand-mark"></span><span data-business-name>Courtline</span><span class="brand-period">.</span></a>
-      <div class="workspace-label">YOUR GAME. YOUR COMMUNITY.</div>
       <nav aria-label="Main navigation" class="primary-nav">
         <a class="nav-item active" href="./" aria-current="page"><span data-icon="grid"></span>Overview</a>
         <button class="nav-item" data-feature="booking"><span data-icon="calendar"></span>Book a court<span class="nav-soon">Next</span></button>
@@ -47,27 +46,24 @@
       </header>
 
       <main id="main" tabindex="-1">
-        <div class="page-heading"><div><div class="eyebrow">LET’S GET YOU ON COURT</div><h1>Hey, <span data-player-first>Alex</span><span class="greeting-wave" data-icon="sun" aria-hidden="true"></span></h1><p>A good day starts with a great game.</p></div><div class="today-label"><span data-icon="calendar"></span><time id="demo-date" datetime="2026-11-20">Friday, November 20</time><span class="subtle">Demo day</span></div></div>
+        <header class="page-heading"><h1>Hey, <span data-player-first>Alex</span></h1><p>A good day starts with a great game.</p></header>
 
         <div id="load-error" class="notice error-notice" role="alert" hidden></div>
         <div id="dashboard-content" aria-busy="true">
           <section class="hero-grid" aria-label="Start playing">
             <div class="play-hero">
-              <div class="hero-copy"><h2>Less scrolling.<br>More <em>rallying.</em></h2><p>Find your court, bring your people,<br class="desktop-break"> and make your next game a good one.</p><button class="button button-lime" data-feature="booking">Book a court</button><div class="hero-footnote"><span class="avatar-stack" aria-hidden="true"><b>JM</b><b>KC</b><b>SR</b></span><span><strong id="community-count">32</strong> players in the sample clubhouse</span></div></div>
+              <div class="hero-copy"><h2>Less scrolling.<br>More <em>rallying.</em></h2><p>Find your court, bring your people,<br class="desktop-break"> and make your next game a good one.</p><button class="button button-lime" data-feature="booking">Book a court</button><div class="hero-footnote"><span class="avatar-stack" aria-hidden="true"><b>JM</b><b>KC</b><b>SR</b></span><span><strong id="community-count">32</strong> players in the clubhouse</span></div></div>
               <div class="hero-art" aria-hidden="true"><img class="hero-photo" src="assets/hero-padel-court.png" alt="" width="1024" height="691" fetchpriority="high" decoding="async"></div>
             </div>
             <article class="panel next-session" aria-labelledby="next-session-title"><div class="card-heading"><h2 id="next-session-title">Your next session</h2><span class="icon-soft" data-icon="calendar"></span></div><div id="next-booking" class="loading-placeholder">Loading sample session…</div></article>
           </section>
 
-          <section class="stats-grid" id="stats-grid" aria-label="Your pickleball at a glance"></section>
-
-          <section class="court-section" aria-labelledby="courts-title"><div class="section-heading"><div><div class="section-title-line"><h2 id="courts-title">Find your court</h2><span class="badge badge-neutral" id="court-count">4 courts</span></div><p>A snapshot of what’s happening at the clubhouse.</p></div><div class="segmented-control" role="group" aria-label="Filter courts"><button class="selected" data-court-filter="all" aria-pressed="true">All courts</button><button data-court-filter="available" aria-pressed="false">Available</button><button data-court-filter="in-use" aria-pressed="false">In play</button></div></div><div class="court-grid" id="court-grid"></div><p id="court-results" class="sr-only" role="status"></p><div class="section-footnote"><span data-icon="info"></span>Demo snapshot · Availability is not connected to a live booking system.</div></section>
+          <section class="court-section" aria-labelledby="courts-title"><div class="section-heading"><div><div class="section-title-line"><h2 id="courts-title">Find your court</h2><span class="badge badge-neutral" id="court-count">4 courts</span></div></div><div class="segmented-control" role="group" aria-label="Filter courts"><button class="selected" data-court-filter="all" aria-pressed="true">All courts</button><button data-court-filter="available" aria-pressed="false">Available</button><button data-court-filter="in-use" aria-pressed="false">In play</button></div></div><div class="court-grid" id="court-grid"></div><p id="court-results" class="sr-only" role="status"></p><div class="section-footnote"><span data-icon="info"></span>Demo snapshot · Availability is not connected to a live booking system.</div></section>
 
           <div class="lower-grid">
-            <section class="panel activity-panel" aria-labelledby="activity-title"><div class="card-heading"><div><h2 id="activity-title">A little better, every game.</h2><p>Your last 7 days on court</p></div><span class="icon-soft" data-icon="chart"></span></div><div class="activity-body"><div class="activity-summary"><div><strong>4.5<span>hrs</span></strong><p>Time well spent</p></div><span class="positive-chip">+1.5 hrs vs. last week</span><button class="text-button" data-feature="statistics">Explore your stats</button></div><div class="activity-chart" id="activity-chart" role="img" aria-label="Sample court hours by day: Saturday 0.5, Sunday 1, Monday 0, Tuesday 1.5, Wednesday 0, Thursday 1, Friday 0.5. Total 4.5 hours."></div></div></section>
-            <section class="panel community-panel" aria-labelledby="community-title"><div class="card-heading"><h2 id="community-title">Around the clubhouse</h2><span class="badge badge-neutral">UP NEXT</span></div><div class="event-content"><div class="event-date"><strong>28</strong><span>NOV</span></div><div><span class="event-category">SOCIAL PLAY</span><h3>Saturday Social Doubles</h3><p>Good rallies. New friends. All levels.</p><div class="event-meta"><span data-icon="clock"></span>8:00 AM – 12:00 PM</div></div></div><div class="event-footer"><span><span class="status-dot"></span>Sample community event</span><button class="text-button" data-action="event">View details</button></div></section>
+            <section class="panel activity-panel" aria-labelledby="activity-title"><div class="card-heading"><div><h2 id="activity-title">A little better, every game.</h2><p>Your last 7 days on court</p></div></div><div class="activity-body"><div class="activity-summary"><div><strong>4.5<span>hrs</span></strong><p>Time well spent</p></div><span class="positive-chip">+1.5 hrs vs. last week</span><button class="text-button" data-feature="statistics">Explore your stats</button></div><div class="activity-chart" id="activity-chart" role="img" aria-label="Sample court hours by day: Saturday 0.5, Sunday 1, Monday 0, Tuesday 1.5, Wednesday 0, Thursday 1, Friday 0.5. Total 4.5 hours."></div></div></section>
+            <section class="panel community-panel" aria-labelledby="community-title"><div class="card-heading"><h2 id="community-title">Around the clubhouse</h2><span class="badge badge-neutral">UP NEXT</span></div><div class="event-content"><div class="event-date"><strong>28</strong><span>NOV</span></div><div><span class="event-category">SOCIAL PLAY</span><h3>Saturday Social Doubles</h3><p>Good rallies. New friends. All levels.</p><div class="event-meta"><span data-icon="clock"></span>8:00 AM – 12:00 PM</div></div></div><button class="text-button event-details" data-action="event">View details</button></section>
           </div>
-          <footer class="page-footer"><span><span data-business-name>Courtline</span> · Built around your game.</span><span>Frontend preview <span class="footer-dot">·</span> No real reservations or payments</span></footer>
         </div>
       </main>
     </div>

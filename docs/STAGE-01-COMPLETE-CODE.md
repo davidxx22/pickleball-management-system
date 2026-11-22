@@ -168,14 +168,10 @@ Place at: `courtline-app/dist/css/dashboard.css`.
 .notification-dot { position: absolute; right: .8rem; top: .7rem; width: .35rem; height: .35rem; background: #c06e46; border: 1px solid white; border-radius: 50%; }
 .profile-trigger { display: flex; align-items: center; gap: .65rem; padding: .2rem; background: transparent; border: 0; }
 .profile-chevron { display: inline-flex; color: var(--muted); }
-main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
-.page-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.65rem; }
-.page-heading h1 { margin-top: .35rem; }
-.greeting-wave { margin-left: .55rem; color: #7b9957; vertical-align: .05rem; }
-.greeting-wave .icon { width: 1.65rem; height: 1.65rem; }
+main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem calc(6rem + env(safe-area-inset-bottom)); }
+.page-heading { margin-bottom: 1.25rem; }
+.page-heading h1 { margin: 0; }
 .page-heading p { margin-top: .5rem; color: var(--muted); font-size: .9375rem; }
-.today-label { display: none; align-items: center; gap: .5rem; color: var(--muted); font-size: .8125rem; }
-.today-label .subtle { padding-left: .5rem; border-left: 1px solid #cbd5ce; font-size: .75rem; }
 .hero-grid { display: grid; gap: 1rem; }
 .play-hero { overflow: hidden; min-height: 21rem; position: relative; border-radius: var(--radius-lg); background: var(--brand); color: white; isolation: isolate; }
 .hero-copy { position: relative; z-index: 1; padding: 1.75rem; }
@@ -198,26 +194,13 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
 .booking-date p { font-size: .875rem; color: var(--muted); margin-top: .3rem; }
 .booking-info { display: flex; align-items: center; gap: .55rem; margin-top: .6rem; color: var(--muted); font-size: .875rem; }
 .booking-info .icon { width: 1rem; height: 1rem; }
-.booking-bottom { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; margin-top: .9rem; border-top: 1px solid var(--line); }
-.booking-bottom .badge { font-size: .75rem; }
-.booking-format { color: var(--muted); font-size: .8125rem; }
+.booking-format { color: var(--muted); font-size: .8125rem; margin: .9rem 0 1rem; }
 .next-session .button { margin-top: auto; min-height: 2.65rem; }
-.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-top: 1rem; }
-.stat-card { padding: 1.1rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-.stat-top { font-family: var(--font); font-weight: 400; letter-spacing: 0; display: flex; align-items: center; gap: .55rem; font-size: .75rem; color: var(--muted); }
-.stat-icon { display: inline-flex; color: var(--brand); }
-.stat-icon .icon { width: 1rem; height: 1rem; }
-.stat-value { display: flex; align-items: baseline; gap: .45rem; margin-top: .65rem; }
-.stat-value strong { font-family: var(--font-display); color: var(--ink); font-size: 1.8rem; line-height: 1; font-weight: 600; letter-spacing: -.02em; }
-.stat-value span { color: var(--muted); font-family: var(--font); font-weight: 400; font-size: .875rem; }
-.stat-caption { margin-top: .55rem; color: var(--muted); font-size: .75rem; }
-.stat-caption.positive { color: var(--ink); }
 .court-section { margin-top: 2rem; }
 .section-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.15rem; }
 .section-title-line { display: flex; align-items: center; gap: .7rem; }
 .section-title-line h2 { font-weight: 700; font-size: 1.25rem; }
 .section-title-line .badge { font-size: .75rem; }
-.section-heading p { color: var(--muted); font-size: .875rem; margin-top: .4rem; }
 .court-grid { display: grid; gap: .85rem; }
 .court-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: box-shadow var(--transition), transform var(--transition); }
 .court-card:hover { box-shadow: 0 5px 22px #173b3110; transform: translateY(-2px); }
@@ -271,11 +254,7 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
 .event-content p { color: var(--muted); margin-top: .3rem; font-size: .8125rem; }
 .event-meta { display: flex; gap: .35rem; align-items: center; color: var(--muted); font-size: .75rem; margin-top: .65rem; }
 .event-meta .icon { width: .875rem; height: .875rem; }
-.event-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem; padding-top: .85rem; border-top: 1px solid var(--line); }
-.event-footer > span { display: inline-flex; gap: .4rem; align-items: center; color: var(--muted); font-size: .75rem; }
-.event-footer .text-button { font-size: .8125rem; }
-.page-footer { display: flex; justify-content: space-between; gap: .7rem; flex-wrap: wrap; margin: 1.75rem 0 5rem; color: var(--muted); font-size: .75rem; }
-.footer-dot { padding: 0 .4rem; }
+.event-details { display: block; margin: 1rem 0 0 auto; font-size: .8125rem; }
 .bottom-nav { display: flex; align-items: center; justify-content: space-around; position: fixed; bottom: 0; left: 0; right: 0; z-index: 20; min-height: 4.5rem; padding: .4rem .5rem max(.4rem, env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: #fffffffa; backdrop-filter: blur(16px); }
 .bottom-nav > * { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .25rem; min-height: 3rem; min-width: 3rem; border: 0; background: transparent; text-decoration: none; font-size: .75rem; color: var(--muted); border-radius: .5rem; }
 .bottom-nav > [aria-current] { color: var(--ink); font-weight: 500; }
@@ -285,7 +264,7 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
 .more-menu .button { justify-content: flex-start; }
 @media (min-width: 600px) {
   .hero-photo { -webkit-mask-image: linear-gradient(to right, #00000052 0%, #0000007a 42%, #000 76%); mask-image: linear-gradient(to right, #00000052 0%, #0000007a 42%, #000 76%); }
-  main { padding: 2rem; }
+  main { padding: 2rem 2rem calc(6rem + env(safe-area-inset-bottom)); }
   .topbar { padding: 0 2rem; }
   .hero-copy { padding: 2rem; }
   .hero-footnote > span:last-child { max-width: none; }
@@ -296,11 +275,11 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
   .activity-body { flex-wrap: nowrap; }
 }
 @media (min-width: 900px) {
+  main { padding-bottom: 2rem; }
   .app-shell { display: grid; grid-template-columns: var(--sidebar-width) minmax(0,1fr); }
   .sidebar { display: flex; flex-direction: column; height: 100dvh; position: sticky; top: 0; padding: 2rem 1rem 1rem; background: var(--surface); border-right: 1px solid var(--line); overflow-y: auto; }
-  .sidebar .brand { margin-left: .8rem; font-size: 1.8rem; }
+  .sidebar .brand { margin: 0 .8rem 1.5rem; font-size: 1.8rem; }
   .sidebar .brand-mark .brand-symbol { width: 1.9rem; height: 1.9rem; }
-  .workspace-label { margin: .65rem .8rem 2.25rem; font-size: .75rem; color: var(--muted); letter-spacing: .13em; font-weight: 500; }
   .primary-nav { display: grid; gap: .3rem; }
   .nav-item { display: flex; align-items: center; gap: .8rem; width: 100%; min-height: 2.9rem; padding: .7rem .9rem; border: 0; background: transparent; border-radius: .55rem; text-align: left; text-decoration: none; font-size: .875rem; color: var(--muted); }
   .nav-item .icon { width: 1.15rem; height: 1.15rem; }
@@ -317,13 +296,7 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
   .mobile-brand { display: none; }
   .topbar { height: 4.75rem; }
   .bottom-nav { display: none; }
-  .page-footer { margin-bottom: 0; }
   .hero-grid { grid-template-columns: minmax(0,1fr); }
-  .stats-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
-  .stat-card { padding: 1.1rem; }
-  .stat-top { font-size: .75rem; }
-  .today-label { display: flex; }
-  .today-label .subtle { display: none; }
 }
 @media (min-width: 1200px) {
   main { padding: 2rem 2.25rem; }
@@ -334,14 +307,9 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
   .play-hero { min-height: 22rem; }
   .hero-footnote { margin-top: 1.2rem; }
   .hero-footnote > span:last-child { max-width: 9.5rem; }
-  .stats-grid { gap: 1.1rem; margin-top: 1.25rem; }
-  .stat-card { padding: 1.15rem 1.25rem; }
-  .stat-top { font-size: .8125rem; }
-  .stat-value strong { font-family: var(--font-display); color: var(--ink); font-size: 2rem; }
   .court-grid { grid-template-columns: repeat(4,minmax(0,1fr)); gap: 1.1rem; }
   .court-type { font-size: .75rem; }
   .lower-grid { grid-template-columns: 1.12fr 1fr; gap: 1.25rem; }
-  .today-label .subtle { display: inline; }
 }
 @media (min-width: 1450px) {
   :root { --sidebar-width: 16rem; }
@@ -355,7 +323,7 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem 1rem; }
   .court-diagram { width: 9.25rem; height: 5.5rem; }
   .court-type { font-size: .75rem; }
 }
-@media (max-width: 360px) { .topbar-actions { gap: .45rem; } .profile-trigger { gap: .4rem; } .hero-copy { padding: 1.4rem; } .stat-card { padding: .9rem; } .activity-body { display: block; } .activity-chart { margin-top: 1rem; } }
+@media (max-width: 360px) { .topbar-actions { gap: .45rem; } .profile-trigger { gap: .4rem; } .hero-copy { padding: 1.4rem; } .activity-body { display: block; } .activity-chart { margin-top: 1rem; } }
 
 ```
 
@@ -547,7 +515,6 @@ Place at: `courtline-app/dist/index.html`.
   <div class="app-shell">
     <aside class="sidebar" aria-label="Application sidebar">
       <a class="brand" href="./" aria-label="Home"><span class="brand-mark"></span><span data-business-name>Courtline</span><span class="brand-period">.</span></a>
-      <div class="workspace-label">YOUR GAME. YOUR COMMUNITY.</div>
       <nav aria-label="Main navigation" class="primary-nav">
         <a class="nav-item active" href="./" aria-current="page"><span data-icon="grid"></span>Overview</a>
         <button class="nav-item" data-feature="booking"><span data-icon="calendar"></span>Book a court<span class="nav-soon">Next</span></button>
@@ -574,27 +541,24 @@ Place at: `courtline-app/dist/index.html`.
       </header>
 
       <main id="main" tabindex="-1">
-        <div class="page-heading"><div><div class="eyebrow">LET’S GET YOU ON COURT</div><h1>Hey, <span data-player-first>Alex</span><span class="greeting-wave" data-icon="sun" aria-hidden="true"></span></h1><p>A good day starts with a great game.</p></div><div class="today-label"><span data-icon="calendar"></span><time id="demo-date" datetime="2026-11-20">Friday, November 20</time><span class="subtle">Demo day</span></div></div>
+        <header class="page-heading"><h1>Hey, <span data-player-first>Alex</span></h1><p>A good day starts with a great game.</p></header>
 
         <div id="load-error" class="notice error-notice" role="alert" hidden></div>
         <div id="dashboard-content" aria-busy="true">
           <section class="hero-grid" aria-label="Start playing">
             <div class="play-hero">
-              <div class="hero-copy"><h2>Less scrolling.<br>More <em>rallying.</em></h2><p>Find your court, bring your people,<br class="desktop-break"> and make your next game a good one.</p><button class="button button-lime" data-feature="booking">Book a court</button><div class="hero-footnote"><span class="avatar-stack" aria-hidden="true"><b>JM</b><b>KC</b><b>SR</b></span><span><strong id="community-count">32</strong> players in the sample clubhouse</span></div></div>
+              <div class="hero-copy"><h2>Less scrolling.<br>More <em>rallying.</em></h2><p>Find your court, bring your people,<br class="desktop-break"> and make your next game a good one.</p><button class="button button-lime" data-feature="booking">Book a court</button><div class="hero-footnote"><span class="avatar-stack" aria-hidden="true"><b>JM</b><b>KC</b><b>SR</b></span><span><strong id="community-count">32</strong> players in the clubhouse</span></div></div>
               <div class="hero-art" aria-hidden="true"><img class="hero-photo" src="assets/hero-padel-court.png" alt="" width="1024" height="691" fetchpriority="high" decoding="async"></div>
             </div>
             <article class="panel next-session" aria-labelledby="next-session-title"><div class="card-heading"><h2 id="next-session-title">Your next session</h2><span class="icon-soft" data-icon="calendar"></span></div><div id="next-booking" class="loading-placeholder">Loading sample session…</div></article>
           </section>
 
-          <section class="stats-grid" id="stats-grid" aria-label="Your pickleball at a glance"></section>
-
-          <section class="court-section" aria-labelledby="courts-title"><div class="section-heading"><div><div class="section-title-line"><h2 id="courts-title">Find your court</h2><span class="badge badge-neutral" id="court-count">4 courts</span></div><p>A snapshot of what’s happening at the clubhouse.</p></div><div class="segmented-control" role="group" aria-label="Filter courts"><button class="selected" data-court-filter="all" aria-pressed="true">All courts</button><button data-court-filter="available" aria-pressed="false">Available</button><button data-court-filter="in-use" aria-pressed="false">In play</button></div></div><div class="court-grid" id="court-grid"></div><p id="court-results" class="sr-only" role="status"></p><div class="section-footnote"><span data-icon="info"></span>Demo snapshot · Availability is not connected to a live booking system.</div></section>
+          <section class="court-section" aria-labelledby="courts-title"><div class="section-heading"><div><div class="section-title-line"><h2 id="courts-title">Find your court</h2><span class="badge badge-neutral" id="court-count">4 courts</span></div></div><div class="segmented-control" role="group" aria-label="Filter courts"><button class="selected" data-court-filter="all" aria-pressed="true">All courts</button><button data-court-filter="available" aria-pressed="false">Available</button><button data-court-filter="in-use" aria-pressed="false">In play</button></div></div><div class="court-grid" id="court-grid"></div><p id="court-results" class="sr-only" role="status"></p><div class="section-footnote"><span data-icon="info"></span>Demo snapshot · Availability is not connected to a live booking system.</div></section>
 
           <div class="lower-grid">
-            <section class="panel activity-panel" aria-labelledby="activity-title"><div class="card-heading"><div><h2 id="activity-title">A little better, every game.</h2><p>Your last 7 days on court</p></div><span class="icon-soft" data-icon="chart"></span></div><div class="activity-body"><div class="activity-summary"><div><strong>4.5<span>hrs</span></strong><p>Time well spent</p></div><span class="positive-chip">+1.5 hrs vs. last week</span><button class="text-button" data-feature="statistics">Explore your stats</button></div><div class="activity-chart" id="activity-chart" role="img" aria-label="Sample court hours by day: Saturday 0.5, Sunday 1, Monday 0, Tuesday 1.5, Wednesday 0, Thursday 1, Friday 0.5. Total 4.5 hours."></div></div></section>
-            <section class="panel community-panel" aria-labelledby="community-title"><div class="card-heading"><h2 id="community-title">Around the clubhouse</h2><span class="badge badge-neutral">UP NEXT</span></div><div class="event-content"><div class="event-date"><strong>28</strong><span>NOV</span></div><div><span class="event-category">SOCIAL PLAY</span><h3>Saturday Social Doubles</h3><p>Good rallies. New friends. All levels.</p><div class="event-meta"><span data-icon="clock"></span>8:00 AM – 12:00 PM</div></div></div><div class="event-footer"><span><span class="status-dot"></span>Sample community event</span><button class="text-button" data-action="event">View details</button></div></section>
+            <section class="panel activity-panel" aria-labelledby="activity-title"><div class="card-heading"><div><h2 id="activity-title">A little better, every game.</h2><p>Your last 7 days on court</p></div></div><div class="activity-body"><div class="activity-summary"><div><strong>4.5<span>hrs</span></strong><p>Time well spent</p></div><span class="positive-chip">+1.5 hrs vs. last week</span><button class="text-button" data-feature="statistics">Explore your stats</button></div><div class="activity-chart" id="activity-chart" role="img" aria-label="Sample court hours by day: Saturday 0.5, Sunday 1, Monday 0, Tuesday 1.5, Wednesday 0, Thursday 1, Friday 0.5. Total 4.5 hours."></div></div></section>
+            <section class="panel community-panel" aria-labelledby="community-title"><div class="card-heading"><h2 id="community-title">Around the clubhouse</h2><span class="badge badge-neutral">UP NEXT</span></div><div class="event-content"><div class="event-date"><strong>28</strong><span>NOV</span></div><div><span class="event-category">SOCIAL PLAY</span><h3>Saturday Social Doubles</h3><p>Good rallies. New friends. All levels.</p><div class="event-meta"><span data-icon="clock"></span>8:00 AM – 12:00 PM</div></div></div><button class="text-button event-details" data-action="event">View details</button></section>
           </div>
-          <footer class="page-footer"><span><span data-business-name>Courtline</span> · Built around your game.</span><span>Frontend preview <span class="footer-dot">·</span> No real reservations or payments</span></footer>
         </div>
       </main>
     </div>
@@ -661,11 +625,7 @@ function renderBooking() {
   const court = state.business.courts.find(c => c.id === booking?.courtId);
   if (!booking || !court) { root.innerHTML = '<div class="empty-state">No sample session for these courts.</div>'; return; }
   const minutes = Math.round((new Date(booking.endsAt) - new Date(booking.startsAt)) / 60000);
-  root.innerHTML = `<div class="booking-date"><div class="date-tile"><span>${esc(date(booking.startsAt, { month: 'short' }).toUpperCase())}</span><strong>${esc(date(booking.startsAt, { day: 'numeric' }))}</strong></div><div><h3>${esc(court.name)}</h3><p>${esc(court.type)} court · ${esc(booking.format)}</p></div></div><div class="booking-info">${icon('clock')}<span>${esc(time(booking.startsAt))} – ${esc(time(booking.endsAt))}</span></div><div class="booking-info">${icon('queue')}<span>${esc(booking.players)} players · ${minutes}-minute session</span></div><div class="booking-bottom">${badge(booking.status, 'success', true)}<span class="booking-format">${esc(money(booking.total))} / session</span></div><button class="button button-outline button-full" data-action="booking">View booking</button>`;
-}
-
-function renderStats() {
-  document.querySelector('#stats-grid').innerHTML = state.dashboard.stats.map(stat => `<article class="stat-card"><h2 class="stat-top"><span class="stat-icon">${icon(stat.icon)}</span>${esc(stat.label)}</h2><div class="stat-value"><strong>${esc(stat.value)}</strong><span>${esc(stat.unit)}</span></div><p class="stat-caption ${stat.positive ? 'positive' : ''}">${esc(stat.caption)}</p></article>`).join('');
+  root.innerHTML = `<div class="booking-date"><div class="date-tile"><span>${esc(date(booking.startsAt, { month: 'short' }).toUpperCase())}</span><strong>${esc(date(booking.startsAt, { day: 'numeric' }))}</strong></div><div><h3>${esc(court.name)}</h3><p>${esc(court.type)} court · ${esc(booking.format)}</p></div></div><div class="booking-info">${icon('clock')}<span>${esc(time(booking.startsAt))} – ${esc(time(booking.endsAt))}</span></div><div class="booking-info">${icon('queue')}<span>${esc(booking.players)} players · ${minutes}-minute session</span></div><p class="booking-format">${esc(money(booking.total))} / session</p><button class="button button-outline button-full" data-action="booking">View booking</button>`;
 }
 
 function renderCourts() {
@@ -681,10 +641,8 @@ function renderDashboard() {
   const { dashboard: d } = state;
   document.querySelectorAll('[data-player-first]').forEach(el => { el.textContent = d.player.firstName; });
   document.querySelectorAll('[data-player-initials]').forEach(el => { el.textContent = `${d.player.firstName[0]}${d.player.lastName[0]}`; });
-  document.querySelector('#demo-date').textContent = date(d.snapshotAt, { weekday: 'long', month: 'long', day: 'numeric' });
-  document.querySelector('#demo-date').dateTime = d.snapshotAt;
   document.querySelector('#community-count').textContent = d.communityCount;
-  renderBooking(); renderStats(); renderCourts();
+  renderBooking(); renderCourts();
   const totalHours = d.activity.reduce((sum, item) => sum + item.hours, 0);
   const maxHours = Math.max(1, ...d.activity.map(item => item.hours));
   const chart = document.querySelector('#activity-chart');
@@ -695,7 +653,7 @@ function renderDashboard() {
   document.querySelector('.positive-chip').textContent = `${difference >= 0 ? '+' : ''}${difference} hrs vs. last week`;
   const eventRoot = document.querySelector('.event-content');
   eventRoot.innerHTML = d.event ? `<div class="event-date"><strong>${esc(date(d.event.startsAt, { day: 'numeric' }))}</strong><span>${esc(date(d.event.startsAt, { month: 'short' }).toUpperCase())}</span></div><div><span class="event-category">${esc(d.event.category)}</span><h3>${esc(d.event.name)}</h3><p>${esc(d.event.summary)}</p><div class="event-meta">${icon('clock')}${esc(time(d.event.startsAt))} – ${esc(time(d.event.endsAt))}</div></div>` : '<p>No sample events to show.</p>';
-  document.querySelector('.event-footer').hidden = !d.event;
+  document.querySelector('.event-details').hidden = !d.event;
   document.querySelector('#dashboard-content').setAttribute('aria-busy', 'false');
 }
 
@@ -709,7 +667,7 @@ function openBooking() {
   const b = state.dashboard.upcomingBooking;
   const court = state.business.courts.find(c => c.id === b?.courtId);
   if (!b || !court) { dialog.open('My bookings', '<div class="empty-state">No sample bookings for this court configuration.</div>'); return; }
-  dialog.open('Your sample booking', `<div class="notice">This is a fictional reservation for UI development. No court is reserved and no payment has been taken.</div>${details([['Reference', b.id], ['Court', `${court.name} · ${court.type}`], ['Date', date(b.startsAt, { dateStyle: 'full' })], ['Time', `${time(b.startsAt)} – ${time(b.endsAt)}`], ['Players', `${b.players} · ${b.format}`], ['Sample total', money(b.total)], ['Status', b.status]])}<p>Booking history, cancellation, and rescheduling will be developed in the Booking stage.</p><button class="button button-primary" data-action="close">Got it</button>`);
+  dialog.open('Your sample booking', `<div class="notice">This is a fictional reservation for UI development. No court is reserved and no payment has been taken.</div>${details([['Reference', b.id], ['Court', `${court.name} · ${court.type}`], ['Date', date(b.startsAt, { dateStyle: 'full' })], ['Time', `${time(b.startsAt)} – ${time(b.endsAt)}`], ['Players', `${b.players} · ${b.format}`], ['Sample total', money(b.total)]])}<p>Booking history, cancellation, and rescheduling will be developed in the Booking stage.</p><button class="button button-primary" data-action="close">Got it</button>`);
 }
 
 function openCourt(id) {

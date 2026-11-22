@@ -68,7 +68,7 @@ courtline-app/
 
 - Customer Home Dashboard with a sports app layout and responsive desktop sidebar/mobile bottom navigation.
 - Minimal white top bar with notification bell, circular initials avatar, and chevron aligned right; mobile retains the business logo on the left.
-- Hero featuring the user-supplied court photograph with a light horizontal fade, the original headline/subtext and player row, and a text-only “Book a court” CTA. The eyebrow and watermark are omitted. The photograph is bundled at `dist/assets/hero-padel-court.png`. The dashboard also includes a sample upcoming session, player summary, configurable court cards, activity chart, and community event.
+- Hero featuring the user-supplied court photograph with a light horizontal fade, the original headline/subtext and player row, and a text-only “Book a court” CTA. The eyebrow and watermark are omitted. The photograph is bundled at `dist/assets/hero-padel-court.png`. The dashboard also includes a sample upcoming session, configurable court cards, activity chart, and community event.
 - Court status filters with pressed state and an announced result count.
 - Court/session/event/profile/notification dialogs. Native dialog focus containment, Escape dismissal, a visible close button, and focus restoration.
 - Customer navigation omits the Component library, Business preview, and Frontend demo/version footer. The component reference remains available directly at `/design-system.html`; temporary branding-preview code is retained for future development.
@@ -95,3 +95,7 @@ For the backend integration and next stages, see the documents in `docs/`.
 ## Typography from bed6397
 
 The restored sidebar dashboard keeps its layout, imagery, card structure and mock interactions. Typography follows commit `bed6397`: Plus Jakarta Sans for display headings/metric numbers (600/700, -0.02em tracking), and Inter for body copy/controls (400/500). Light-surface text uses navy `#0F172A` and secondary `#526075`; the photo hero uses white copy with lime `#D9F93D` emphasis. Semantic status colors and existing surface colors retain readable contrast. Shared font and text-color tokens live in `dist/css/tokens.css`.
+
+## Dashboard cleanup
+
+The dashboard keeps the greeting, photo hero, upcoming session, court grid, activity chart and event details. The sidebar tagline, greeting eyebrow/sun/date badge, four-card player summary row, sample-confirmed status, activity header icon, court subtitle, sample event label and page footer are removed. The player row reads “32 players in the clubhouse”; its count still comes from the repository. Dates, stats and status fields remain in the read model for later modules, but removed widgets no longer have renderers or DOM queries. Mobile bottom spacing keeps the last card above navigation; event details and sample booking dialogs remain available.

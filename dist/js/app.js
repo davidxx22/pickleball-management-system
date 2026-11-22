@@ -45,11 +45,7 @@ function renderBooking() {
   const court = state.business.courts.find(c => c.id === booking?.courtId);
   if (!booking || !court) { root.innerHTML = '<div class="empty-state">No sample session for these courts.</div>'; return; }
   const minutes = Math.round((new Date(booking.endsAt) - new Date(booking.startsAt)) / 60000);
-  root.innerHTML = `<div class="booking-date"><div class="date-tile"><span>${esc(date(booking.startsAt, { month: 'short' }).toUpperCase())}</span><strong>${esc(date(booking.startsAt, { day: 'numeric' }))}</strong></div><div><h3>${esc(court.name)}</h3><p>${esc(court.type)} court · ${esc(booking.format)}</p></div></div><div class="booking-info">${icon('clock')}<span>${esc(time(booking.startsAt))} – ${esc(time(booking.endsAt))}</span></div><div class="booking-info">${icon('queue')}<span>${esc(booking.players)} players · ${minutes}-minute session</span></div><div class="booking-bottom">${badge(booking.status, 'success', true)}<span class="booking-format">${esc(money(booking.total))} / session</span></div><button class="button button-outline button-full" data-action="booking">View booking</button>`;
-}
-
-function renderStats() {
-  document.querySelector('#stats-grid').innerHTML = state.dashboard.stats.map(stat => `<article class="stat-card"><h2 class="stat-top"><span class="stat-icon">${icon(stat.icon)}</span>${esc(stat.label)}</h2><div class="stat-value"><strong>${esc(stat.value)}</strong><span>${esc(stat.unit)}</span></div><p class="stat-caption ${stat.positive ? 'positive' : ''}">${esc(stat.caption)}</p></article>`).join('');
+  root.innerHTML = `<div class="booking-date"><div class="date-tile"><span>${esc(date(booking.startsAt, { month: 'short' }).toUpperCase())}</span><strong>${esc(date(booking.startsAt, { day: 'numeric' }))}</strong></div><div><h3>${esc(court.name)}</h3><p>${esc(court.type)} court · ${esc(booking.format)}</p></div></div><div class="booking-info">${icon('clock')}<span>${esc(time(booking.startsAt))} – ${esc(time(booking.endsAt))}</span></div><div class="booking-info">${icon('queue')}<span>${esc(booking.players)} players · ${minutes}-minute session</span></div><p class="booking-format">${esc(money(booking.total))} / session</p><button class="button button-outline button-full" data-action="booking">View booking</button>`;
 }
 
 function renderCourts() {
@@ -65,10 +61,8 @@ function renderDashboard() {
   const { dashboard: d } = state;
   document.querySelectorAll('[data-player-first]').forEach(el => { el.textContent = d.player.firstName; });
   document.querySelectorAll('[data-player-initials]').forEach(el => { el.textContent = `${d.player.firstName[0]}${d.player.lastName[0]}`; });
-  document.querySelector('#demo-date').textContent = date(d.snapshotAt, { weekday: 'long', month: 'long', day: 'numeric' });
-  document.querySelector('#demo-date').dateTime = d.snapshotAt;
   document.querySelector('#community-count').textContent = d.communityCount;
-  renderBooking(); renderStats(); renderCourts();
+  renderBooking(); renderCourts();
   const totalHours = d.activity.reduce((sum, item) => sum + item.hours, 0);
   const maxHours = Math.max(1, ...d.activity.map(item => item.hours));
   const chart = document.querySelector('#activity-chart');
@@ -79,7 +73,7 @@ function renderDashboard() {
   document.querySelector('.positive-chip').textContent = `${difference >= 0 ? '+' : ''}${difference} hrs vs. last week`;
   const eventRoot = document.querySelector('.event-content');
   eventRoot.innerHTML = d.event ? `<div class="event-date"><strong>${esc(date(d.event.startsAt, { day: 'numeric' }))}</strong><span>${esc(date(d.event.startsAt, { month: 'short' }).toUpperCase())}</span></div><div><span class="event-category">${esc(d.event.category)}</span><h3>${esc(d.event.name)}</h3><p>${esc(d.event.summary)}</p><div class="event-meta">${icon('clock')}${esc(time(d.event.startsAt))} – ${esc(time(d.event.endsAt))}</div></div>` : '<p>No sample events to show.</p>';
-  document.querySelector('.event-footer').hidden = !d.event;
+  document.querySelector('.event-details').hidden = !d.event;
   document.querySelector('#dashboard-content').setAttribute('aria-busy', 'false');
 }
 
@@ -93,7 +87,7 @@ function openBooking() {
   const b = state.dashboard.upcomingBooking;
   const court = state.business.courts.find(c => c.id === b?.courtId);
   if (!b || !court) { dialog.open('My bookings', '<div class="empty-state">No sample bookings for this court configuration.</div>'); return; }
-  dialog.open('Your sample booking', `<div class="notice">This is a fictional reservation for UI development. No court is reserved and no payment has been taken.</div>${details([['Reference', b.id], ['Court', `${court.name} · ${court.type}`], ['Date', date(b.startsAt, { dateStyle: 'full' })], ['Time', `${time(b.startsAt)} – ${time(b.endsAt)}`], ['Players', `${b.players} · ${b.format}`], ['Sample total', money(b.total)], ['Status', b.status]])}<p>Booking history, cancellation, and rescheduling will be developed in the Booking stage.</p><button class="button button-primary" data-action="close">Got it</button>`);
+  dialog.open('Your sample booking', `<div class="notice">This is a fictional reservation for UI development. No court is reserved and no payment has been taken.</div>${details([['Reference', b.id], ['Court', `${court.name} · ${court.type}`], ['Date', date(b.startsAt, { dateStyle: 'full' })], ['Time', `${time(b.startsAt)} – ${time(b.endsAt)}`], ['Players', `${b.players} · ${b.format}`], ['Sample total', money(b.total)]])}<p>Booking history, cancellation, and rescheduling will be developed in the Booking stage.</p><button class="button button-primary" data-action="close">Got it</button>`);
 }
 
 function openCourt(id) {
