@@ -162,7 +162,7 @@ Place at: `courtline-app/dist/css/dashboard.css`.
 .brand img { max-width: 2rem; max-height: 2rem; object-fit: contain; }
 .brand [data-business-name] { min-width: 0; overflow-wrap: anywhere; line-height: 1.15; }
 .mobile-brand [data-business-name] { max-width: 8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.brand-period { color: var(--ink); margin-left: -.55rem; }
+.brand-period { color: transparent; margin-left: -.55rem; }
 .topbar-actions { display: flex; align-items: center; gap: .8rem; margin-left: auto; flex-shrink: 0; }
 .notification-button { position: relative; border: 0; }
 .notification-button .icon { width: 1.15rem; height: 1.15rem; }
