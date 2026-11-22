@@ -10,6 +10,7 @@
 .brand-period { color: var(--ink); margin-left: -.55rem; }
 .topbar-actions { display: flex; align-items: center; gap: .8rem; margin-left: auto; flex-shrink: 0; }
 .notification-button { position: relative; border: 0; }
+.notification-button .icon { width: 1.15rem; height: 1.15rem; }
 .notification-dot { position: absolute; right: .8rem; top: .7rem; width: .35rem; height: .35rem; background: #c06e46; border: 1px solid white; border-radius: 50%; }
 .profile-trigger { display: flex; align-items: center; gap: .65rem; padding: .2rem; background: transparent; border: 0; }
 .profile-chevron { display: inline-flex; color: var(--muted); }
