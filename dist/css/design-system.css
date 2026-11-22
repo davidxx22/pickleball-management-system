@@ -1,10 +1,10 @@
 .library-header { max-width: 76rem; margin: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.5rem; }
 .library-main { max-width: 72rem; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
 .library-intro { max-width: 42rem; padding-block: 1rem; }
-.library-intro h1 { font-size: clamp(2.5rem,7vw,4.5rem); margin-top: .75rem; color: var(--accent); }
+.library-intro h1 { font-size: clamp(2.5rem,7vw,4.5rem); margin-top: .75rem; color: var(--brand); }
 .library-intro p { color: var(--muted); margin-top: 1.25rem; }
 .library-nav { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin: 1.5rem 0 3rem; padding: 1rem 0; border-block: 1px solid var(--line); }
-.library-nav a { padding: .5rem 0; font-size: .875rem; text-underline-offset: .25rem; color: var(--accent); }
+.library-nav a { padding: .5rem 0; font-size: .875rem; text-underline-offset: .25rem; color: var(--brand); }
 .library-section { margin-top: 3rem; scroll-margin-top: 1.5rem; }
 .library-section > h2 { font-size: 1.5rem; margin-bottom: .75rem; }
 .library-section > p { color: var(--muted); max-width: 48rem; margin-bottom: 1.25rem; }

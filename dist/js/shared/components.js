@@ -33,7 +33,6 @@ export function createDialogController(dialog) {
       dialog.querySelector('#dialog-title').textContent = title;
       dialog.querySelector('#dialog-content').innerHTML = html;
       hydrateIcons(dialog);
-      dialog.scrollTop = 0;
       if (!dialog.open) dialog.showModal();
       dialog.querySelector('[data-close-dialog]').focus();
     },
