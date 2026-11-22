@@ -125,7 +125,7 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem calc(6rem + env(s
   main { padding-bottom: 2rem; }
   .app-shell { display: grid; grid-template-columns: var(--sidebar-width) minmax(0,1fr); }
   .sidebar { display: flex; flex-direction: column; height: 100dvh; position: sticky; top: 0; padding: 2rem 1rem 1rem; background: var(--surface); border-right: 1px solid var(--line); overflow-y: auto; }
-  .sidebar .brand { margin: 0 .8rem 1.5rem; font-size: 1.8rem; }
+  .sidebar .brand { margin: 0 .8rem 2.1rem; font-size: 1.8rem; }
   .sidebar .brand-mark .brand-symbol { width: 1.9rem; height: 1.9rem; }
   .primary-nav { display: grid; gap: .3rem; }
   .nav-item { display: flex; align-items: center; gap: .8rem; width: 100%; min-height: 2.9rem; padding: .7rem .9rem; border: 0; background: transparent; border-radius: .55rem; text-align: left; text-decoration: none; font-size: .875rem; color: var(--muted); }
