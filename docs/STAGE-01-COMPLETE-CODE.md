@@ -166,114 +166,125 @@ Place at: `courtline-app/dist/css/components.css`.
 Place at: `courtline-app/dist/css/dashboard.css`.
 
 ```css
-/* The dashboard shares its tokens, controls and dialogs with future modules. */
-.app-shell { max-width: 1440px; margin: 0 auto; background: linear-gradient(145deg, var(--brand-hover), var(--brand) 60%); min-height: 100dvh; }
-.topbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.15rem; border-bottom: 1px solid var(--line); }
-.brand { display: inline-flex; align-items: center; gap: .5rem; color: white; text-decoration: none; font-family: var(--font-display); font-size: 1.55rem; letter-spacing: -.04em; font-weight: 700; white-space: nowrap; }
-.brand-period { color: var(--accent); margin-left: -.45rem; }
+/* One artwork-led hero, followed by one flat dashboard surface. */
+html, body { overflow-x: clip; }
+body { padding: 1rem; }
+.app-shell { max-width: 1200px; margin: 0 auto; }
+main { padding: 0; }
+.hero-card { overflow: hidden; border-radius: 20px; background: var(--brand); box-shadow: 0 24px 70px #00000025; }
+.play-hero { position: relative; isolation: isolate; overflow: hidden; container-type: inline-size; min-height: 32rem; background: var(--brand-hover); }
+.hero-photo { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: center; max-width: none; }
+.play-hero::after { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(180deg, #08214308, #08214315 45%, transparent); }
+.topbar { position: absolute; inset: 0 0 auto; display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: 1.15rem; z-index: 2; }
+.brand { display: inline-flex; align-items: center; gap: .45rem; color: white; text-decoration: none; font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; letter-spacing: -.02em; white-space: nowrap; }
+.brand-period { color: white; margin-left: -.45rem; }
 .brand-mark { color: var(--accent); }
-.brand-symbol, .brand-mark img { width: 1.65rem; height: 1.65rem; object-fit: contain; }
+.brand-symbol, .brand-mark img { width: 1.6rem; height: 1.6rem; object-fit: contain; }
 .desktop-nav { display: none; }
 .topbar-actions { display: flex; align-items: center; gap: .65rem; }
-.header-book { min-height: 2.6rem; padding: .55rem .9rem; }
-.greeting-pill { display: none; }
-.mobile-menu { background: transparent; width: 2.5rem; height: 2.5rem; }
-main { padding: 1rem; }
-.hero-card { border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 24px 40px #07182b30; }
-.play-hero { position: relative; isolation: isolate; min-height: 34rem; display: flex; justify-content: center; align-items: flex-start; text-align: center; overflow: hidden; background: #173a68; }
-.hero-photo { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
-.play-hero::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, #0b264b18, #0b264b52 45%, #0b264b12 75%, #102d50b3); }
-.hero-copy { padding: 3rem 1rem 6rem; width: 100%; }
-.hero-status { display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .4rem; padding: .45rem .8rem; border: 1px solid #ffffff40; background: #102b50a6; border-radius: 3rem; font-size: .8125rem; backdrop-filter: blur(12px); }
-.hero-status .status-dot { color: var(--accent); }
-.sample-tag { font-size: .6875rem; font-weight: 500; color: var(--muted); letter-spacing: .07em; }
-.hero-status .sample-tag { color: var(--accent); margin-left: .2rem; }
-.play-hero h1 { margin-top: 1.4rem; line-height: 1.06; font-size: clamp(2.5rem, 6.4vw, 5.25rem); text-shadow: 0 3px 24px #071b353d; }
-.play-hero h1 em { font-style: normal; color: var(--accent); }
-.play-hero p { max-width: 35rem; margin: 1.25rem auto 0; color: #f3f7fc; font-size: 1rem; line-height: 1.65; text-shadow: 0 2px 12px #071b35; }
+.header-book { min-height: 2.5rem; padding: .55rem .9rem; font-size: .8125rem; }
+.mobile-menu { display: none; }
+.hero-copy { position: relative; width: 100%; padding: 9rem .9rem 4rem; text-align: center; }
+.hero-status { display: inline-flex; align-items: center; justify-content: center; gap: .35rem; background: #fff; color: #0f172a; padding: .4rem .7rem; border-radius: 3rem; font-size: .75rem; font-weight: 500; line-height: 1.3; box-shadow: 0 2px 10px #081f3b12; }
+.hero-status .status-dot { color: #609e51; width: .4rem; height: .4rem; }
+.hero-status .no-courts { color: #ad7727; }
+.play-hero h1 { font-size: clamp(2rem, 8.5cqw, 3rem); line-height: 1.06; font-weight: 700; letter-spacing: -.02em; margin-top: 1.25rem; }
+.play-hero h1 em { color: var(--accent); font-style: normal; }
+.play-hero p { color: white; font-size: .9375rem; line-height: 1.5; max-width: 34rem; margin: 1rem auto 0; }
 .desktop-break { display: none; }
-.hero-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: .65rem; margin-top: 1.7rem; }
-.hero-caption { position: absolute; bottom: 1.25rem; left: 1.25rem; display: flex; align-items: center; gap: .6rem; font-size: .8125rem; }
-.hero-location { display: none; }
-.hero-bottom { background: #112f58eb; }
-.stats-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
-.stat-card { padding: 1.3rem 1rem; text-align: center; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.stat-card:nth-child(2n) { border-right: 0; }
-.stat-value { display: flex; align-items: baseline; justify-content: center; gap: .25rem; color: var(--accent); font-family: var(--font-display); letter-spacing: -.02em; white-space: nowrap; }
-.stat-value strong { font-size: clamp(1.65rem, 3vw, 2.15rem); font-weight: 600; line-height: 1.3; }
-.stat-value span { font-size: 1rem; }
-.stat-top { font-family: var(--font); font-weight: 400; font-size: .8125rem; letter-spacing: 0; color: var(--muted); margin-top: .45rem; }
-.next-session { padding: 1.25rem; }
-.next-session .card-heading h2 { font-family: var(--font); font-size: .875rem; letter-spacing: 0; font-weight: 500; }
-.compact-booking { display: flex; align-items: center; gap: .8rem; margin-top: .85rem; }
-.date-tile { display: grid; place-items: center; border: 1px solid var(--line); border-radius: .65rem; padding: .35rem .6rem; min-width: 3rem; background: #ffffff08; }
-.date-tile span { font-size: .6875rem; color: var(--muted); }
-.date-tile strong { font: 600 1.25rem var(--font-display); }
-.compact-booking h3 { font-size: .875rem; }
-.compact-booking p { color: var(--muted); font-size: .8125rem; margin-top: .25rem; }
-.compact-booking .icon-button { margin-left: auto; color: var(--accent); background: #ffffff08; }
-.section-heading { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 1.5rem; }
-.court-section { margin-top: 2.5rem; }
-.section-kicker { color: var(--muted); font-size: .6875rem; font-weight: 500; letter-spacing: .13em; margin-bottom: .55rem; }
-.section-title-line { display: flex; align-items: center; gap: .8rem; }
+.hero-buttons { display: flex; justify-content: center; gap: .6rem; margin-top: 1.65rem; }
+.hero-buttons .button { padding: .6rem .9rem; min-height: 2.65rem; font-size: .8125rem; white-space: nowrap; }
+.button-glass { background: transparent; border-color: #ffffffa8; backdrop-filter: none; }
+.hero-bottom { background: #19375bef; }
+.stats-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); max-width: 960px; margin: 0 auto; padding: .5rem .75rem; }
+.stat-card { padding: .9rem .35rem; text-align: center; }
+.stat-value { display: flex; align-items: baseline; justify-content: center; gap: .3rem; color: var(--accent); font: 600 1.65rem/1.2 var(--font-display); letter-spacing: -.02em; }
+.stat-value strong { font: inherit; }
+.stat-value span { font: inherit; }
+.stat-top { color: white; font: 400 .75rem/1.5 var(--font); letter-spacing: 0; margin-top: .4rem; }
+.dashboard-surface { --ink: #0f172a; --muted: #526075; --line: #e2e8f0; --surface: #fffff7; color-scheme: light; background: #fffff7; color: var(--ink); border-radius: 24px; margin-top: 1.5rem; padding: 1.5rem; }
+.dashboard-surface h2 { color: #0f172a; font-weight: 700; }
+.section-kicker { font-size: .6875rem; font-weight: 500; letter-spacing: .12em; color: var(--muted); margin-bottom: .55rem; }
+.section-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.75rem; }
+.section-heading > div:first-child { flex-basis: 100%; }
+.section-title-line { display: flex; align-items: center; gap: .75rem; }
+.section-title-line h2 { font-size: 1.6rem; }
 .section-heading p { color: var(--muted); font-size: .875rem; margin-top: .6rem; }
-.segmented-control { align-self: flex-start; flex-wrap: wrap; }
-.court-grid { display: grid; gap: 1rem; }
-.court-card { min-width: 0; border: 1px solid var(--line); background: #0b254142; border-radius: var(--radius); overflow: hidden; transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition); }
-.court-card:hover { transform: translateY(-4px); border-color: #d9f93666; box-shadow: 0 12px 24px #091b3026; }
-.court-visual { position: relative; height: 10rem; display: grid; place-items: center; background: radial-gradient(ellipse at center, #30619d70, #183e6b30); border-bottom: 1px solid var(--line); }
-.court-visual > .badge { position: absolute; right: .8rem; top: .8rem; background: #0e274ce8; border: 1px solid var(--line); font-size: .75rem; }
-.court-diagram { width: 9.5rem; height: 5.4rem; padding: .55rem; background: #214e85; border-radius: .3rem; transform: rotate(-12deg) skewX(7deg); box-shadow: 0 6px 0 #0c2340, 0 12px 24px #071a3540; }
-.court-lines { position: relative; height: 100%; border: 1px solid #d5e6fbd4; background: #1d426f; }
-.court-lines::before { content: ''; position: absolute; top: -10%; bottom: -10%; left: 50%; border-left: 2px solid #d9f93d; box-shadow: 2px 2px 0 #091c37; z-index: 1; }
-.court-lines::after { content: ''; position: absolute; left: 35%; right: 35%; top: 0; bottom: 0; border-inline: 1px solid #e3effbcc; background: #306498; }
-.court-lines i { position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid #e3effbcc; }
-.court-visual.in-use .court-diagram { background: #284971; }
-.court-details { padding: 1.1rem; }
-.court-title-row { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
-.court-type { color: var(--muted); font-size: .8125rem; }
-.court-details > p { color: var(--muted); font-size: .8125rem; margin-top: .5rem; }
-.court-formats { margin-top: .7rem; font-size: .75rem; color: var(--muted); }
-.court-card-footer { display: flex; justify-content: space-between; gap: .5rem; align-items: center; margin-top: 1rem; padding-top: .85rem; border-top: 1px solid var(--line); }
-.court-price { font-weight: 500; }
-.court-price small { color: var(--muted); font-size: .75rem; font-weight: 400; }
-.court-card-footer .text-button { color: var(--accent); font-size: .8125rem; padding: .5rem .85rem; border: 1px solid #d9f93d4d; border-radius: 2rem; }
-.section-footnote { display: flex; align-items: center; gap: .5rem; font-size: .75rem; color: var(--muted); margin-top: .9rem; }
+.dashboard-surface .badge-neutral { color: #0f172a; border: 1px solid #0f172a30; background: transparent; }
+.dashboard-surface .segmented-control { border: 1px solid #0f172a; background: transparent; border-radius: 3rem; padding: .2rem; gap: .15rem; }
+.dashboard-surface .segmented-control button { font-weight: 500; color: #0f172a; padding: .45rem .85rem; min-height: 2.35rem; }
+.dashboard-surface .segmented-control button.selected { background: var(--accent); color: #0f172a; box-shadow: none; }
+.dashboard-surface .segmented-control button:hover { color: #0f172a; background: #e9edda; }
+.availability-toggle { color: #0f172a; background: transparent; border: 1px solid #0f172a; font-size: .8125rem; min-height: 2.8rem; padding: .5rem .85rem; }
+.availability-toggle .icon { width: 1rem; height: 1rem; }
+.availability-toggle.selected { background: var(--accent); }
+.availability-toggle:hover { background: #e9edda; }
+.court-grid { width: 100%; overflow-x: auto; scrollbar-color: #a1acb5 transparent; }
+.availability-table { width: 100%; border-collapse: collapse; text-align: left; font-size: .875rem; }
+.availability-table caption { text-align: left; color: var(--muted); font-size: .75rem; padding-bottom: 1rem; }
+.availability-table th, .availability-table td { border-bottom: 1px solid var(--line); padding: 1.15rem .35rem; }
+.availability-table thead th { color: var(--muted); font-size: .75rem; font-weight: 400; padding-block: .6rem; white-space: nowrap; }
+.availability-table thead th:first-child, .availability-table tbody th { padding-left: 0; }
+.availability-table tbody th { min-width: 10rem; font-weight: 500; }
+.availability-table .timeline-cell { text-align: center; min-width: 4.6rem; }
+.court-title-button { padding: 0; border: 0; background: transparent; font: 700 1rem var(--font-display); color: #0f172a; white-space: nowrap; }
+.court-title-button:hover { text-decoration: underline; text-underline-offset: .3rem; }
+.court-row-meta { display: block; color: var(--muted); font-size: .75rem; margin-top: .5rem; white-space: nowrap; }
+.timeline-slot { width: 100%; min-height: 2.7rem; border: 1px solid #0f172a55; border-radius: .4rem; padding: .4rem; color: #0f172a; font-size: .75rem; transition: background var(--transition), color var(--transition); }
+.slot-open { background: var(--accent); }
+.slot-open:hover { background: #0f172a; color: var(--accent); }
+.slot-busy { background: repeating-linear-gradient(135deg, #eef0e9 0 4px, transparent 4px 8px); color: #64748b; opacity: 1; }
+.court-price { font-weight: 500; white-space: nowrap; padding-left: 1.1rem !important; }
+.row-book { border: 1px solid #0f172a; border-radius: 3rem; color: #0f172a; background: transparent; min-height: 2.7rem; padding: .5rem 1rem; font-size: .8125rem; white-space: nowrap; }
+.row-book:hover { background: var(--accent); }
+.availability-hidden .timeline-cell { display: none; }
+.availability-hidden .availability-table { min-width: 0; }
+.availability-hidden .availability-table tbody th { min-width: 7.5rem; }
+.availability-hidden .row-book { padding-inline: .65rem; }
+.availability-hidden .court-price { padding-left: .35rem !important; }
+.court-empty { padding: 2rem 0; color: var(--muted); border-block: 1px solid var(--line); }
+.section-footnote { display: flex; gap: .5rem; align-items: center; margin-top: 1rem; color: var(--muted); font-size: .75rem; }
 .section-footnote .icon { width: 1rem; height: 1rem; }
-.lower-grid { display: grid; gap: 1rem; margin-top: 2rem; }
-.lower-grid .panel { background: #102b50a6; padding: 1.5rem; }
-.card-heading h2 { font-size: 1.2rem; }
-.activity-body { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 1.5rem; margin-top: 2rem; }
+.lower-grid { display: grid; margin-top: 2rem; border-top: 1px solid var(--line); }
+.activity-panel, .community-panel { min-width: 0; padding-block: 2rem; }
+.activity-panel { border-bottom: 1px solid var(--line); }
+.card-heading { align-items: flex-start; }
+.card-heading h2 { font-size: 1.3rem; }
+.card-heading p { color: var(--muted); margin-top: .5rem; font-size: .875rem; }
+.activity-body { display: flex; align-items: flex-end; flex-wrap: wrap; gap: 1.75rem; margin-top: 1.75rem; }
 .activity-summary { flex: 1; }
-.activity-summary strong { color: var(--accent); font: 600 2.75rem/1.2 var(--font-display); letter-spacing: -.02em; }
-.activity-summary strong span { font: 500 1rem var(--font); margin-left: .35rem; }
-.activity-summary p { color: var(--muted); font-size: .8125rem; margin-top: .3rem; }
-.positive-chip { display: block; color: var(--accent); font-size: .75rem; margin-top: .75rem; }
-.activity-summary .text-button { font-size: .8125rem; }
-.activity-chart { height: 9rem; flex: 1.3; min-width: 11rem; display: flex; gap: .6rem; }
-.chart-column { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: .65rem; }
-.chart-track { width: 100%; height: 7.2rem; display: flex; align-items: flex-end; border-bottom: 1px solid var(--line); background-image: repeating-linear-gradient(to top, transparent 0, transparent calc(33.3% - 1px), #ffffff0b calc(33.3% - 1px), #ffffff0b 33.3%); }
-.chart-bar { height: var(--bar-height); width: 75%; max-width: 1.6rem; margin: 0 auto; border-radius: .4rem .4rem 0 0; background: var(--accent); box-shadow: 0 0 18px #d9f93d20; }
-.chart-column span { font-size: .75rem; color: var(--muted); }
-.chart-column:last-child span { color: var(--accent); }
-.event-content { display: flex; gap: 1rem; align-items: flex-start; margin-top: 1.7rem; }
-.event-date { padding: .7rem .8rem; min-width: 3.8rem; display: grid; text-align: center; border-radius: .85rem; background: var(--accent); color: var(--accent-ink); }
-.event-date strong { font: 700 1.8rem/1.15 var(--font-display); }
-.event-date span { font-size: .75rem; font-weight: 500; }
-.event-category { font-size: .6875rem; color: var(--accent); letter-spacing: .1em; }
-.event-content h3 { margin-top: .35rem; font-size: 1.05rem; }
-.event-content p { color: var(--muted); font-size: .875rem; margin-top: .4rem; }
-.event-meta { display: flex; align-items: center; gap: .4rem; color: var(--muted); font-size: .8125rem; margin-top: .8rem; }
+.activity-summary strong { color: #0f172a; font: 700 2.75rem/1.2 var(--font-display); letter-spacing: -.02em; }
+.activity-summary strong span { font: 400 .875rem var(--font); margin-left: .35rem; }
+.activity-summary p { font-size: .8125rem; color: var(--muted); margin-top: .35rem; }
+.positive-chip { display: table; padding: .25rem .5rem; color: #0f172a; background: var(--accent); border-radius: 2rem; font-size: .6875rem; margin-top: .85rem; }
+.dashboard-surface .text-button { color: #0f172a; font-size: .8125rem; }
+.activity-chart { display: flex; gap: .6rem; flex: 1.3; min-width: 11rem; height: 9rem; }
+.chart-column { display: flex; flex-direction: column; align-items: center; gap: .65rem; flex: 1; min-width: 0; }
+.chart-track { display: flex; align-items: flex-end; width: 100%; height: 7.2rem; border-bottom: 1px solid var(--line); background: repeating-linear-gradient(to top, transparent 0, transparent calc(33.3% - 1px), #e2e8f0 calc(33.3% - 1px), #e2e8f0 33.3%); }
+.chart-bar { width: 75%; max-width: 1.65rem; height: var(--bar-height); margin: 0 auto; border-radius: .3rem .3rem 0 0; background: var(--accent); border: 1px solid #0f172a33; }
+.chart-column span { color: var(--muted); font-size: .75rem; }
+.event-content { display: flex; align-items: flex-start; gap: 1rem; margin-top: 1.75rem; }
+.event-date { display: grid; text-align: center; min-width: 3.75rem; padding: .7rem; color: #0f172a; background: var(--accent); border: 1px solid #0f172a; border-radius: .85rem; }
+.event-date strong { font: 700 1.8rem/1.2 var(--font-display); }
+.event-date span { font-size: .75rem; }
+.event-category { font-size: .6875rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
+.event-content h3 { font-weight: 700; margin-top: .35rem; font-size: 1.05rem; }
+.event-content p { font-size: .875rem; color: var(--muted); margin-top: .4rem; }
+.event-meta { display: flex; align-items: center; gap: .4rem; margin-top: .85rem; font-size: .75rem; color: var(--muted); }
 .event-meta .icon { width: 1rem; height: 1rem; }
-.event-footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; border-top: 1px solid var(--line); margin-top: 1.4rem; padding-top: 1rem; }
-.event-footer > span { display: flex; align-items: center; gap: .4rem; color: var(--muted); font-size: .75rem; }
-.event-footer .button { min-height: 2.4rem; padding: .5rem 1.2rem; }
-.page-footer { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem 1rem; padding-block: 1.5rem 6rem; margin-top: 2rem; border-top: 1px solid var(--line); font-size: .75rem; color: var(--muted); }
-.footer-brand { font-size: 1.15rem; }
+.event-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; border-top: 1px solid var(--line); margin-top: 1.25rem; padding-top: 1rem; }
+.event-footer > span { color: var(--muted); font-size: .75rem; }
+.event-footer .status-dot { margin-right: .3rem; }
+.event-footer .button { border: 1px solid #0f172a; min-height: 2.5rem; padding: .5rem 1.2rem; color: #0f172a; }
+.page-footer { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem 1rem; padding-top: 1.5rem; margin-top: .5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .75rem; }
+.footer-brand { font-size: 1.15rem; color: #0f172a; }
+.footer-brand .brand-period { color: #0f172a; }
 .demo-disclosure { width: 100%; }
-.bottom-nav { position: fixed; bottom: 0; inset-inline: 0; z-index: 20; display: flex; justify-content: space-around; background: #0e2542f2; backdrop-filter: blur(20px); border-top: 1px solid var(--line); padding: .5rem .25rem max(.5rem, env(safe-area-inset-bottom)); }
-.bottom-nav > * { display: flex; flex-direction: column; align-items: center; gap: .35rem; min-height: 3rem; padding: .3rem; min-width: 0; background: transparent; border: 0; text-decoration: none; font-size: .625rem; color: var(--muted); }
+.bottom-nav { position: fixed; inset: auto 0 0; z-index: 20; display: flex; justify-content: space-around; background: #0e2542f2; backdrop-filter: blur(20px); border-top: 1px solid #ffffff24; padding: .5rem .25rem max(.5rem, env(safe-area-inset-bottom)); }
+.bottom-nav > * { display: flex; flex-direction: column; align-items: center; gap: .35rem; min-height: 3rem; padding: .3rem; min-width: 0; background: transparent; border: 0; text-decoration: none; font-size: .625rem; color: #b7c9df; }
 .bottom-nav [aria-current] { color: var(--accent); }
+.field { min-width: 0; }
+.field input, .field select { min-width: 0; }
 .more-menu { display: grid; gap: .65rem; }
 .more-menu .button { justify-content: flex-start; }
 .booking-slots { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .5rem; margin: 1rem 0; }
@@ -283,71 +294,75 @@ main { padding: 1rem; }
 .booking-summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 1rem; margin-top: 1rem; border-top: 1px solid var(--line); }
 .booking-summary strong { color: var(--accent); font: 600 1.4rem var(--font-display); }
 .booking-summary small { display: block; color: var(--muted); }
+
 @media (min-width: 600px) {
-  .topbar { padding: 1.5rem 2rem; } main { padding: 1.5rem 2rem; }
-  .play-hero { min-height: 35rem; }
-  .hero-copy { padding-top: 4rem; }
+  body { padding: 2rem; }
+  .play-hero { min-height: 0; aspect-ratio: 846 / 493; }
+  /* Crop the supplied square artwork to its court, without another blue frame.
+     These percentages correspond to x=89..935 and y=226..719 in the 1024px source. */
+  .hero-photo { left: -10.52%; top: -45.84%; width: 121.04%; height: 207.71%; object-fit: fill; }
+  .topbar { padding: 1.5cqw 6.8cqw; }
+  .brand { font-size: clamp(1.15rem, 2.2cqw, 1.65rem); }
+  .brand-symbol, .brand-mark img { width: 2.6cqw; height: 2.6cqw; min-width: 1.4rem; min-height: 1.4rem; }
+  .hero-copy { position: absolute; top: 21.7%; left: 0; padding: 0 1.5rem; transform: translateY(-.75rem); }
+  .hero-status { padding: .3rem .6rem; font-size: clamp(.6875rem, 1cqw, .8125rem); }
+  .play-hero h1 { font-size: clamp(2.25rem, 6.2cqw, 4.65rem); margin-top: 1.8cqw; }
+  .play-hero p { margin-top: 1.6cqw; font-size: clamp(.875rem, 1.6cqw, 1.125rem); line-height: 1.35; }
   .desktop-break { display: block; }
-  .hero-caption { left: 2rem; bottom: 1.5rem; }
-  .hero-location { position: absolute; display: flex; align-items: center; gap: .4rem; bottom: 1.8rem; right: 2rem; font-size: .75rem; }
-  .hero-location .icon { width: 1rem; height: 1rem; color: var(--accent); }
-  .stats-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
-  .stat-card:nth-child(2) { border-right: 1px solid var(--line); }
-  .stat-card:last-child { border-right: 0; }
-  .court-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .greeting-pill { display: inline-flex; align-items: center; gap: .3rem; background: #ffffff08; border: 1px solid var(--line); border-radius: 3rem; padding: .65rem .9rem; font-size: .75rem; }
-  .greeting-separator { color: var(--accent); margin-inline: .15rem; }
-  .mobile-menu { display: none; }
+  .hero-buttons { margin-top: 3cqw; gap: 1cqw; }
+  .hero-buttons .button { font-size: clamp(.75rem, 1.15cqw, .875rem); padding: .65rem 1.15rem; }
+  .stats-grid { grid-template-columns: repeat(4,minmax(0,1fr)); padding: 1rem 2.5rem; }
+  .stat-card { padding: .5rem; }
+  .stat-value { font-size: clamp(1.6rem, 2.8vw, 2rem); }
+  .stat-top { font-size: .8125rem; }
+  .dashboard-surface { padding: 2rem; }
+  .section-heading > div:first-child { flex-grow: 1; }
   .demo-disclosure { width: auto; margin-left: auto; }
 }
 @media (min-width: 900px) {
-  body { padding: 2rem; }
-  .app-shell { border-radius: 1.8rem; border: 1px solid var(--line); min-height: calc(100dvh - 4rem); box-shadow: 0 30px 90px #00000026; }
-  .topbar { padding: 1.7rem 2.25rem; border-bottom: 0; flex-wrap: wrap; }
-  .desktop-nav { order: 3; flex-basis: 100%; display: flex; align-items: center; justify-content: center; gap: 1.6rem; }
-  .desktop-nav > * { position: relative; color: var(--muted); background: transparent; border: 0; padding: .5rem 0; text-decoration: none; font-size: .8125rem; font-weight: 500; transition: color var(--transition); }
-  .desktop-nav > *:hover, .desktop-nav .active { color: white; }
-  .desktop-nav .active::after { content: ''; position: absolute; width: .25rem; height: .25rem; bottom: 0; left: calc(50% - .125rem); border-radius: 50%; background: var(--accent); }
-  main { padding: .25rem 2.25rem 0; }
+  .topbar { display: grid; grid-template-columns: 1fr auto 1fr; }
+  .topbar-actions { justify-self: end; }
+  .desktop-nav { display: flex; align-items: center; justify-content: center; gap: 1.5cqw; }
+  .desktop-nav > * { position: relative; padding: .5rem 0; border: 0; background: transparent; color: white; font-size: clamp(.75rem, 1.1cqw, .875rem); font-weight: 500; text-decoration: none; white-space: nowrap; }
+  .desktop-nav > *:hover { color: var(--accent); }
+  .desktop-nav .active::after { content: ''; position: absolute; bottom: 0; left: calc(50% - .125rem); width: .25rem; height: .25rem; border-radius: 50%; background: var(--accent); }
+  .header-book { font-size: .8125rem; padding: .6rem 1.1rem; }
   .bottom-nav { display: none; }
-  .page-footer { padding-bottom: 1.75rem; }
-  .section-heading { flex-direction: row; justify-content: space-between; align-items: flex-end; }
-  .segmented-control { align-self: auto; }
+  .section-heading { gap: 1rem; }
+  .section-heading > div:first-child { flex-basis: auto; }
   .lower-grid { grid-template-columns: 1.1fr 1fr; }
-  .activity-body { gap: 1rem; }
+  .activity-panel { border-bottom: 0; padding-right: 2rem; }
+  .community-panel { border-left: 1px solid var(--line); padding-left: 2rem; }
+  .dashboard-surface { padding: 2.5rem; margin-top: 2rem; }
 }
-@media (min-width: 1200px) {
-  .topbar { flex-wrap: nowrap; gap: 1.5rem; padding-block: 1.8rem; }
-  .desktop-nav { order: 0; flex-basis: auto; gap: 1.35rem; }
-  .greeting-pill { font-size: .75rem; padding-inline: .8rem; }
-  .hero-copy { padding-top: 4.7rem; }
-  .play-hero { min-height: 36rem; }
-  .hero-bottom { display: grid; grid-template-columns: minmax(0,1fr) 20rem; }
-  .stat-card { display: flex; flex-direction: column; justify-content: center; border-bottom: 0; padding: 1.6rem .75rem; }
-  .stat-card:last-child { border-right: 1px solid var(--line); }
-  .next-session { padding: 1.3rem 1.5rem; }
-  .court-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
-  .court-visual { height: 9.5rem; }
-  .court-section { margin-top: 3rem; }
-  .lower-grid .panel { padding: 1.7rem; }
-}
+@media (max-width: 899px) { body { padding-bottom: 6rem; } }
+@media (max-width: 599px) { .dialog .form-row { grid-template-columns: 1fr; gap: 0; } }
 @media (max-width: 360px) {
-  main { padding: .75rem; } .topbar { padding: 1rem .75rem; gap: .5rem; }
-  .brand { font-size: 1.3rem; } .brand-symbol { width: 1.4rem; }
-  .header-book { padding-inline: .7rem; font-size: .75rem; }
-  .mobile-menu { width: 2rem; }
-  .hero-buttons { flex-direction: column; align-items: center; }
-  .hero-copy { padding-inline: .75rem; } .hero-caption { left: .75rem; gap: .4rem; font-size: .75rem; }
-  .hero-status { font-size: .75rem; }
+  body { padding: .75rem .75rem 6rem; }
+  .topbar { padding: 1rem .85rem; gap: .5rem; }
+  .brand { font-size: 1.2rem; }
+  .brand-symbol { width: 1.4rem; height: 1.4rem; }
+  .header-book { font-size: .75rem; padding-inline: .65rem; }
+  .hero-copy { padding-inline: .5rem; }
+  .hero-buttons { gap: .4rem; }
+  .hero-buttons .button { font-size: .6875rem; padding-inline: .65rem; }
+  .dashboard-surface { padding: 1.1rem; }
+  .availability-toggle { font-size: .75rem; }
   .booking-slots { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
 
-@media (max-width: 599px) { .dialog .form-row { grid-template-columns: 1fr; gap: 0; } }
-.field { min-width: 0; }
-.field input, .field select { min-width: 0; }
+.timeline-slot:disabled { opacity: 1; color: #526075; }
+.chart-bar[style*="--bar-height:0%"] { border: 0; }
+@media (max-width: 899px) {
+  .availability-table th:first-child { position: sticky; left: 0; z-index: 1; background: #fffff7; }
+  .availability-table tbody th { min-width: 8.5rem; }
+}
 
-.court-title-button { padding: 0; border: 0; background: transparent; font: inherit; letter-spacing: inherit; text-align: left; }
-.court-title-button:hover { color: var(--accent); }
+@media (max-width: 599px) {
+  .availability-hidden .availability-table tbody th { min-width: 0; }
+  .availability-hidden .court-row-meta { max-width: 5.5rem; white-space: normal; }
+  .availability-hidden .row-book { font-size: .75rem; padding-inline: .5rem; }
+}
 
 ```
 
@@ -513,33 +528,36 @@ Place at: `courtline-app/dist/index.html`.
 <body>
   <a class="skip-link" href="#main">Skip to dashboard</a>
   <div class="app-shell">
-    <header class="topbar">
-      <a class="brand" href="./" aria-label="Home"><span class="brand-mark"></span><span data-business-name>Courtline</span><span class="brand-period">.</span></a>
-      <nav class="desktop-nav" aria-label="Main navigation">
-        <a class="active" href="#main" aria-current="page">Overview</a><a href="#courts-title">Courts</a><button data-action="booking">Sessions</button><a href="#community-title">Community</a><button data-action="more">My Corner</button>
-      </nav>
-      <div class="topbar-actions"><button class="greeting-pill" data-action="profile" aria-label="View sample player profile">Hey, <span data-player-first>Alex</span><span class="greeting-separator">•</span><time id="demo-date" datetime="2026-11-20">Fri, Nov 20</time></button><button class="button button-lime header-book" data-feature="booking">Book a Court</button><button class="icon-button mobile-menu" data-action="more" aria-label="Open player navigation"><span data-icon="more"></span></button></div>
-    </header>
     <main id="main" tabindex="-1">
       <div id="load-error" class="notice error-notice" role="alert" hidden></div>
       <div id="dashboard-content" aria-busy="true">
         <section class="hero-card" aria-labelledby="hero-title">
           <div class="play-hero">
+            <header class="topbar">
+              <a class="brand" href="./" aria-label="Home"><span class="brand-mark"></span><span data-business-name>Courtline</span><span class="brand-period">.</span></a>
+              <nav class="desktop-nav" aria-label="Main navigation">
+                <a class="active" href="#main" aria-current="page">Overview</a><a href="#courts-title">Courts</a><button data-action="booking">Sessions</button><a href="#community-title">Community</a><button data-action="more">My Corner</button>
+              </nav>
+              <div class="topbar-actions"><button class="button button-lime header-book" data-feature="booking">Book a Court</button><button class="icon-button mobile-menu" data-action="more" aria-label="Open player navigation"><span data-icon="more"></span></button></div>
+            </header>
+
             <img class="hero-photo" src="assets/hero-blue-court.jpg" alt="Overhead view of two pickleball players rallying on a blue court." width="1024" height="1024" fetchpriority="high" decoding="async">
-            <div class="hero-copy"><span class="hero-status"><span class="status-dot"></span><span id="community-count">32</span> players in the clubhouse <span class="sample-tag">DEMO</span></span><h1 id="hero-title">Less Scrolling.<br><em>More Rallying.</em></h1><p>Find your court, bring your people, and make<br class="desktop-break"> your next game a good one.</p><div class="hero-buttons"><button class="button button-lime" data-feature="booking">Book a Court</button><button class="button button-glass" data-action="programmes">Explore Programmes</button></div></div>
-            <div class="hero-caption"><span class="avatar-stack" aria-hidden="true"><b>JM</b><b>KC</b><b>SR</b></span><span>A little play. A better day.</span></div><span class="hero-location"><span data-icon="sun"></span>Your next rally is waiting.</span>
+            <div class="hero-copy"><span class="hero-status" aria-describedby="demo-disclosure"><span class="status-dot"></span>Courts Available Now</span><h1 id="hero-title">Less Scrolling.<br><em>More Rallying.</em></h1><p>Find your court, bring your people, and make<br class="desktop-break"> your next game a good one.</p><div class="hero-buttons"><button class="button button-lime" data-feature="booking">Book a Court</button><button class="button button-glass" data-action="programmes">Explore Programmes</button></div></div>
+
           </div>
-          <div class="hero-bottom"><section class="stats-grid" id="stats-grid" aria-label="Sample clubhouse and player metrics"></section><article class="next-session" aria-labelledby="next-session-title"><div class="card-heading"><h2 id="next-session-title">Your next session</h2><span class="sample-tag">DEMO</span></div><div id="next-booking" class="loading-placeholder">Loading sample session…</div></article></div>
+          <div class="hero-bottom"><section class="stats-grid" id="stats-grid" aria-label="Sample clubhouse and player metrics"></section></div>
         </section>
+        <div class="dashboard-surface">
         <section class="court-section" aria-labelledby="courts-title">
-          <div class="section-heading"><div><div class="section-kicker">ROOM FOR YOUR NEXT RALLY</div><div class="section-title-line"><h2 id="courts-title">Find your court</h2><span class="badge badge-neutral" id="court-count">4 courts</span></div><p>Pick your spot. We’ll see you on the other side of the net.</p></div><div class="segmented-control" role="group" aria-label="Filter courts"><button class="selected" data-court-filter="all" aria-pressed="true">All</button><button data-court-filter="available" aria-pressed="false">Available</button><button data-court-filter="doubles" aria-pressed="false">Doubles</button><button data-court-filter="singles" aria-pressed="false">Singles</button></div></div>
-          <div class="court-grid" id="court-grid"></div><p id="court-results" class="sr-only" role="status"></p><div class="section-footnote"><span data-icon="info"></span>Sample availability · Frontend preview, not a live court feed.</div>
+          <div class="section-heading"><div><div class="section-kicker">ROOM FOR YOUR NEXT RALLY</div><div class="section-title-line"><h2 id="courts-title">Find your court</h2><span class="badge badge-neutral" id="court-count">4 courts</span></div><p>Pick your spot. We’ll see you on the other side of the net.</p></div><div class="segmented-control" role="group" aria-label="Filter courts"><button class="selected" data-court-filter="all" aria-pressed="true">All</button><button data-court-filter="indoor" aria-pressed="false">Indoor</button><button data-court-filter="outdoor" aria-pressed="false">Outdoor</button></div><button class="button availability-toggle selected" data-action="toggle-availability" aria-expanded="true" aria-controls="court-grid"><span data-icon="calendar"></span>Show Availability</button></div>
+          <div class="court-grid" id="court-grid" tabindex="0" role="region" aria-label="Court availability, scroll horizontally to see all hours"></div><p id="court-results" class="sr-only" role="status"></p><div class="section-footnote"><span data-icon="info"></span>Sample availability · Frontend preview, not a live court feed.</div>
         </section>
         <div class="lower-grid">
-          <section class="panel activity-panel" aria-labelledby="activity-title"><div class="card-heading"><div><div class="section-kicker">THE GOOD KIND OF SCREEN TIME</div><h2 id="activity-title">A little better, every game</h2><p>Your last 7 days on court · Sample activity</p></div><span class="icon-soft" data-icon="chart"></span></div><div class="activity-body"><div class="activity-summary"><div><strong>4.5<span>hrs</span></strong><p>Time well spent</p></div><span class="positive-chip">+1.5 hrs vs. last week</span><button class="text-button" data-feature="statistics">Explore your stats</button></div><div class="activity-chart" id="activity-chart" role="img" aria-label="Sample court hours by day"></div></div></section>
-          <section class="panel community-panel" aria-labelledby="community-title"><div class="card-heading"><div><div class="section-kicker">GOOD GAMES. BETTER COMPANY.</div><h2 id="community-title">Around the clubhouse</h2></div><span class="badge badge-neutral">UP NEXT</span></div><div class="event-content"></div><div class="event-footer"><span><span class="status-dot"></span>Sample community event</span><button class="button button-lime" data-action="event">RSVP</button></div></section>
+          <section class="activity-panel" aria-labelledby="activity-title"><div class="card-heading"><div><div class="section-kicker">THE GOOD KIND OF SCREEN TIME</div><h2 id="activity-title">A little better, every game</h2><p>Your last 7 days on court · Sample activity</p></div><span class="icon-soft" data-icon="chart"></span></div><div class="activity-body"><div class="activity-summary"><div><strong>4<span>hrs</span></strong><p>Time well spent</p></div><span class="positive-chip">+2 hrs vs. last week</span><button class="text-button" data-feature="statistics">Explore your stats</button></div><div class="activity-chart" id="activity-chart" role="img" aria-label="Sample court hours by day"></div></div></section>
+          <section class="community-panel" aria-labelledby="community-title"><div class="card-heading"><div><div class="section-kicker">GOOD GAMES. BETTER COMPANY.</div><h2 id="community-title">Around the clubhouse</h2></div><span class="badge badge-neutral">UP NEXT</span></div><div class="event-content"></div><div class="event-footer"><span><span class="status-dot"></span>Sample community event</span><button class="button button-lime" data-action="event">RSVP</button></div></section>
         </div>
-        <footer class="page-footer"><a class="brand footer-brand" href="./"><span data-business-name>Courtline</span><span class="brand-period">.</span></a><span>Built around your game.</span><span class="demo-disclosure">Frontend demo · No real reservations or payments</span></footer>
+        <footer class="page-footer"><a class="brand footer-brand" href="./"><span data-business-name>Courtline</span><span class="brand-period">.</span></a><span>Built around your game.</span><span class="demo-disclosure" id="demo-disclosure">Frontend demo · No real reservations or payments</span></footer>
+        </div>
       </div>
     </main>
   </div>
@@ -564,7 +582,7 @@ import { previewDateRange } from './services/booking-preview.js';
 import { badge, escapeHTML as esc, createDialogController, showToast, contrastRatio } from './shared/components.js';
 
 const dialog = createDialogController(document.querySelector('#app-dialog'));
-const state = { business: null, dashboard: null, courtFilter: 'all' };
+const state = { business: null, dashboard: null, courtFilter: 'all', showAvailability: true };
 const features = {
   booking: { title: 'Book a court', stage: 2, icon: 'calendar', description: 'Choose a day, find an open time, and review your reservation.', items: ['Availability calendar and time slots', 'Booking review and booking history', 'Booking rules from business configuration'], handoff: 'Your backend will provide availability and validate and save reservations.' },
   queue: { title: 'Live queue', stage: 3, icon: 'queue', description: 'Know where you stand before you step on court.', items: ['Waiting list and player position', 'Join and leave interactions with a labeled simulation', 'Court assignment and next players'], handoff: 'Your backend will own queue order and broadcast updates.' },
@@ -606,20 +624,12 @@ function applyBranding() {
   });
 }
 
-function renderBooking() {
-  const booking = state.dashboard.upcomingBooking;
-  const root = document.querySelector('#next-booking');
-  const court = state.business.courts.find(c => c.id === booking?.courtId);
-  if (!booking || !court) { root.innerHTML = '<div class="empty-state">No sample session for these courts.</div>'; return; }
-  root.innerHTML = `<div class="compact-booking"><div class="date-tile"><span>${esc(date(booking.startsAt, { month: 'short' }).toUpperCase())}</span><strong>${esc(date(booking.startsAt, { day: 'numeric' }))}</strong></div><div><h3>${esc(court.name)} · ${esc(booking.format)}</h3><p>${esc(time(booking.startsAt))} – ${esc(time(booking.endsAt))}</p></div><button class="icon-button" data-action="booking" aria-label="View your sample booking">${icon('ticket')}</button></div>`;
-}
-
 function renderStats() {
   const d = state.dashboard;
   const hours = d.activity.reduce((sum, day) => sum + day.hours, 0);
   const difference = hours - d.previousWeekHours;
   const metrics = [
-    { label: 'Time Well Spent', value: hours, unit: 'hrs' },
+    { label: 'Time Well Spent', value: hours, unit: 'hours' },
     { label: 'Courts Active', value: state.business.courts.filter(c => d.courtSnapshots.some(s => s.courtId === c.id && ['available', 'in-use'].includes(s.status))).length, unit: '' },
     { label: 'Clubhouse Players', value: d.communityCount, unit: '' },
     { label: 'Weekly Trend', value: `${difference >= 0 ? '+' : ''}${difference}`, unit: 'hrs' },
@@ -627,23 +637,46 @@ function renderStats() {
   document.querySelector('#stats-grid').innerHTML = metrics.map(stat => `<article class="stat-card"><div class="stat-value"><strong>${esc(stat.value)}</strong><span>${esc(stat.unit)}</span></div><h2 class="stat-top">${esc(stat.label)}</h2></article>`).join('');
 }
 
-function renderCourts() {
+let courtRequest = 0;
+async function renderCourts() {
+  const request = ++courtRequest;
   const courts = state.business.courts.map(c => ({ ...c, ...(state.dashboard.courtSnapshots.find(s => s.courtId === c.id) || { status: 'unavailable', label: 'No sample data', note: 'Availability not connected' }) }));
-  const filtered = state.courtFilter === 'all' ? courts : courts.filter(c => ['doubles', 'singles'].includes(state.courtFilter) ? (c.formats || []).some(f => f.toLowerCase() === state.courtFilter) : c.status === state.courtFilter);
+  const filtered = state.courtFilter === 'all' ? courts : courts.filter(c => c.environment === state.courtFilter);
+  const root = document.querySelector('#court-grid');
+  root.setAttribute('aria-busy', 'true');
   document.querySelector('#court-count').textContent = `${courts.length} ${courts.length === 1 ? 'court' : 'courts'}`;
-  document.querySelector('#court-grid').innerHTML = filtered.length ? filtered.map(c => `<article class="court-card"><div class="court-visual ${esc(c.status)}"><div class="court-diagram" aria-hidden="true"><div class="court-lines"><i></i></div></div>${badge(c.label, c.status === 'available' ? 'success' : c.status === 'in-use' ? 'warning' : 'neutral', true)}</div><div class="court-details"><div class="court-title-row"><h3><button class="court-title-button" data-court="${esc(c.id)}" aria-label="View ${esc(c.name)} details">${esc(c.name)}</button></h3><span class="court-type">${esc(c.type)}</span></div><p>${esc(c.note)}</p><div class="court-formats">${esc((c.formats || []).join(' · '))}</div><div class="court-card-footer"><span class="court-price">${esc(money(c.hourlyRate))}<small> / hr</small></span><button class="text-button" data-book-court="${esc(c.id)}" aria-label="Book ${esc(c.name)}">Book court</button></div></div></article>`).join('') : '<div class="empty-state">No courts match this filter. Try All courts.</div>';
-  document.querySelector('#court-results').textContent = `${filtered.length} of ${courts.length} courts shown.`;
   document.querySelectorAll('[data-court-filter]').forEach(button => { const selected = button.dataset.courtFilter === state.courtFilter; button.classList.toggle('selected', selected); button.setAttribute('aria-pressed', String(selected)); });
+  const day = previewDateRange(state.business, state.dashboard).min;
+  try {
+    const schedules = await Promise.all(filtered.map(c => repository.getBookingSlots({ courtId: c.id, day, durationMinutes: state.business.bookingRules.minDurationMinutes })));
+    if (request !== courtRequest) return;
+    const hours = [...new Map(schedules.flat().map(slot => [slot.start, slot])).values()].sort((a, b) => a.start.localeCompare(b.start));
+    root.classList.toggle('availability-hidden', !state.showAvailability);
+    root.innerHTML = filtered.length ? `<table class="availability-table"><caption>Sample court availability · ${esc(date(state.dashboard.snapshotAt, { weekday: 'short', month: 'short', day: 'numeric' }))} · ${esc(state.business.information.timezone)}</caption><thead><tr><th scope="col">Court</th>${hours.map(slot => `<th class="timeline-cell" scope="col">${esc(localClock(slot.start))}</th>`).join('')}<th scope="col">Per hour</th><th scope="col"><span class="sr-only">Booking</span></th></tr></thead><tbody>${filtered.map((c, index) => `<tr><th scope="row"><button class="court-title-button" data-court="${esc(c.id)}" aria-label="View ${esc(c.name)} details">${esc(c.name)}</button><span class="court-row-meta">${esc(c.type)} · ${esc(c.label)}</span></th>${hours.map(hour => { const slot = schedules[index].find(item => item.start === hour.start) || { ...hour, available: false }; return `<td class="timeline-cell"><button class="timeline-slot ${slot.available ? 'slot-open' : 'slot-busy'}" data-book-court="${esc(c.id)}" data-book-time="${esc(slot.start)}" ${slot.available ? '' : 'disabled'} aria-label="${esc(c.name)}, ${esc(localClock(slot.start))} to ${esc(localClock(slot.end))}, ${slot.available ? 'sample available, book a demo session' : 'unavailable in sample'}"><span aria-hidden="true">${slot.available ? 'Open' : 'In use'}</span></button></td>`; }).join('')}<td class="court-price">${esc(money(c.hourlyRate))}</td><td><button class="button row-book" data-book-court="${esc(c.id)}" aria-label="Book ${esc(c.name)}">Book court</button></td></tr>`).join('')}</tbody></table>` : '<p class="court-empty">No courts match this filter. Try All.</p>';
+    document.querySelector('#court-results').textContent = `${filtered.length} of ${courts.length} courts shown.`;
+  } catch {
+    if (request !== courtRequest) return;
+    root.innerHTML = '<p class="court-empty" role="alert">Sample availability could not load. Select a filter to retry.</p>';
+  } finally {
+    if (request === courtRequest) root.setAttribute('aria-busy', 'false');
+  }
+}
+function toggleAvailability() {
+  state.showAvailability = !state.showAvailability;
+  document.querySelector('#court-grid').classList.toggle('availability-hidden', !state.showAvailability);
+  const button = document.querySelector('[data-action="toggle-availability"]');
+  button.setAttribute('aria-expanded', String(state.showAvailability));
+  button.classList.toggle('selected', state.showAvailability);
 }
 
 function renderDashboard() {
   const { dashboard: d } = state;
   document.querySelectorAll('[data-player-first]').forEach(el => { el.textContent = d.player.firstName; });
   document.querySelectorAll('[data-player-initials]').forEach(el => { el.textContent = `${d.player.firstName[0]}${d.player.lastName[0]}`; });
-  document.querySelector('#demo-date').textContent = date(d.snapshotAt, { weekday: 'short', month: 'short', day: 'numeric' });
-  document.querySelector('#demo-date').dateTime = d.snapshotAt;
-  document.querySelector('#community-count').textContent = d.communityCount;
-  renderBooking(); renderStats(); renderCourts();
+  const available = d.courtSnapshots.some(s => s.status === 'available' && state.business.courts.some(c => c.id === s.courtId));
+  const status = document.querySelector('.hero-status');
+  status.innerHTML = `<span class="status-dot ${available ? '' : 'no-courts'}"></span>${available ? 'Courts Available Now' : 'No Courts Available'}`;
+  renderStats(); renderCourts();
   const totalHours = d.activity.reduce((sum, item) => sum + item.hours, 0);
   const maxHours = Math.max(1, ...d.activity.map(item => item.hours));
   const chart = document.querySelector('#activity-chart');
@@ -679,12 +712,12 @@ function localClock(value) {
   const [hours, minutes] = value.split(':').map(Number);
   return new Intl.DateTimeFormat(state.business.information.locale, { timeZone: 'UTC', hour: 'numeric', minute: '2-digit' }).format(new Date(Date.UTC(2000, 0, 1, hours, minutes)));
 }
-function openBookingPreview(courtId, restore = false) {
+function openBookingPreview(courtId, restore = false, startTime = null) {
   const b = state.business;
   if (!b.courts.length) { dialog.open('Book a Court', '<div class="empty-state">No courts are configured.</div>'); return; }
   const range = previewDateRange(b, state.dashboard);
   const r = b.bookingRules;
-  if (!restore || !bookingDraft) bookingDraft = { courtId: courtId || b.courts[0].id, day: range.min, durationMinutes: r.minDurationMinutes, players: Math.min(4, r.maxPlayers), start: null };
+  if (!restore || !bookingDraft) bookingDraft = { courtId: courtId || b.courts[0].id, day: range.min, durationMinutes: r.minDurationMinutes, players: Math.min(4, r.maxPlayers), start: startTime };
   const durations = [];
   for (let value = r.minDurationMinutes; value <= r.maxDurationMinutes; value += r.slotMinutes) durations.push(value);
   dialog.open('Book a Court', `<div class="notice"><strong>Frontend booking preview</strong><br>Choose a fictional slot. Dates use the demo day, not today. Nothing is reserved, saved, or charged.</div><form id="booking-form"><div class="form-row"><div class="field"><label for="booking-court">Court</label><select id="booking-court" name="courtId">${b.courts.map(c => `<option value="${esc(c.id)}" ${c.id === bookingDraft.courtId ? 'selected' : ''}>${esc(c.name)} · ${esc(c.type)}</option>`).join('')}</select></div><div class="field"><label for="booking-day">Date</label><input id="booking-day" name="day" type="date" min="${range.min}" max="${range.max}" value="${esc(bookingDraft.day)}" required></div></div><div class="form-row"><div class="field"><label for="booking-duration">Duration</label><select id="booking-duration" name="durationMinutes">${durations.map(value => `<option value="${value}" ${value === bookingDraft.durationMinutes ? 'selected' : ''}>${value} minutes</option>`).join('')}</select></div><div class="field"><label for="booking-players">Players</label><select id="booking-players" name="players">${Array.from({ length: r.maxPlayers }, (_, i) => `<option value="${i + 1}" ${i + 1 === bookingDraft.players ? 'selected' : ''}>${i + 1} ${i ? 'players' : 'player'}</option>`).join('')}</select></div></div><p class="subtle" id="slot-help">Sample slots · ${esc(b.information.timezone)} · ${esc(b.operatingHours.open)}–${esc(b.operatingHours.close)}</p><div id="slot-status" role="status" class="subtle"></div><div id="booking-slots" class="booking-slots" role="group" aria-label="Choose a sample start time" aria-describedby="slot-help"></div><div class="booking-summary"><div><small>Sample session total</small><strong id="booking-price">${esc(money(b.courts.find(c => c.id === bookingDraft.courtId).hourlyRate * bookingDraft.durationMinutes / 60))}</strong></div><button class="button button-lime" id="review-booking" type="submit" disabled>Review demo</button></div></form>`);
@@ -785,12 +818,12 @@ function openMore() {
 document.addEventListener('click', async event => {
   const target = event.target.closest('[data-feature], [data-action], [data-court], [data-court-filter], [data-book-court], [data-slot]');
   if (!target || !state.dashboard) return;
-  if (target.dataset.bookCourt) return openBookingPreview(target.dataset.bookCourt);
+  if (target.dataset.bookCourt) return openBookingPreview(target.dataset.bookCourt, false, target.dataset.bookTime || null);
   if (target.dataset.slot) return selectSlot(target.dataset.slot);
   if (target.dataset.feature) return openFeature(target.dataset.feature);
   if (target.dataset.courtFilter) { state.courtFilter = target.dataset.courtFilter; return renderCourts(); }
   if (target.dataset.court) return openCourt(target.dataset.court);
-  const actions = { booking: openBooking, profile: openProfile, notifications: openNotifications, event: openEvent, programmes: openProgrammes, 'rsvp-demo': previewRSVP, 'finish-demo': finishBookingPreview, 'edit-booking': editBookingPreview, settings: openSettings, more: openMore, close: () => dialog.close(), 'reset-brand': async () => { state.business = await repository.getBusiness(); applyBranding(); renderBooking(); renderStats(); renderCourts(); dialog.close(); showToast('Default business preview restored.'); } };
+  const actions = { booking: openBooking, 'toggle-availability': toggleAvailability, profile: openProfile, notifications: openNotifications, event: openEvent, programmes: openProgrammes, 'rsvp-demo': previewRSVP, 'finish-demo': finishBookingPreview, 'edit-booking': editBookingPreview, settings: openSettings, more: openMore, close: () => dialog.close(), 'reset-brand': async () => { state.business = await repository.getBusiness(); applyBranding(); renderStats(); renderCourts(); dialog.close(); showToast('Default business preview restored.'); } };
   actions[target.dataset.action]?.();
 });
 
@@ -808,8 +841,8 @@ document.addEventListener('submit', event => {
   state.business.name = name;
   state.business.colors = { primary, primaryHover: primary, accent, accentInk: primary };
   const count = Number(form.get('courtCount'));
-  state.business.courts = Array.from({ length: count }, (_, i) => state.business.courts[i] || { id: `court-${i + 1}`, name: `Court ${String(i + 1).padStart(2, '0')}`, type: 'Outdoor', hourlyRate: 400 });
-  applyBranding(); renderBooking(); renderStats(); renderCourts(); dialog.close();
+  state.business.courts = Array.from({ length: count }, (_, i) => state.business.courts[i] || { id: `court-${i + 1}`, name: `Court ${String(i + 1).padStart(2, '0')}`, type: 'Outdoor', environment: 'outdoor', formats: ['Doubles', 'Singles'], hourlyRate: 400 });
+  applyBranding(); renderStats(); renderCourts(); dialog.close();
   showToast('Business preview updated for this page. Nothing was saved to a server.');
 });
 
@@ -837,7 +870,7 @@ Place at: `courtline-app/dist/js/config/business.js`.
 ```javascript
 /** Tenant configuration. Replace with a validated backend response at integration.
  * Courtline is a sample tenant, not the application identity.
- * logoUrl accepts a local/HTTPS image path; null uses the shared court symbol.
+ * logoUrl accepts a local/HTTPS image path; null uses the shared pickleball symbol.
  * Court count is derived from courts.length; never duplicate it in layout code.
  */
 export const businessConfig = {
@@ -858,10 +891,10 @@ export const businessConfig = {
   operatingHours: { open: '06:00', close: '22:00', days: [0, 1, 2, 3, 4, 5, 6] },
   bookingRules: { slotMinutes: 60, minDurationMinutes: 60, maxDurationMinutes: 120, advanceDays: 14, maxPlayers: 4, cancellationNoticeHours: 12 },
   courts: [
-    { id: 'court-1', name: 'Court 01', type: 'Outdoor', formats: ['Doubles', 'Singles'], hourlyRate: 400 },
-    { id: 'court-2', name: 'Court 02', type: 'Outdoor', formats: ['Doubles'], hourlyRate: 400 },
-    { id: 'court-3', name: 'Court 03', type: 'Covered', formats: ['Doubles', 'Singles'], hourlyRate: 500 },
-    { id: 'court-4', name: 'Court 04', type: 'Covered', formats: ['Singles'], hourlyRate: 500 },
+    { id: 'court-1', name: 'Court 01', type: 'Outdoor', environment: 'outdoor', formats: ['Doubles', 'Singles'], hourlyRate: 400 },
+    { id: 'court-2', name: 'Court 02', type: 'Outdoor', environment: 'outdoor', formats: ['Doubles'], hourlyRate: 400 },
+    { id: 'court-3', name: 'Court 03', type: 'Covered', environment: 'indoor', formats: ['Doubles', 'Singles'], hourlyRate: 500 },
+    { id: 'court-4', name: 'Court 04', type: 'Covered', environment: 'indoor', formats: ['Singles'], hourlyRate: 500 },
   ],
 };
 
@@ -891,8 +924,8 @@ export const mockDashboard = {
     { courtId: 'court-3', status: 'available', label: 'Available', note: 'Open for your next rally' },
     { courtId: 'court-4', status: 'in-use', label: 'In play', note: 'Session ends at 3:30 PM' },
   ],
-  activity: [ { day: 'Sat', hours: .5 }, { day: 'Sun', hours: 1 }, { day: 'Mon', hours: 0 }, { day: 'Tue', hours: 1.5 }, { day: 'Wed', hours: 0 }, { day: 'Thu', hours: 1 }, { day: 'Fri', hours: .5 } ],
-  previousWeekHours: 3,
+  activity: [ { day: 'Sat', hours: .5 }, { day: 'Sun', hours: 1 }, { day: 'Mon', hours: 0 }, { day: 'Tue', hours: 1.5 }, { day: 'Wed', hours: 0 }, { day: 'Thu', hours: 1 }, { day: 'Fri', hours: 0 } ],
+  previousWeekHours: 2,
   bookingBusyPeriods: [
     { courtId: 'court-2', day: '2026-11-20', from: '14:00', to: '16:00' },
     { courtId: 'court-3', day: '2026-11-20', from: '18:00', to: '19:00' },
@@ -1204,7 +1237,7 @@ assert.equal(dashboard.source, 'mock');
 assert.equal(new Set(business.courts.map(c => c.id)).size, business.courts.length);
 assert.ok(dashboard.upcomingBooking.endsAt > dashboard.upcomingBooking.startsAt);
 assert.ok(business.courts.some(c => c.id === dashboard.upcomingBooking.courtId));
-assert.equal(dashboard.activity.reduce((total, day) => total + day.hours, 0), 4.5);
+assert.equal(dashboard.activity.reduce((total, day) => total + day.hours, 0), 4);
 business.name = 'Modified in preview';
 business.courts.push({ id: 'extra' });
 const freshBusiness = await repository.getBusiness();

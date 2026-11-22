@@ -32,7 +32,7 @@ assert.equal(dashboard.source, 'mock');
 assert.equal(new Set(business.courts.map(c => c.id)).size, business.courts.length);
 assert.ok(dashboard.upcomingBooking.endsAt > dashboard.upcomingBooking.startsAt);
 assert.ok(business.courts.some(c => c.id === dashboard.upcomingBooking.courtId));
-assert.equal(dashboard.activity.reduce((total, day) => total + day.hours, 0), 4.5);
+assert.equal(dashboard.activity.reduce((total, day) => total + day.hours, 0), 4);
 business.name = 'Modified in preview';
 business.courts.push({ id: 'extra' });
 const freshBusiness = await repository.getBusiness();

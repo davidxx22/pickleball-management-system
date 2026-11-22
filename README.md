@@ -68,8 +68,8 @@ courtline-app/
 ## What works in this stage
 
 - Responsive blue-and-lime Customer Home Dashboard with desktop top navigation and mobile bottom navigation. The configurable tenant name/logo remain separate from UI icons.
-- Full-bleed supplied blue-court artwork (`dist/assets/hero-blue-court.jpg`), centered headline, dual pill CTAs, player avatars, integrated metrics strip, and compact upcoming session. Set `heroArtwork` in business configuration to swap imagery for another business.
-- Four configurable court cards retain their flat illustrations, with glass surfaces, textual status badges, prices, supported formats, and direct booking triggers. All / Available / Doubles / Singles filters include pressed states and announced results.
+- Full-bleed supplied blue-court artwork (`dist/assets/hero-blue-court.jpg`) in a single 20px rounded hero, overlay top navigation, white availability pill at the court baseline, centered headline and dual pill CTAs. The navy footer band has four evenly spaced metrics; greeting, avatars, overlay captions and upcoming-session card are removed. Set `heroArtwork` in business configuration to swap imagery for another business.
+- One flat `#FFFFF7` dashboard surface contains court availability rows, the activity chart and community event, separated by thin `#E2E8F0` rules. All / Indoor / Outdoor filters have pressed states and announced result counts. Show Availability toggles hourly columns; open hours preselect the court/time in the demo booking modal. Court names still open details. The timeline scrolls within its own region on mobile, with sticky court labels.
 - Interactive **frontend booking preview**: court, date, duration and player selection; fictional slots; sample price; review/edit; and a demo-only finish. No reservation is written, held, or added to history. The fixed snapshot date drives the date range.
 - Sample community programme and RSVP preview, 7-day activity chart, and retained session/profile/notification dialogs. Queue, scoring, rankings and later module explanations remain reachable from My Corner.
 - Native dialog focus containment, Escape dismissal, a visible close button, and focus restoration. Customer navigation omits the Component library and Business preview; the component reference remains directly available at `/design-system.html`.
@@ -87,7 +87,7 @@ Future modules open a “Planned stage” explanation. Booking and RSVP previews
 
 ## Customize a tenant
 
-Edit `dist/js/config/business.js`. Court count comes from the courts array. Every court has a stable ID, editable name, type, supported `formats`, and hourly rate. Formats drive the Doubles/Singles filters; they do not create separate inventories. Business identity, logo URL, colors, address, contact information, locale, currency, timezone, operating hours, and booking rules live together. The optional logo accepts a safe local or HTTPS image; a failed image falls back to the shared symbol.
+Edit `dist/js/config/business.js`. Court count comes from the courts array. Every court has a stable ID, editable name, type, supported `formats`, and hourly rate. Set `environment` to `indoor` or `outdoor` for the environment filters; the display type may still read Covered. Supported formats remain court metadata and do not create separate inventories. Business identity, logo URL, colors, address, contact information, locale, currency, timezone, operating hours, and booking rules live together. The optional logo accepts a safe local or HTTPS image; a failed image falls back to the shared symbol.
 
 Use a dark primary color with light accent and white text. The retained preview validation requires a contrast ratio of 4.5:1. Keep sample fixtures synchronized with stable court IDs. Newly added courts without fixture records show “No sample data.” The temporary business preview is hidden from customer navigation; the owner-facing branding/settings interface belongs to the Admin stage.
 
@@ -95,8 +95,14 @@ For the backend integration and next stages, see the documents in `docs/`.
 
 ## Redesign and booking handoff
 
-The default palette uses court blue `#1E4985` / `#163663`, navy `#0D1B2A`, and lime `#D9F93D`. Display text uses Plus Jakarta Sans with -0.02em tracking; body and controls use Inter. Layout breakpoints are 600, 900 and 1200 CSS pixels. Respect reduced motion and retain textual status and demo labels.
+The default palette uses court blue `#1E4985` / `#163663`, navy `#0D1B2A`, and lime `#D9F93D`. Display text uses Plus Jakarta Sans with -0.02em tracking; body and controls use Inter. The hero expands at 600 CSS pixels; desktop navigation and the split lower row appear at 900px. The lower surface uses warm off-white `#FFFFF7`, navy text `#0F172A`, and dividers `#E2E8F0`. Respect reduced motion and retain textual status and demo labels.
 
 `repository.getBookingSlots({ courtId, day, durationMinutes })` returns fictional `{ start, end, available, total, source: 'mock' }` records. Day/time are business-local strings, total is in configured currency major units. Mock conflict periods live in `mockDashboard.bookingBusyPeriods`. `previewDateRange()` uses the business timezone and fixed snapshot; slots respect opening days/hours, duration, booking window, and sample overlaps. These calculations demonstrate the UI and are **not authoritative availability**.
 
 Your backend will replace that read method, revalidate availability/prices/rules at submission, and add a real booking write endpoint. The current Finish demo button has no write method or persistence. For real time data, add subscriptions/polling and freshness/error handling at the data boundary; update all demo labels and date sources together. Event RSVP requires its own authenticated registration endpoint and capacity validation.
+
+## Hero proportions and flat dashboard
+
+The supplied 1024px square artwork is cropped in CSS to x=89..935, y=226..719 so the blue court fills the hero scene without an outer frame. The scene aspect ratio is 846:493 on tablet/desktop; the white status badge centers on the top court baseline. The stats band is separate from the artwork and uses the same card clipping. Mobile uses a taller crop and two-by-two metrics for readable controls. To use artwork with a different composition, adjust the documented crop percentages in `dashboard.css` together with `heroArtwork.src`.
+
+The mock weekly activity totals 4 hours and previous-week activity is 2 hours, so both chart and hero show a +2-hour trend. All data remains fictional and the visible sample labels are retained. Upcoming-session details remain accessible under Sessions; only the hero quick-view card was removed.

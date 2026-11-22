@@ -1,6 +1,6 @@
 /** Tenant configuration. Replace with a validated backend response at integration.
  * Courtline is a sample tenant, not the application identity.
- * logoUrl accepts a local/HTTPS image path; null uses the shared court symbol.
+ * logoUrl accepts a local/HTTPS image path; null uses the shared pickleball symbol.
  * Court count is derived from courts.length; never duplicate it in layout code.
  */
 export const businessConfig = {
@@ -21,9 +21,9 @@ export const businessConfig = {
   operatingHours: { open: '06:00', close: '22:00', days: [0, 1, 2, 3, 4, 5, 6] },
   bookingRules: { slotMinutes: 60, minDurationMinutes: 60, maxDurationMinutes: 120, advanceDays: 14, maxPlayers: 4, cancellationNoticeHours: 12 },
   courts: [
-    { id: 'court-1', name: 'Court 01', type: 'Outdoor', formats: ['Doubles', 'Singles'], hourlyRate: 400 },
-    { id: 'court-2', name: 'Court 02', type: 'Outdoor', formats: ['Doubles'], hourlyRate: 400 },
-    { id: 'court-3', name: 'Court 03', type: 'Covered', formats: ['Doubles', 'Singles'], hourlyRate: 500 },
-    { id: 'court-4', name: 'Court 04', type: 'Covered', formats: ['Singles'], hourlyRate: 500 },
+    { id: 'court-1', name: 'Court 01', type: 'Outdoor', environment: 'outdoor', formats: ['Doubles', 'Singles'], hourlyRate: 400 },
+    { id: 'court-2', name: 'Court 02', type: 'Outdoor', environment: 'outdoor', formats: ['Doubles'], hourlyRate: 400 },
+    { id: 'court-3', name: 'Court 03', type: 'Covered', environment: 'indoor', formats: ['Doubles', 'Singles'], hourlyRate: 500 },
+    { id: 'court-4', name: 'Court 04', type: 'Covered', environment: 'indoor', formats: ['Singles'], hourlyRate: 500 },
   ],
 };

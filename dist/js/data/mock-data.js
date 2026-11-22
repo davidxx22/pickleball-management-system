@@ -17,8 +17,8 @@ export const mockDashboard = {
     { courtId: 'court-3', status: 'available', label: 'Available', note: 'Open for your next rally' },
     { courtId: 'court-4', status: 'in-use', label: 'In play', note: 'Session ends at 3:30 PM' },
   ],
-  activity: [ { day: 'Sat', hours: .5 }, { day: 'Sun', hours: 1 }, { day: 'Mon', hours: 0 }, { day: 'Tue', hours: 1.5 }, { day: 'Wed', hours: 0 }, { day: 'Thu', hours: 1 }, { day: 'Fri', hours: .5 } ],
-  previousWeekHours: 3,
+  activity: [ { day: 'Sat', hours: .5 }, { day: 'Sun', hours: 1 }, { day: 'Mon', hours: 0 }, { day: 'Tue', hours: 1.5 }, { day: 'Wed', hours: 0 }, { day: 'Thu', hours: 1 }, { day: 'Fri', hours: 0 } ],
+  previousWeekHours: 2,
   bookingBusyPeriods: [
     { courtId: 'court-2', day: '2026-11-20', from: '14:00', to: '16:00' },
     { courtId: 'court-3', day: '2026-11-20', from: '18:00', to: '19:00' },

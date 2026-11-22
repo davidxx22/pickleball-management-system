@@ -5,7 +5,7 @@ import { previewDateRange } from './services/booking-preview.js';
 import { badge, escapeHTML as esc, createDialogController, showToast, contrastRatio } from './shared/components.js';
 
 const dialog = createDialogController(document.querySelector('#app-dialog'));
-const state = { business: null, dashboard: null, courtFilter: 'all' };
+const state = { business: null, dashboard: null, courtFilter: 'all', showAvailability: true };
 const features = {
   booking: { title: 'Book a court', stage: 2, icon: 'calendar', description: 'Choose a day, find an open time, and review your reservation.', items: ['Availability calendar and time slots', 'Booking review and booking history', 'Booking rules from business configuration'], handoff: 'Your backend will provide availability and validate and save reservations.' },
   queue: { title: 'Live queue', stage: 3, icon: 'queue', description: 'Know where you stand before you step on court.', items: ['Waiting list and player position', 'Join and leave interactions with a labeled simulation', 'Court assignment and next players'], handoff: 'Your backend will own queue order and broadcast updates.' },
@@ -47,20 +47,12 @@ function applyBranding() {
   });
 }
 
-function renderBooking() {
-  const booking = state.dashboard.upcomingBooking;
-  const root = document.querySelector('#next-booking');
-  const court = state.business.courts.find(c => c.id === booking?.courtId);
-  if (!booking || !court) { root.innerHTML = '<div class="empty-state">No sample session for these courts.</div>'; return; }
-  root.innerHTML = `<div class="compact-booking"><div class="date-tile"><span>${esc(date(booking.startsAt, { month: 'short' }).toUpperCase())}</span><strong>${esc(date(booking.startsAt, { day: 'numeric' }))}</strong></div><div><h3>${esc(court.name)} · ${esc(booking.format)}</h3><p>${esc(time(booking.startsAt))} – ${esc(time(booking.endsAt))}</p></div><button class="icon-button" data-action="booking" aria-label="View your sample booking">${icon('ticket')}</button></div>`;
-}
-
 function renderStats() {
   const d = state.dashboard;
   const hours = d.activity.reduce((sum, day) => sum + day.hours, 0);
   const difference = hours - d.previousWeekHours;
   const metrics = [
-    { label: 'Time Well Spent', value: hours, unit: 'hrs' },
+    { label: 'Time Well Spent', value: hours, unit: 'hours' },
     { label: 'Courts Active', value: state.business.courts.filter(c => d.courtSnapshots.some(s => s.courtId === c.id && ['available', 'in-use'].includes(s.status))).length, unit: '' },
     { label: 'Clubhouse Players', value: d.communityCount, unit: '' },
     { label: 'Weekly Trend', value: `${difference >= 0 ? '+' : ''}${difference}`, unit: 'hrs' },
@@ -68,23 +60,46 @@ function renderStats() {
   document.querySelector('#stats-grid').innerHTML = metrics.map(stat => `<article class="stat-card"><div class="stat-value"><strong>${esc(stat.value)}</strong><span>${esc(stat.unit)}</span></div><h2 class="stat-top">${esc(stat.label)}</h2></article>`).join('');
 }
 
-function renderCourts() {
+let courtRequest = 0;
+async function renderCourts() {
+  const request = ++courtRequest;
   const courts = state.business.courts.map(c => ({ ...c, ...(state.dashboard.courtSnapshots.find(s => s.courtId === c.id) || { status: 'unavailable', label: 'No sample data', note: 'Availability not connected' }) }));
-  const filtered = state.courtFilter === 'all' ? courts : courts.filter(c => ['doubles', 'singles'].includes(state.courtFilter) ? (c.formats || []).some(f => f.toLowerCase() === state.courtFilter) : c.status === state.courtFilter);
+  const filtered = state.courtFilter === 'all' ? courts : courts.filter(c => c.environment === state.courtFilter);
+  const root = document.querySelector('#court-grid');
+  root.setAttribute('aria-busy', 'true');
   document.querySelector('#court-count').textContent = `${courts.length} ${courts.length === 1 ? 'court' : 'courts'}`;
-  document.querySelector('#court-grid').innerHTML = filtered.length ? filtered.map(c => `<article class="court-card"><div class="court-visual ${esc(c.status)}"><div class="court-diagram" aria-hidden="true"><div class="court-lines"><i></i></div></div>${badge(c.label, c.status === 'available' ? 'success' : c.status === 'in-use' ? 'warning' : 'neutral', true)}</div><div class="court-details"><div class="court-title-row"><h3><button class="court-title-button" data-court="${esc(c.id)}" aria-label="View ${esc(c.name)} details">${esc(c.name)}</button></h3><span class="court-type">${esc(c.type)}</span></div><p>${esc(c.note)}</p><div class="court-formats">${esc((c.formats || []).join(' · '))}</div><div class="court-card-footer"><span class="court-price">${esc(money(c.hourlyRate))}<small> / hr</small></span><button class="text-button" data-book-court="${esc(c.id)}" aria-label="Book ${esc(c.name)}">Book court</button></div></div></article>`).join('') : '<div class="empty-state">No courts match this filter. Try All courts.</div>';
-  document.querySelector('#court-results').textContent = `${filtered.length} of ${courts.length} courts shown.`;
   document.querySelectorAll('[data-court-filter]').forEach(button => { const selected = button.dataset.courtFilter === state.courtFilter; button.classList.toggle('selected', selected); button.setAttribute('aria-pressed', String(selected)); });
+  const day = previewDateRange(state.business, state.dashboard).min;
+  try {
+    const schedules = await Promise.all(filtered.map(c => repository.getBookingSlots({ courtId: c.id, day, durationMinutes: state.business.bookingRules.minDurationMinutes })));
+    if (request !== courtRequest) return;
+    const hours = [...new Map(schedules.flat().map(slot => [slot.start, slot])).values()].sort((a, b) => a.start.localeCompare(b.start));
+    root.classList.toggle('availability-hidden', !state.showAvailability);
+    root.innerHTML = filtered.length ? `<table class="availability-table"><caption>Sample court availability · ${esc(date(state.dashboard.snapshotAt, { weekday: 'short', month: 'short', day: 'numeric' }))} · ${esc(state.business.information.timezone)}</caption><thead><tr><th scope="col">Court</th>${hours.map(slot => `<th class="timeline-cell" scope="col">${esc(localClock(slot.start))}</th>`).join('')}<th scope="col">Per hour</th><th scope="col"><span class="sr-only">Booking</span></th></tr></thead><tbody>${filtered.map((c, index) => `<tr><th scope="row"><button class="court-title-button" data-court="${esc(c.id)}" aria-label="View ${esc(c.name)} details">${esc(c.name)}</button><span class="court-row-meta">${esc(c.type)} · ${esc(c.label)}</span></th>${hours.map(hour => { const slot = schedules[index].find(item => item.start === hour.start) || { ...hour, available: false }; return `<td class="timeline-cell"><button class="timeline-slot ${slot.available ? 'slot-open' : 'slot-busy'}" data-book-court="${esc(c.id)}" data-book-time="${esc(slot.start)}" ${slot.available ? '' : 'disabled'} aria-label="${esc(c.name)}, ${esc(localClock(slot.start))} to ${esc(localClock(slot.end))}, ${slot.available ? 'sample available, book a demo session' : 'unavailable in sample'}"><span aria-hidden="true">${slot.available ? 'Open' : 'In use'}</span></button></td>`; }).join('')}<td class="court-price">${esc(money(c.hourlyRate))}</td><td><button class="button row-book" data-book-court="${esc(c.id)}" aria-label="Book ${esc(c.name)}">Book court</button></td></tr>`).join('')}</tbody></table>` : '<p class="court-empty">No courts match this filter. Try All.</p>';
+    document.querySelector('#court-results').textContent = `${filtered.length} of ${courts.length} courts shown.`;
+  } catch {
+    if (request !== courtRequest) return;
+    root.innerHTML = '<p class="court-empty" role="alert">Sample availability could not load. Select a filter to retry.</p>';
+  } finally {
+    if (request === courtRequest) root.setAttribute('aria-busy', 'false');
+  }
+}
+function toggleAvailability() {
+  state.showAvailability = !state.showAvailability;
+  document.querySelector('#court-grid').classList.toggle('availability-hidden', !state.showAvailability);
+  const button = document.querySelector('[data-action="toggle-availability"]');
+  button.setAttribute('aria-expanded', String(state.showAvailability));
+  button.classList.toggle('selected', state.showAvailability);
 }
 
 function renderDashboard() {
   const { dashboard: d } = state;
   document.querySelectorAll('[data-player-first]').forEach(el => { el.textContent = d.player.firstName; });
   document.querySelectorAll('[data-player-initials]').forEach(el => { el.textContent = `${d.player.firstName[0]}${d.player.lastName[0]}`; });
-  document.querySelector('#demo-date').textContent = date(d.snapshotAt, { weekday: 'short', month: 'short', day: 'numeric' });
-  document.querySelector('#demo-date').dateTime = d.snapshotAt;
-  document.querySelector('#community-count').textContent = d.communityCount;
-  renderBooking(); renderStats(); renderCourts();
+  const available = d.courtSnapshots.some(s => s.status === 'available' && state.business.courts.some(c => c.id === s.courtId));
+  const status = document.querySelector('.hero-status');
+  status.innerHTML = `<span class="status-dot ${available ? '' : 'no-courts'}"></span>${available ? 'Courts Available Now' : 'No Courts Available'}`;
+  renderStats(); renderCourts();
   const totalHours = d.activity.reduce((sum, item) => sum + item.hours, 0);
   const maxHours = Math.max(1, ...d.activity.map(item => item.hours));
   const chart = document.querySelector('#activity-chart');
@@ -120,12 +135,12 @@ function localClock(value) {
   const [hours, minutes] = value.split(':').map(Number);
   return new Intl.DateTimeFormat(state.business.information.locale, { timeZone: 'UTC', hour: 'numeric', minute: '2-digit' }).format(new Date(Date.UTC(2000, 0, 1, hours, minutes)));
 }
-function openBookingPreview(courtId, restore = false) {
+function openBookingPreview(courtId, restore = false, startTime = null) {
   const b = state.business;
   if (!b.courts.length) { dialog.open('Book a Court', '<div class="empty-state">No courts are configured.</div>'); return; }
   const range = previewDateRange(b, state.dashboard);
   const r = b.bookingRules;
-  if (!restore || !bookingDraft) bookingDraft = { courtId: courtId || b.courts[0].id, day: range.min, durationMinutes: r.minDurationMinutes, players: Math.min(4, r.maxPlayers), start: null };
+  if (!restore || !bookingDraft) bookingDraft = { courtId: courtId || b.courts[0].id, day: range.min, durationMinutes: r.minDurationMinutes, players: Math.min(4, r.maxPlayers), start: startTime };
   const durations = [];
   for (let value = r.minDurationMinutes; value <= r.maxDurationMinutes; value += r.slotMinutes) durations.push(value);
   dialog.open('Book a Court', `<div class="notice"><strong>Frontend booking preview</strong><br>Choose a fictional slot. Dates use the demo day, not today. Nothing is reserved, saved, or charged.</div><form id="booking-form"><div class="form-row"><div class="field"><label for="booking-court">Court</label><select id="booking-court" name="courtId">${b.courts.map(c => `<option value="${esc(c.id)}" ${c.id === bookingDraft.courtId ? 'selected' : ''}>${esc(c.name)} · ${esc(c.type)}</option>`).join('')}</select></div><div class="field"><label for="booking-day">Date</label><input id="booking-day" name="day" type="date" min="${range.min}" max="${range.max}" value="${esc(bookingDraft.day)}" required></div></div><div class="form-row"><div class="field"><label for="booking-duration">Duration</label><select id="booking-duration" name="durationMinutes">${durations.map(value => `<option value="${value}" ${value === bookingDraft.durationMinutes ? 'selected' : ''}>${value} minutes</option>`).join('')}</select></div><div class="field"><label for="booking-players">Players</label><select id="booking-players" name="players">${Array.from({ length: r.maxPlayers }, (_, i) => `<option value="${i + 1}" ${i + 1 === bookingDraft.players ? 'selected' : ''}>${i + 1} ${i ? 'players' : 'player'}</option>`).join('')}</select></div></div><p class="subtle" id="slot-help">Sample slots · ${esc(b.information.timezone)} · ${esc(b.operatingHours.open)}–${esc(b.operatingHours.close)}</p><div id="slot-status" role="status" class="subtle"></div><div id="booking-slots" class="booking-slots" role="group" aria-label="Choose a sample start time" aria-describedby="slot-help"></div><div class="booking-summary"><div><small>Sample session total</small><strong id="booking-price">${esc(money(b.courts.find(c => c.id === bookingDraft.courtId).hourlyRate * bookingDraft.durationMinutes / 60))}</strong></div><button class="button button-lime" id="review-booking" type="submit" disabled>Review demo</button></div></form>`);
@@ -226,12 +241,12 @@ function openMore() {
 document.addEventListener('click', async event => {
   const target = event.target.closest('[data-feature], [data-action], [data-court], [data-court-filter], [data-book-court], [data-slot]');
   if (!target || !state.dashboard) return;
-  if (target.dataset.bookCourt) return openBookingPreview(target.dataset.bookCourt);
+  if (target.dataset.bookCourt) return openBookingPreview(target.dataset.bookCourt, false, target.dataset.bookTime || null);
   if (target.dataset.slot) return selectSlot(target.dataset.slot);
   if (target.dataset.feature) return openFeature(target.dataset.feature);
   if (target.dataset.courtFilter) { state.courtFilter = target.dataset.courtFilter; return renderCourts(); }
   if (target.dataset.court) return openCourt(target.dataset.court);
-  const actions = { booking: openBooking, profile: openProfile, notifications: openNotifications, event: openEvent, programmes: openProgrammes, 'rsvp-demo': previewRSVP, 'finish-demo': finishBookingPreview, 'edit-booking': editBookingPreview, settings: openSettings, more: openMore, close: () => dialog.close(), 'reset-brand': async () => { state.business = await repository.getBusiness(); applyBranding(); renderBooking(); renderStats(); renderCourts(); dialog.close(); showToast('Default business preview restored.'); } };
+  const actions = { booking: openBooking, 'toggle-availability': toggleAvailability, profile: openProfile, notifications: openNotifications, event: openEvent, programmes: openProgrammes, 'rsvp-demo': previewRSVP, 'finish-demo': finishBookingPreview, 'edit-booking': editBookingPreview, settings: openSettings, more: openMore, close: () => dialog.close(), 'reset-brand': async () => { state.business = await repository.getBusiness(); applyBranding(); renderStats(); renderCourts(); dialog.close(); showToast('Default business preview restored.'); } };
   actions[target.dataset.action]?.();
 });
 
@@ -249,8 +264,8 @@ document.addEventListener('submit', event => {
   state.business.name = name;
   state.business.colors = { primary, primaryHover: primary, accent, accentInk: primary };
   const count = Number(form.get('courtCount'));
-  state.business.courts = Array.from({ length: count }, (_, i) => state.business.courts[i] || { id: `court-${i + 1}`, name: `Court ${String(i + 1).padStart(2, '0')}`, type: 'Outdoor', hourlyRate: 400 });
-  applyBranding(); renderBooking(); renderStats(); renderCourts(); dialog.close();
+  state.business.courts = Array.from({ length: count }, (_, i) => state.business.courts[i] || { id: `court-${i + 1}`, name: `Court ${String(i + 1).padStart(2, '0')}`, type: 'Outdoor', environment: 'outdoor', formats: ['Doubles', 'Singles'], hourlyRate: 400 });
+  applyBranding(); renderStats(); renderCourts(); dialog.close();
   showToast('Business preview updated for this page. Nothing was saved to a server.');
 });
 
