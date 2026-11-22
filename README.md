@@ -1,6 +1,6 @@
 # Pickleball frontend · Stage 1
 
-A reusable HTML5, CSS3, and vanilla JavaScript foundation and Customer Home Dashboard. **Courtline is an editable sample business**, not a permanent product identity. There are no runtime dependencies, external fonts, tracking scripts, production APIs, or backend services.
+A reusable HTML5, CSS3, and vanilla JavaScript foundation and Customer Home Dashboard. **Courtline is an editable sample business**, not a permanent product identity. There are no JavaScript runtime dependencies, tracking scripts, production APIs, or backend services. Google Fonts supplies Plus Jakarta Sans 600/700 and Inter 400/500, with system fallbacks.
 
 ## Run
 
@@ -91,3 +91,7 @@ Edit `dist/js/config/business.js`. Court count comes from the courts array. Ever
 Use a dark primary color with light accent and white text. The retained preview validation requires a contrast ratio of 4.5:1. Keep sample fixtures synchronized with stable court IDs. Newly added courts without fixture records show “No sample data.” The temporary business preview is hidden from customer navigation; the owner-facing branding/settings interface belongs to the Admin stage.
 
 For the backend integration and next stages, see the documents in `docs/`.
+
+## Typography from bed6397
+
+The restored sidebar dashboard keeps its layout, imagery, card structure and mock interactions. Typography follows commit `bed6397`: Plus Jakarta Sans for display headings/metric numbers (600/700, -0.02em tracking), and Inter for body copy/controls (400/500). Light-surface text uses navy `#0F172A` and secondary `#526075`; the photo hero uses white copy with lime `#D9F93D` emphasis. Semantic status colors and existing surface colors retain readable contrast. Shared font and text-color tokens live in `dist/css/tokens.css`.
