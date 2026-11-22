@@ -433,10 +433,6 @@ strong, b { font-weight: 500; }
 h1 { font-size: clamp(2rem, 4vw, 2.5rem); font-weight: 700; letter-spacing: -.02em; }
 h2 { font-size: 1.25rem; font-weight: 600; letter-spacing: -.02em; }
 h3 { font-size: 1rem; font-weight: 600; letter-spacing: -.02em; }
-/* Match the reference's 18px desktop scale while respecting browser text settings. */
-@media (min-width: 1450px) {
-  html { font-size: 112.5%; }
-}
 svg { display: block; }
 img { max-width: 100%; }
 [hidden] { display: none !important; }
