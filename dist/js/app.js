@@ -48,6 +48,13 @@ function renderBooking() {
   root.innerHTML = `<div class="booking-date"><div class="date-tile"><span>${esc(date(booking.startsAt, { month: 'short' }).toUpperCase())}</span><strong>${esc(date(booking.startsAt, { day: 'numeric' }))}</strong></div><div><h3>${esc(court.name)}</h3><p>${esc(court.type)} court · ${esc(booking.format)}</p></div></div><div class="booking-info">${icon('clock')}<span>${esc(time(booking.startsAt))} – ${esc(time(booking.endsAt))}</span></div><div class="booking-info">${icon('queue')}<span>${esc(booking.players)} players · ${minutes}-minute session</span></div><p class="booking-format">${esc(money(booking.total))} / session</p><button class="button button-outline button-full" data-action="booking">View booking</button>`;
 }
 
+function renderStats() {
+  const stats = state.dashboard.stats || [];
+  const root = document.querySelector('#stats-grid');
+  root.hidden = !stats.length;
+  root.innerHTML = stats.map(stat => `<article class="stat-card" aria-label="${esc(stat.label)}"><div class="stat-value"><strong>${esc(stat.value)}</strong><span>${esc(stat.unit)}</span></div>${stat.caption ? `<p class="stat-caption ${stat.positive ? 'positive' : ''}">${esc(stat.caption)}</p>` : ''}</article>`).join('');
+}
+
 function renderCourts() {
   const courts = state.business.courts.map(c => ({ ...c, ...(state.dashboard.courtSnapshots.find(s => s.courtId === c.id) || { status: 'unavailable', label: 'No sample data', note: 'Availability not connected' }) }));
   const filtered = state.courtFilter === 'all' ? courts : courts.filter(c => c.status === state.courtFilter);
@@ -62,7 +69,7 @@ function renderDashboard() {
   document.querySelectorAll('[data-player-first]').forEach(el => { el.textContent = d.player.firstName; });
   document.querySelectorAll('[data-player-initials]').forEach(el => { el.textContent = d.player.firstName.charAt(0).toUpperCase(); });
   document.querySelector('#community-count').textContent = d.communityCount;
-  renderBooking(); renderCourts();
+  renderBooking(); renderStats(); renderCourts();
   const totalHours = d.activity.reduce((sum, item) => sum + item.hours, 0);
   const maxHours = Math.max(1, ...d.activity.map(item => item.hours));
   const chart = document.querySelector('#activity-chart');

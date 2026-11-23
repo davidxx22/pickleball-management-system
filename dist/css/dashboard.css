@@ -43,6 +43,13 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem calc(6rem + env(s
 .booking-info .icon { width: 1rem; height: 1rem; }
 .booking-format { color: var(--muted); font-size: .8125rem; margin: .9rem 0 1rem; }
 .next-session .button { margin-top: auto; min-height: 2.65rem; }
+.stats-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .75rem; margin-top: 1rem; }
+.stat-card { min-width: 0; padding: 1.1rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.stat-value { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .45rem; }
+.stat-value strong { font-family: var(--font-display); color: var(--ink); font-size: 1.8rem; line-height: 1; font-weight: 600; letter-spacing: -.02em; }
+.stat-value span { color: var(--muted); font-size: .875rem; font-weight: 400; }
+.stat-caption { margin-top: .55rem; color: var(--muted); font-size: .75rem; }
+.stat-caption.positive { color: var(--success); }
 .court-section { margin-top: 2rem; }
 .section-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.15rem; }
 .section-title-line { display: flex; align-items: center; gap: .7rem; }
@@ -122,6 +129,7 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem calc(6rem + env(s
   .activity-body { flex-wrap: nowrap; }
 }
 @media (min-width: 900px) {
+  .stats-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
   main { padding-bottom: 2rem; }
   .app-shell { display: grid; grid-template-columns: var(--sidebar-width) minmax(0,1fr); }
   .sidebar { display: flex; flex-direction: column; height: 100dvh; position: sticky; top: 0; padding: 2rem 1rem 1rem; background: var(--surface); border-right: 1px solid var(--line); overflow-y: auto; }
@@ -146,6 +154,9 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem calc(6rem + env(s
   .hero-grid { grid-template-columns: minmax(0,1fr); }
 }
 @media (min-width: 1200px) {
+  .stats-grid { gap: 1.1rem; margin-top: 1.25rem; }
+  .stat-card { padding: 1.15rem 1.25rem; }
+  .stat-value strong { font-size: 2rem; }
   main { padding: 2rem 2.25rem; }
   .topbar { padding: 0 2.25rem; }
   .hero-grid { grid-template-columns: minmax(0, 1.95fr) minmax(16.5rem,1fr); gap: 1.25rem; }

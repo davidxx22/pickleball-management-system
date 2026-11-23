@@ -198,6 +198,13 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem calc(6rem + env(s
 .booking-info .icon { width: 1rem; height: 1rem; }
 .booking-format { color: var(--muted); font-size: .8125rem; margin: .9rem 0 1rem; }
 .next-session .button { margin-top: auto; min-height: 2.65rem; }
+.stats-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .75rem; margin-top: 1rem; }
+.stat-card { min-width: 0; padding: 1.1rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.stat-value { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .45rem; }
+.stat-value strong { font-family: var(--font-display); color: var(--ink); font-size: 1.8rem; line-height: 1; font-weight: 600; letter-spacing: -.02em; }
+.stat-value span { color: var(--muted); font-size: .875rem; font-weight: 400; }
+.stat-caption { margin-top: .55rem; color: var(--muted); font-size: .75rem; }
+.stat-caption.positive { color: var(--success); }
 .court-section { margin-top: 2rem; }
 .section-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.15rem; }
 .section-title-line { display: flex; align-items: center; gap: .7rem; }
@@ -277,6 +284,7 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem calc(6rem + env(s
   .activity-body { flex-wrap: nowrap; }
 }
 @media (min-width: 900px) {
+  .stats-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
   main { padding-bottom: 2rem; }
   .app-shell { display: grid; grid-template-columns: var(--sidebar-width) minmax(0,1fr); }
   .sidebar { display: flex; flex-direction: column; height: 100dvh; position: sticky; top: 0; padding: 2rem 1rem 1rem; background: var(--surface); border-right: 1px solid var(--line); overflow-y: auto; }
@@ -301,6 +309,9 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem calc(6rem + env(s
   .hero-grid { grid-template-columns: minmax(0,1fr); }
 }
 @media (min-width: 1200px) {
+  .stats-grid { gap: 1.1rem; margin-top: 1.25rem; }
+  .stat-card { padding: 1.15rem 1.25rem; }
+  .stat-value strong { font-size: 2rem; }
   main { padding: 2rem 2.25rem; }
   .topbar { padding: 0 2.25rem; }
   .hero-grid { grid-template-columns: minmax(0, 1.95fr) minmax(16.5rem,1fr); gap: 1.25rem; }
@@ -555,6 +566,8 @@ Place at: `courtline-app/dist/index.html`.
             <article class="panel next-session" aria-labelledby="next-session-title"><div class="card-heading"><h2 id="next-session-title">Your next session</h2></div><div id="next-booking" class="loading-placeholder">Loading sample session…</div></article>
           </section>
 
+          <section class="stats-grid" id="stats-grid" aria-label="Your pickleball at a glance"></section>
+
           <section class="court-section" aria-labelledby="courts-title"><div class="section-heading"><div><div class="section-title-line"><h2 id="courts-title">Find your court</h2><span class="badge badge-neutral" id="court-count">4 courts</span></div></div><div class="segmented-control" role="group" aria-label="Filter courts"><button class="selected" data-court-filter="all" aria-pressed="true">All courts</button><button data-court-filter="available" aria-pressed="false">Available</button><button data-court-filter="in-use" aria-pressed="false">In play</button></div></div><div class="court-grid" id="court-grid"></div><p id="court-results" class="sr-only" role="status"></p><div class="section-footnote"><span data-icon="info"></span>Demo snapshot · Availability is not connected to a live booking system.</div></section>
 
           <div class="lower-grid">
@@ -630,6 +643,13 @@ function renderBooking() {
   root.innerHTML = `<div class="booking-date"><div class="date-tile"><span>${esc(date(booking.startsAt, { month: 'short' }).toUpperCase())}</span><strong>${esc(date(booking.startsAt, { day: 'numeric' }))}</strong></div><div><h3>${esc(court.name)}</h3><p>${esc(court.type)} court · ${esc(booking.format)}</p></div></div><div class="booking-info">${icon('clock')}<span>${esc(time(booking.startsAt))} – ${esc(time(booking.endsAt))}</span></div><div class="booking-info">${icon('queue')}<span>${esc(booking.players)} players · ${minutes}-minute session</span></div><p class="booking-format">${esc(money(booking.total))} / session</p><button class="button button-outline button-full" data-action="booking">View booking</button>`;
 }
 
+function renderStats() {
+  const stats = state.dashboard.stats || [];
+  const root = document.querySelector('#stats-grid');
+  root.hidden = !stats.length;
+  root.innerHTML = stats.map(stat => `<article class="stat-card" aria-label="${esc(stat.label)}"><div class="stat-value"><strong>${esc(stat.value)}</strong><span>${esc(stat.unit)}</span></div>${stat.caption ? `<p class="stat-caption ${stat.positive ? 'positive' : ''}">${esc(stat.caption)}</p>` : ''}</article>`).join('');
+}
+
 function renderCourts() {
   const courts = state.business.courts.map(c => ({ ...c, ...(state.dashboard.courtSnapshots.find(s => s.courtId === c.id) || { status: 'unavailable', label: 'No sample data', note: 'Availability not connected' }) }));
   const filtered = state.courtFilter === 'all' ? courts : courts.filter(c => c.status === state.courtFilter);
@@ -644,7 +664,7 @@ function renderDashboard() {
   document.querySelectorAll('[data-player-first]').forEach(el => { el.textContent = d.player.firstName; });
   document.querySelectorAll('[data-player-initials]').forEach(el => { el.textContent = d.player.firstName.charAt(0).toUpperCase(); });
   document.querySelector('#community-count').textContent = d.communityCount;
-  renderBooking(); renderCourts();
+  renderBooking(); renderStats(); renderCourts();
   const totalHours = d.activity.reduce((sum, item) => sum + item.hours, 0);
   const maxHours = Math.max(1, ...d.activity.map(item => item.hours));
   const chart = document.querySelector('#activity-chart');
