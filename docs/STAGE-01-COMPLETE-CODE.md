@@ -156,7 +156,7 @@ Place at: `courtline-app/dist/css/dashboard.css`.
 .sidebar { display: none; }
 .app-content { min-width: 0; }
 .topbar { height: 4.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: var(--surface); border-bottom: 1px solid var(--line); padding: 0 1rem; }
-.brand { display: flex; align-items: center; gap: .55rem; color: var(--ink); font-family: var(--font-display); font-size: 1.45rem; font-weight: 700; letter-spacing: -.02em; text-decoration: none; }
+.brand { display: flex; align-items: center; gap: .55rem; color: var(--ink); font-family: var(--font-display); font-size: 1.45rem; font-weight: 750; letter-spacing: -.02em; text-decoration: none; }
 .brand-mark { color: var(--text-highlight); display: inline-flex; flex-shrink: 0; }
 .brand-mark .brand-symbol { width: 1.65rem; height: 1.65rem; }
 .brand img { max-width: 2rem; max-height: 2rem; object-fit: contain; }
@@ -473,7 +473,7 @@ Place at: `courtline-app/dist/design-system.html`.
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Plus+Jakarta+Sans:wght@600;700;750&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/design-system.css">
@@ -517,7 +517,7 @@ Place at: `courtline-app/dist/index.html`.
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Plus+Jakarta+Sans:wght@600;700;750&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/dashboard.css">
