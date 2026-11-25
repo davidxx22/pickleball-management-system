@@ -17,3 +17,7 @@ Selected paths are stored in `dist/js/shared/iconsax-linear.js`, with semantic m
 `scripts/sync-icons.mjs` regenerates the integration from the pinned archive, verifying its SHA-512 integrity before reading it. No Iconsax package code executes in the application and no CDN is required.
 
 Tenant logos, favicon, and court illustrations are separate application branding/artwork.
+
+## Overview design refinement
+
+The Overview design refinement was informed by the **unslop** skill by Damir Sokolovsky ([@heydamir](https://x.com/heydamir)), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Source: https://github.com/heydamir/unslop. Its guidance was adapted to Courtline’s existing logo, fonts, palette, mock data, and navigation.

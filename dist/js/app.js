@@ -24,7 +24,7 @@ function applyBranding() {
   const variables = { '--brand': b.colors.primary, '--brand-hover': b.colors.primaryHover, '--accent': b.colors.accent, '--accent-ink': b.colors.accentInk };
   Object.entries(variables).forEach(([key, value]) => document.documentElement.style.setProperty(key, value));
   document.querySelectorAll('[data-business-name]').forEach(el => { el.textContent = b.name; });
-  document.title = `Home · ${b.name}`;
+  document.title = `Overview · ${b.name}`;
   document.querySelector('meta[name="theme-color"]').content = b.colors.primary;
   // Accept safe local/HTTPS logo URLs, and use the shared symbol if invalid.
   document.querySelectorAll('.brand-mark').forEach(el => {
@@ -44,21 +44,20 @@ function renderBooking() {
   const root = document.querySelector('#next-booking');
   const court = state.business.courts.find(c => c.id === booking?.courtId);
   if (!booking || !court) { root.innerHTML = '<div class="empty-state">No sample session for these courts.</div>'; return; }
-  const minutes = Math.round((new Date(booking.endsAt) - new Date(booking.startsAt)) / 60000);
-  root.innerHTML = `<div class="booking-date"><div class="date-tile"><span>${esc(date(booking.startsAt, { month: 'short' }).toUpperCase())}</span><strong>${esc(date(booking.startsAt, { day: 'numeric' }))}</strong></div><div><h3>${esc(court.name)}</h3><p>${esc(court.type)} court · ${esc(booking.format)}</p></div></div><div class="booking-info">${icon('clock')}<span>${esc(time(booking.startsAt))} – ${esc(time(booking.endsAt))}</span></div><div class="booking-info">${icon('queue')}<span>${esc(booking.players)} players · ${minutes}-minute session</span></div><p class="booking-format">${esc(money(booking.total))} / session</p><button class="button button-outline button-full" data-action="booking">View booking</button>`;
+  root.innerHTML = `<div class="booking-summary"><div class="date-tile" aria-label="${esc(date(booking.startsAt, { dateStyle: 'full' }))}"><span>${esc(date(booking.startsAt, { month: 'short' }))}</span><strong>${esc(date(booking.startsAt, { day: 'numeric' }))}</strong></div><div class="session-details"><p class="session-time">${esc(time(booking.startsAt))} – ${esc(time(booking.endsAt))}</p><h3>${esc(court.name)}</h3><p class="booking-info">${esc(court.type)} · ${esc(booking.format)} · ${esc(booking.players)} players</p></div><div class="session-actions"><p class="booking-format">${esc(money(booking.total))} / session</p><button class="button button-outline" data-action="booking">View booking</button></div></div>`;
 }
 
 function renderStats() {
   const stats = state.dashboard.stats || [];
   const root = document.querySelector('#stats-grid');
   root.hidden = !stats.length;
-  root.innerHTML = stats.map(stat => `<article class="stat-card" aria-label="${esc(stat.label)}"><div class="stat-value"><strong>${esc(stat.value)}</strong><span>${esc(stat.unit)}</span></div>${stat.caption ? `<p class="stat-caption ${stat.positive ? 'positive' : ''}">${esc(stat.caption)}</p>` : ''}</article>`).join('');
+  root.innerHTML = stats.map(stat => `<dl class="stat-item"><dt>${esc(stat.label)}</dt><dd><strong>${esc(stat.value)}</strong><span>${esc(stat.unit)}</span></dd></dl>`).join('');
 }
 
 function renderCourts() {
   const courts = state.business.courts.map(c => ({ ...c, ...(state.dashboard.courtSnapshots.find(s => s.courtId === c.id) || { status: 'unavailable', label: 'No sample data', note: 'Availability not connected' }) }));
   const filtered = state.courtFilter === 'all' ? courts : courts.filter(c => c.status === state.courtFilter);
-  document.querySelector('#court-count').textContent = `${courts.length} ${courts.length === 1 ? 'court' : 'courts'}`;
+  document.querySelector('#court-count').textContent = `${courts.filter(c => c.status === 'available').length} of ${courts.length} available`;
   document.querySelector('#court-grid').innerHTML = filtered.length ? filtered.map(c => `<article class="court-card"><div class="court-visual ${esc(c.status)}"><div class="court-diagram" aria-hidden="true"><div class="court-lines"><i></i></div></div>${badge(c.label, c.status === 'available' ? 'success' : c.status === 'in-use' ? 'warning' : 'neutral', true)}</div><div class="court-details"><div class="court-title-row"><h3>${esc(c.name)}</h3><span class="court-type">${esc(c.type)}</span></div><p>${esc(c.note)}</p><div class="court-card-footer"><span class="court-price">${esc(money(c.hourlyRate))}<small> / hr</small></span><button class="text-button" data-court="${esc(c.id)}" aria-label="View ${esc(c.name)} details">View court</button></div></div></article>`).join('') : '<div class="empty-state">No courts match this filter. Try All courts.</div>';
   document.querySelector('#court-results').textContent = `${filtered.length} of ${courts.length} courts shown.`;
   document.querySelectorAll('[data-court-filter]').forEach(button => { const selected = button.dataset.courtFilter === state.courtFilter; button.classList.toggle('selected', selected); button.setAttribute('aria-pressed', String(selected)); });
@@ -66,9 +65,7 @@ function renderCourts() {
 
 function renderDashboard() {
   const { dashboard: d } = state;
-  document.querySelectorAll('[data-player-first]').forEach(el => { el.textContent = d.player.firstName; });
   document.querySelectorAll('[data-player-initials]').forEach(el => { el.textContent = d.player.firstName.charAt(0).toUpperCase(); });
-  document.querySelector('#community-count').textContent = d.communityCount;
   renderBooking(); renderStats(); renderCourts();
   const totalHours = d.activity.reduce((sum, item) => sum + item.hours, 0);
   const maxHours = Math.max(1, ...d.activity.map(item => item.hours));
@@ -79,7 +76,7 @@ function renderDashboard() {
   const difference = totalHours - d.previousWeekHours;
   document.querySelector('.positive-chip').textContent = `${difference >= 0 ? '+' : ''}${difference} hrs vs. last week`;
   const eventRoot = document.querySelector('.event-content');
-  eventRoot.innerHTML = d.event ? `<div class="event-date"><strong>${esc(date(d.event.startsAt, { day: 'numeric' }))}</strong><span>${esc(date(d.event.startsAt, { month: 'short' }).toUpperCase())}</span></div><div><span class="event-category">${esc(d.event.category)}</span><h3>${esc(d.event.name)}</h3><p>${esc(d.event.summary)}</p><div class="event-meta">${icon('clock')}${esc(time(d.event.startsAt))} – ${esc(time(d.event.endsAt))}</div></div>` : '<p>No sample events to show.</p>';
+  eventRoot.innerHTML = d.event ? `<div class="event-date"><strong>${esc(date(d.event.startsAt, { day: 'numeric' }))}</strong><span>${esc(date(d.event.startsAt, { month: 'short' }))}</span></div><div><span class="event-category">${esc(d.event.category)}</span><h3>${esc(d.event.name)}</h3><div class="event-meta">${icon('clock')}${esc(time(d.event.startsAt))} – ${esc(time(d.event.endsAt))}</div></div>` : '<p>No sample events to show.</p>';
   document.querySelector('.event-details').hidden = !d.event;
   document.querySelector('#dashboard-content').setAttribute('aria-busy', 'false');
 }

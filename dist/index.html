@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#183d35">
   <meta name="description" content="Your pickleball day, all in one place. A configurable frontend dashboard demonstration.">
-  <title>Home · Courtline</title>
+  <title>Overview · Courtline</title>
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,15 +28,12 @@
         <button class="nav-item" data-feature="leaderboard"><span data-icon="trophy"></span>Leaderboard</button>
         <button class="nav-item" data-feature="tournaments"><span data-icon="flag"></span>Tournaments</button>
       </nav>
-      <div class="nav-section-label">MY CORNER</div>
+      <div class="nav-section-label">My corner</div>
       <nav aria-label="Player navigation" class="primary-nav">
         <button class="nav-item" data-action="booking"><span data-icon="ticket"></span>My bookings</button>
         <button class="nav-item" data-feature="statistics"><span data-icon="chart"></span>My statistics</button>
         <button class="nav-item" data-action="profile"><span data-icon="user"></span>My profile</button>
       </nav>
-      <div class="sidebar-bottom">
-        <div class="sidebar-note"><span class="small-court" aria-hidden="true"></span><strong>A little play. A better day.</strong><p>Your next rally is waiting.</p></div>
-      </div>
     </aside>
 
     <div class="app-content">
@@ -46,25 +43,24 @@
       </header>
 
       <main id="main" tabindex="-1">
-        <header class="page-heading"><h1>Hey, <span data-player-first>Alex</span></h1><p>A good day starts with a great game.</p></header>
+        <header class="page-heading"><h1>Overview</h1><button class="button button-lime" data-feature="booking">Book a court</button></header>
 
         <div id="load-error" class="notice error-notice" role="alert" hidden></div>
         <div id="dashboard-content" aria-busy="true">
-          <section class="hero-grid" aria-label="Start playing">
-            <div class="play-hero">
-              <div class="hero-copy"><h2>Less scrolling.<br>More <em>rallying.</em></h2><p>Find your court, bring your people,<br class="desktop-break"> and make your next game a good one.</p><button class="button button-lime" data-feature="booking">Book a court</button><div class="hero-footnote"><span class="avatar-stack" aria-hidden="true"><b>JM</b><b>KC</b><b>SR</b></span><span><strong id="community-count">32</strong> players in the clubhouse</span></div></div>
-              <div class="hero-art" aria-hidden="true"><img class="hero-photo" src="assets/hero-padel-court.png" alt="" width="1024" height="691" fetchpriority="high" decoding="async"></div>
-            </div>
-            <article class="panel next-session" aria-labelledby="next-session-title"><div class="card-heading"><h2 id="next-session-title">Your next session</h2></div><div id="next-booking" class="loading-placeholder">Loading sample session…</div></article>
-          </section>
+          <p class="demo-note">Demo data · No real reservations or live availability</p>
 
-          <section class="stats-grid" id="stats-grid" aria-label="Your pickleball at a glance"></section>
+          <article class="panel next-session" aria-labelledby="next-session-title">
+            <div class="session-copy"><h2 id="next-session-title">Your next session</h2><div id="next-booking" class="loading-placeholder">Loading sample session…</div></div>
+            <img class="session-photo" src="assets/hero-padel-court.png" alt="" width="1024" height="691" decoding="async">
+          </article>
 
-          <section class="court-section" aria-labelledby="courts-title"><div class="section-heading"><div><div class="section-title-line"><h2 id="courts-title">Find your court</h2><span class="badge badge-neutral" id="court-count">4 courts</span></div></div><div class="segmented-control" role="group" aria-label="Filter courts"><button class="selected" data-court-filter="all" aria-pressed="true">All courts</button><button data-court-filter="available" aria-pressed="false">Available</button><button data-court-filter="in-use" aria-pressed="false">In play</button></div></div><div class="court-grid" id="court-grid"></div><p id="court-results" class="sr-only" role="status"></p><div class="section-footnote"><span data-icon="info"></span>Demo snapshot · Availability is not connected to a live booking system.</div></section>
+          <section class="court-section" aria-labelledby="courts-title"><div class="section-heading"><div><div class="section-title-line"><h2 id="courts-title">Find your court</h2><span class="court-count" id="court-count"></span></div></div><div class="segmented-control" role="group" aria-label="Filter courts"><button class="selected" data-court-filter="all" aria-pressed="true">All courts</button><button data-court-filter="available" aria-pressed="false">Available</button><button data-court-filter="in-use" aria-pressed="false">In play</button></div></div><div class="court-grid" id="court-grid"></div><p id="court-results" class="sr-only" role="status"></p></section>
+
+          <section class="stats-strip" id="stats-grid" aria-label="Your player statistics"></section>
 
           <div class="lower-grid">
-            <section class="panel activity-panel" aria-labelledby="activity-title"><div class="card-heading"><div><h2 id="activity-title">A little better, every game.</h2><p>Your last 7 days on court</p></div></div><div class="activity-body"><div class="activity-summary"><div><strong>4.5<span>hrs</span></strong><p>Time well spent</p></div><span class="positive-chip">+1.5 hrs vs. last week</span><button class="text-button" data-feature="statistics">Explore your stats</button></div><div class="activity-chart" id="activity-chart" role="img" aria-label="Sample court hours by day: Saturday 0.5, Sunday 1, Monday 0, Tuesday 1.5, Wednesday 0, Thursday 1, Friday 0.5. Total 4.5 hours."></div></div></section>
-            <section class="panel community-panel" aria-labelledby="community-title"><div class="card-heading"><h2 id="community-title">Around the clubhouse</h2><span class="badge badge-neutral">UP NEXT</span></div><div class="event-content"><div class="event-date"><strong>28</strong><span>NOV</span></div><div><span class="event-category">SOCIAL PLAY</span><h3>Saturday Social Doubles</h3><p>Good rallies. New friends. All levels.</p><div class="event-meta"><span data-icon="clock"></span>8:00 AM – 12:00 PM</div></div></div><button class="text-button event-details" data-action="event">View details</button></section>
+            <section class="panel activity-panel" aria-labelledby="activity-title"><div class="card-heading"><div><h2 id="activity-title">Your week on court</h2></div></div><div class="activity-body"><div class="activity-summary"><div><strong>4.5<span>hrs</span></strong><p>Hours this week</p></div><span class="positive-chip">+1.5 hrs vs. last week</span><button class="text-button" data-feature="statistics">Explore your stats</button></div><div class="activity-chart" id="activity-chart" role="img" aria-label="Sample court hours by day: Saturday 0.5, Sunday 1, Monday 0, Tuesday 1.5, Wednesday 0, Thursday 1, Friday 0.5. Total 4.5 hours."></div></div></section>
+            <section class="panel community-panel" aria-labelledby="community-title"><div class="card-heading"><h2 id="community-title">Around the clubhouse</h2></div><div class="event-content"><div class="event-date"><strong>28</strong><span>NOV</span></div><div><span class="event-category">SOCIAL PLAY</span><h3>Saturday Social Doubles</h3><div class="event-meta"><span data-icon="clock"></span>8:00 AM – 12:00 PM</div></div></div><button class="text-button event-details" data-action="event">View details</button></section>
           </div>
         </div>
       </main>

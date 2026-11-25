@@ -43,6 +43,10 @@ Selected paths are stored in `dist/js/shared/iconsax-linear.js`, with semantic m
 
 Tenant logos, favicon, and court illustrations are separate application branding/artwork.
 
+## Overview design refinement
+
+The Overview design refinement was informed by the **unslop** skill by Damir Sokolovsky ([@heydamir](https://x.com/heydamir)), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Source: https://github.com/heydamir/unslop. Its guidance was adapted to Courtline’s existing logo, fonts, palette, mock data, and navigation.
+
 ```
 
 ## dist/assets/hero-padel-court.png
@@ -153,6 +157,7 @@ Place at: `courtline-app/dist/css/components.css`.
 Place at: `courtline-app/dist/css/dashboard.css`.
 
 ```css
+/* Overview refinement informed by unslop by Damir Sokolovsky (@heydamir), CC BY 4.0. */
 .sidebar { display: none; }
 .app-content { min-width: 0; }
 .topbar { height: 4.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: var(--surface); border-bottom: 1px solid var(--line); padding: 0 1rem; }
@@ -163,7 +168,7 @@ Place at: `courtline-app/dist/css/dashboard.css`.
 .brand [data-business-name] { min-width: 0; overflow-wrap: anywhere; line-height: 1.15; }
 .mobile-brand [data-business-name] { max-width: 8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .brand-period { color: transparent; margin-left: -.55rem; }
-.topbar-actions { display: flex; align-items: center; gap: .8rem; margin-left: auto; flex-shrink: 0; }
+.topbar-actions { display: flex; align-items: center; gap: .75rem; margin-left: auto; flex-shrink: 0; }
 .notification-button { position: relative; border: 0; }
 .notification-button .icon { width: 1.15rem; height: 1.15rem; }
 .notification-dot { position: absolute; right: .8rem; top: .7rem; width: .35rem; height: .35rem; background: #c06e46; border: 1px solid white; border-radius: 50%; }
@@ -171,120 +176,112 @@ Place at: `courtline-app/dist/css/dashboard.css`.
 .profile-chevron { display: inline-flex; color: var(--muted); }
 .profile-chevron .icon { width: .75rem; height: .75rem; }
 main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem calc(6rem + env(safe-area-inset-bottom)); }
-.page-heading { margin-bottom: 1.25rem; }
-.page-heading h1 { margin: 0; }
-.page-heading p { margin-top: .5rem; color: var(--muted); font-size: .9375rem; }
-.hero-grid { display: grid; gap: 1rem; }
-.play-hero { overflow: hidden; min-height: 21rem; position: relative; border-radius: var(--radius-lg); background: var(--brand); color: white; isolation: isolate; }
-.hero-copy { position: relative; z-index: 1; padding: 1.75rem; }
-.play-hero h2 { margin-top: .8rem; font-size: clamp(2.5rem, 5vw, 3.1rem); font-weight: 700; letter-spacing: -.02em; line-height: 1.06; }
-.play-hero h2 em { font-style: normal; color: var(--text-highlight); }
-.play-hero p { margin-top: .9rem; max-width: 16rem; font-size: .875rem; color: #ffffff; line-height: 1.65; }
-.play-hero .button { margin-top: 1.2rem; padding: .6rem 1rem; min-height: 2.75rem; }
-.hero-footnote { display: flex; align-items: center; gap: .6rem; margin-top: 1.35rem; font-size: .75rem; color: #ffffff; }
-.hero-footnote > span:last-child { max-width: 10rem; }
-.hero-footnote strong { color: white; font-weight: 500; }
-.hero-art { position: absolute; inset: 0; z-index: -1; }
-.hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; -webkit-mask-image: linear-gradient(to right, #00000038 0%, #0000003d 76%, #000 100%); mask-image: linear-gradient(to right, #00000038 0%, #0000003d 76%, #000 100%); }
-.next-session { display: flex; flex-direction: column; padding: 1.4rem; }
-#next-booking { display: flex; flex-direction: column; flex: 1; }
-.booking-date { display: flex; align-items: center; gap: 1rem; padding: 1.4rem 0 1rem; }
-.date-tile { display: grid; place-items: center; min-width: 3.25rem; height: 3.5rem; padding: .4rem; border-radius: .6rem; color: var(--ink); background: var(--brand-soft); }
-.date-tile span { font-size: .75rem; line-height: 1; letter-spacing: .06em; }
-.date-tile strong { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: -.02em; line-height: 1.2; }
-.booking-date h3 { font-size: 1.125rem; }
-.booking-date p { font-size: .875rem; color: var(--muted); margin-top: .3rem; }
-.booking-info { display: flex; align-items: center; gap: .55rem; margin-top: .6rem; color: var(--muted); font-size: .875rem; }
-.booking-info .icon { width: 1rem; height: 1rem; }
-.booking-format { color: var(--muted); font-size: .8125rem; margin: .9rem 0 1rem; }
-.next-session .button { margin-top: auto; min-height: 2.65rem; }
-.stats-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .75rem; margin-top: 1rem; }
-.stat-card { min-width: 0; padding: 1.1rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-.stat-value { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .45rem; }
-.stat-value strong { font-family: var(--font-display); color: var(--ink); font-size: 1.8rem; line-height: 1; font-weight: 600; letter-spacing: -.02em; }
-.stat-value span { color: var(--muted); font-size: .875rem; font-weight: 400; }
-.stat-caption { margin-top: .55rem; color: var(--muted); font-size: .75rem; }
-.stat-caption.positive { color: var(--success); }
-.court-section { margin-top: 2rem; }
-.section-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.15rem; }
-.section-title-line { display: flex; align-items: center; gap: .7rem; }
-.section-title-line h2 { font-weight: 700; font-size: 1.25rem; }
-.section-title-line .badge { font-size: .75rem; }
-.court-grid { display: grid; gap: .85rem; }
-.court-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: box-shadow var(--transition), transform var(--transition); }
-.court-card:hover { box-shadow: 0 5px 22px #173b3110; transform: translateY(-2px); }
-.court-visual { position: relative; display: grid; place-items: center; height: 8rem; background: #edf1ed; }
+.page-heading { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1rem; }
+.page-heading h1 { margin: 0; font-size: 2rem; font-weight: 600; }
+.page-heading .button { min-height: 3rem; }
+.demo-note { margin-bottom: 1rem; color: var(--muted); font-size: .875rem; }
+.next-session { display: flex; align-items: center; gap: 1.5rem; padding: 1.25rem; box-shadow: none; }
+.session-copy { flex: 1; min-width: 0; }
+.next-session h2 { color: var(--muted); font-family: var(--font); font-size: .875rem; font-weight: 500; letter-spacing: 0; }
+.booking-summary { display: grid; grid-template-columns: 3.5rem minmax(0,1fr); align-items: start; gap: 1rem; margin-top: 1rem; }
+.date-tile { display: grid; place-items: center; min-height: 4rem; padding: .5rem; border-radius: .5rem; color: var(--brand); background: var(--brand-soft); }
+.date-tile span { font-size: .875rem; line-height: 1.25; }
+.date-tile strong { font-family: var(--font-display); font-size: 1.75rem; font-weight: 600; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.session-details { min-width: 0; }
+.session-time { font-family: var(--font-display); font-size: 1.125rem; font-weight: 600; line-height: 1.4; font-variant-numeric: tabular-nums; }
+.session-details h3 { margin-top: .5rem; font-size: 1rem; font-weight: 500; letter-spacing: 0; }
+.booking-info { margin-top: .25rem; color: var(--muted); font-size: .875rem; }
+.session-actions { grid-column: 1 / -1; display: grid; gap: .75rem; }
+.booking-format { color: var(--muted); font-size: .875rem; }
+.session-actions .button { min-height: 2.75rem; }
+.session-photo { display: none; flex-shrink: 0; width: 7rem; height: 7rem; object-fit: cover; object-position: 67% center; border-radius: .5rem; }
+.court-section { margin-top: 1.5rem; }
+.section-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.section-title-line { display: flex; align-items: baseline; flex-wrap: wrap; gap: .5rem 1rem; }
+.section-title-line h2 { font-weight: 600; font-size: 1.25rem; }
+.court-count { color: var(--muted); font-size: .875rem; }
+.segmented-control { max-width: 100%; }
+.segmented-control button { min-height: 2.75rem; padding: .5rem .75rem; }
+.court-grid { display: grid; gap: 1rem; }
+.court-card { min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: .875rem; overflow: hidden; transition: border-color var(--transition); }
+.court-card:hover { border-color: #b9c9bf; }
+.court-visual { position: relative; display: flex; align-items: center; height: 5rem; padding-left: 1rem; background: #edf1ed; }
 .court-visual.in-use { background: #f1f0ea; }
 .court-visual.maintenance { background: #eef0f1; }
-.court-visual > .badge { position: absolute; right: .65rem; top: .65rem; font-size: .875rem; background: #ffffffed; }
-.court-diagram { width: 8.75rem; height: 5.3rem; padding: .6rem; border-radius: .25rem; background: #b1c3a6; transform: rotate(-9deg); box-shadow: 0 5px 0 #a1b396; }
-.court-visual.in-use .court-diagram { background: #c0c4ab; box-shadow: 0 5px 0 #acb098; }
-.court-visual.maintenance .court-diagram { background: #bdc6c7; box-shadow: 0 5px 0 #aab5b6; }
-.court-lines { position: relative; display: flex; width: 100%; height: 100%; border: 1.5px solid #ffffffe0; background: #5d8064; }
-.court-lines::before { content: ""; position: absolute; inset: -5px auto -5px 50%; z-index: 1; width: 2px; background: #fff; box-shadow: 2px 0 0 #34534144; }
-.court-lines::after { content: ""; position: absolute; left: 34%; right: 34%; top: 0; bottom: 0; background: #a5b88a; border-left: 1px solid #ffffffe0; border-right: 1px solid #ffffffe0; }
+.court-visual > .badge { position: absolute; right: .75rem; top: 1.5rem; font-size: .8125rem; padding: .25rem .5rem; background: #ffffffed; }
+.court-diagram { width: 5rem; height: 3rem; padding: .375rem; border-radius: .25rem; background: #b1c3a6; transform: rotate(-9deg); }
+.court-visual.in-use .court-diagram { background: #c0c4ab; }
+.court-visual.maintenance .court-diagram { background: #bdc6c7; }
+.court-lines { position: relative; display: flex; width: 100%; height: 100%; border: 1px solid #ffffffe0; background: #5d8064; }
+.court-lines::before { content: ''; position: absolute; inset: -3px auto -3px 50%; z-index: 1; width: 2px; background: #fff; }
+.court-lines::after { content: ''; position: absolute; left: 34%; right: 34%; top: 0; bottom: 0; background: #a5b88a; border-left: 1px solid #ffffffe0; border-right: 1px solid #ffffffe0; }
 .court-lines i { position: absolute; height: 1px; width: 100%; top: 50%; background: #ffffffe0; }
 .court-visual.in-use .court-lines { background: #7e8468; }
 .court-visual.in-use .court-lines::after { background: #b5b995; }
 .court-visual.maintenance .court-lines { background: #849697; }
 .court-visual.maintenance .court-lines::after { background: #adbdbe; }
-.court-details { padding: 1rem 1.1rem .8rem; }
-.court-title-row { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
-.court-type { font-size: .75rem; color: var(--muted); }
-.court-details > p { margin-top: .4rem; color: var(--muted); font-size: .8125rem; }
-.court-card-footer { display: flex; justify-content: space-between; align-items: center; gap: .5rem; padding-top: .7rem; margin-top: .7rem; border-top: 1px solid var(--line); }
-.court-price { font-size: .8125rem; font-weight: 500; }
-.court-price small { font-size: .75rem; color: var(--muted); font-weight: 400; }
-.court-card .text-button { font-size: .8125rem; min-height: 2rem; }
-.section-footnote { display: flex; gap: .4rem; align-items: center; color: var(--muted); font-size: .75rem; margin-top: .85rem; }
-.section-footnote .icon { width: .875rem; height: .875rem; }
-.lower-grid { display: grid; gap: 1rem; margin-top: 1.75rem; }
-.activity-body { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: end; margin-top: 1.5rem; }
+.court-details { padding: 1.25rem; }
+.court-title-row { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .25rem .5rem; }
+.court-title-row h3 { font-size: 1rem; }
+.court-type { font-size: .875rem; color: var(--muted); }
+.court-details > p { margin-top: .5rem; color: var(--muted); font-size: .875rem; }
+.court-card-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .25rem .5rem; padding-top: .75rem; margin-top: .75rem; border-top: 1px solid var(--line); }
+.court-price { font-size: .875rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.court-price small { font-size: .875rem; color: var(--muted); font-weight: 400; }
+.court-card .text-button { font-size: .875rem; min-height: 2.75rem; }
+.stats-strip { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); row-gap: 1.25rem; margin-top: 1.5rem; padding: 1.25rem 0; border-block: 1px solid var(--line); }
+.stat-item { min-width: 0; margin: 0; padding: 0 1rem; }
+.stat-item:nth-child(2n) { border-left: 1px solid var(--line); }
+.stat-item dt { color: var(--muted); font-size: .875rem; }
+.stat-item dd { display: flex; align-items: baseline; flex-wrap: wrap; gap: .25rem .5rem; margin: .5rem 0 0; }
+.stat-item strong { font-family: var(--font-display); color: var(--ink); font-size: 1.5rem; line-height: 1.2; font-weight: 600; font-variant-numeric: tabular-nums; }
+.stat-item dd span { color: var(--muted); font-size: .875rem; }
+.lower-grid { display: grid; gap: 1.5rem; margin-top: 1.5rem; }
+.lower-grid .panel { padding: 1.5rem; box-shadow: none; }
+.lower-grid .card-heading h2 { font-size: 1.125rem; font-weight: 600; }
+.activity-body { display: grid; gap: 1.5rem; align-items: end; margin-top: 1.5rem; }
 .activity-summary { flex: 1; }
-.activity-summary strong { font-family: var(--font-display); color: var(--ink); font-size: 2rem; font-weight: 700; line-height: 1; letter-spacing: -.02em; }
-.activity-summary strong span { font-family: var(--font); font-size: .875rem; color: var(--muted); font-weight: 400; margin-left: .4rem; letter-spacing: 0; }
-.activity-summary p { font-size: .8125rem; color: var(--muted); margin-top: .4rem; }
-.positive-chip { display: block; margin: .8rem 0 .35rem; font-size: .75rem; color: var(--ink); }
-.activity-summary .text-button { font-size: .8125rem; }
+.activity-summary strong { font-family: var(--font-display); color: var(--ink); font-size: 2rem; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.activity-summary strong span { font-family: var(--font); font-size: .875rem; color: var(--muted); font-weight: 400; margin-left: .5rem; }
+.activity-summary p { font-size: .875rem; color: var(--muted); margin-top: .5rem; }
+.positive-chip { display: block; margin: .75rem 0 .25rem; font-size: .875rem; color: var(--muted); }
+.activity-summary .text-button { font-size: .875rem; min-height: 2.75rem; }
 .activity-chart { display: flex; gap: .5rem; height: 8rem; flex: 1.3; min-width: 10rem; }
-.chart-column { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: .55rem; }
-.chart-track { height: 6rem; width: 100%; display: flex; align-items: flex-end; border-radius: .25rem; background-image: repeating-linear-gradient(to top, transparent 0, transparent calc(33.3% - 1px), #edf0ed calc(33.3% - 1px), #edf0ed 33.3%); }
-.chart-bar { width: 70%; max-width: 1.65rem; margin: 0 auto; border-radius: .25rem .25rem 0 0; background: #c4d4b8; height: var(--bar-height); min-height: 3px; }
+.chart-column { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: .5rem; }
+.chart-track { height: 6rem; width: 100%; display: flex; align-items: flex-end; border-radius: .25rem; background-image: repeating-linear-gradient(to top, transparent 0, transparent calc(33.3% - 1px), var(--line) calc(33.3% - 1px), var(--line) 33.3%); }
+.chart-bar { width: 70%; max-width: 1.75rem; margin: 0 auto; border-radius: .25rem .25rem 0 0; background: #d7dfd9; height: var(--bar-height); }
 .chart-column:last-child .chart-bar { background: var(--brand); }
 .chart-column span { color: var(--muted); font-size: .75rem; }
 .chart-column:last-child span { color: var(--ink); font-weight: 500; }
-.community-panel .badge { font-size: .75rem; letter-spacing: .04em; }
 .event-content { display: flex; align-items: flex-start; gap: 1rem; margin-top: 1.5rem; }
-.event-date { min-width: 3.4rem; padding: .65rem .5rem; display: grid; text-align: center; border-radius: .6rem; background: #f1f3ed; }
-.event-date strong { font-family: var(--font-display); font-size: 1.6rem; line-height: 1; font-weight: 700; letter-spacing: -.02em; }
-.event-date span { color: var(--muted); font-size: .75rem; margin-top: .25rem; letter-spacing: .1em; }
-.event-category { display: block; margin-bottom: .35rem; color: var(--muted); font-size: .75rem; letter-spacing: .08em; font-weight: 500; }
-.event-content h3 { font-size: .9375rem; }
-.event-content p { color: var(--muted); margin-top: .3rem; font-size: .8125rem; }
-.event-meta { display: flex; gap: .35rem; align-items: center; color: var(--muted); font-size: .75rem; margin-top: .65rem; }
-.event-meta .icon { width: .875rem; height: .875rem; }
-.event-details { display: block; margin: 1rem 0 0 auto; font-size: .8125rem; }
-.bottom-nav { display: flex; align-items: center; justify-content: space-around; position: fixed; bottom: 0; left: 0; right: 0; z-index: 20; min-height: 4.5rem; padding: .4rem .5rem max(.4rem, env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: #fffffffa; backdrop-filter: blur(16px); }
+.event-date { min-width: 3.5rem; padding: .75rem .5rem; display: grid; text-align: center; border-radius: .5rem; background: var(--brand-soft); }
+.event-date strong { font-family: var(--font-display); font-size: 1.5rem; line-height: 1; font-weight: 600; font-variant-numeric: tabular-nums; }
+.event-date span { color: var(--muted); font-size: .875rem; margin-top: .25rem; }
+.event-category { display: block; margin-bottom: .5rem; color: var(--muted); font-size: .875rem; }
+.event-content h3 { font-size: 1rem; }
+.event-meta { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: .875rem; margin-top: .75rem; }
+.event-meta .icon { width: 1.125rem; height: 1.125rem; }
+.event-details { display: block; margin: 1rem 0 0 auto; font-size: .875rem; min-height: 2.75rem; }
+.bottom-nav { display: flex; align-items: center; justify-content: space-around; position: fixed; bottom: 0; left: 0; right: 0; z-index: 20; min-height: 4.5rem; padding: .5rem .5rem max(.5rem, env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: var(--surface); }
 .bottom-nav > * { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .25rem; min-height: 3rem; min-width: 3rem; border: 0; background: transparent; text-decoration: none; font-size: .75rem; color: var(--muted); border-radius: .5rem; }
 .bottom-nav > [aria-current] { color: var(--ink); font-weight: 500; }
-.bottom-nav > [aria-current] > span { border-radius: 2rem; background: var(--brand-soft); padding: .2rem .8rem; }
+.bottom-nav > [aria-current] > span { border-radius: 2rem; background: var(--brand-soft); padding: .25rem .75rem; }
 .bottom-nav .icon { width: 1.2rem; height: 1.2rem; }
 .more-menu { display: grid; gap: .5rem; }
 .more-menu .button { justify-content: flex-start; }
 @media (min-width: 600px) {
-  .hero-photo { -webkit-mask-image: linear-gradient(to right, #00000052 0%, #0000007a 42%, #000 76%); mask-image: linear-gradient(to right, #00000052 0%, #0000007a 42%, #000 76%); }
   main { padding: 2rem 2rem calc(6rem + env(safe-area-inset-bottom)); }
   .topbar { padding: 0 2rem; }
-  .hero-copy { padding: 2rem; }
-  .hero-footnote > span:last-child { max-width: none; }
-  .play-hero p { max-width: 16rem; }
-  .court-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .page-heading { flex-direction: row; align-items: center; justify-content: space-between; }
   .next-session { padding: 1.5rem; }
-  .booking-date { padding-top: 1.25rem; }
-  .activity-body { flex-wrap: nowrap; }
+  .session-photo { display: block; }
+  .booking-summary { grid-template-columns: 4rem minmax(0,1fr); }
+  .session-time { font-size: 1.25rem; }
+  .session-actions { grid-column: 2; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem; }
+  .court-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .activity-body { display: flex; flex-wrap: nowrap; }
 }
 @media (min-width: 900px) {
-  .stats-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
   main { padding-bottom: 2rem; }
   .app-shell { display: grid; grid-template-columns: var(--sidebar-width) minmax(0,1fr); }
   .sidebar { display: flex; flex-direction: column; height: 100dvh; position: sticky; top: 0; padding: 2rem 1rem 1rem; background: var(--surface); border-right: 1px solid var(--line); overflow-y: auto; }
@@ -296,47 +293,34 @@ main { max-width: 100rem; margin: 0 auto; padding: 1.5rem 1rem calc(6rem + env(s
   .nav-item:hover { color: var(--ink); background: #f4f6f3; }
   .nav-item.active { background: var(--brand); color: white; font-weight: 500; }
   .nav-soon { margin-left: auto; border-radius: .25rem; color: var(--muted); background: #f0f3ee; padding: .1rem .3rem; font-size: .75rem; }
-  .nav-section-label { margin: 2rem .9rem .6rem; font-size: .75rem; letter-spacing: .1em; color: var(--muted); font-weight: 500; }
-  .sidebar-bottom { margin-top: auto; padding-top: 2.5rem; }
-  .sidebar-note { position: relative; overflow: hidden; padding: 1rem .9rem; margin: 0 .3rem .85rem; background: #f1f4ec; border-radius: .7rem; }
-  .sidebar-note strong { display: block; max-width: 8rem; font-size: .875rem; line-height: 1.4; font-weight: 500; letter-spacing: -.02em; }
-  .sidebar-note p { margin-top: .5rem; color: var(--muted); font-size: .75rem; }
-  .small-court { position: absolute; width: 3rem; height: 4rem; border: 1px solid #cad6bc; top: -.5rem; right: -.75rem; transform: rotate(30deg); }
-  .small-court::before { content: ""; position: absolute; inset: 40% 0; border-block: 1px solid #cad6bc; }
+  .nav-section-label { margin: 2rem .9rem .5rem; font-size: .875rem; color: var(--muted); font-weight: 500; }
   .mobile-brand { display: none; }
-  .topbar { height: 4.75rem; }
+  .topbar { height: 4rem; }
   .bottom-nav { display: none; }
-  .hero-grid { grid-template-columns: minmax(0,1fr); }
 }
 @media (min-width: 1200px) {
-  .stats-grid { gap: 1.1rem; margin-top: 1.25rem; }
-  .stat-card { padding: 1.15rem 1.25rem; }
-  .stat-value strong { font-size: 2rem; }
-  main { padding: 2rem 2.25rem; }
-  .topbar { padding: 0 2.25rem; }
-  .hero-grid { grid-template-columns: minmax(0, 1.95fr) minmax(16.5rem,1fr); gap: 1.25rem; }
-  .next-session { display: flex; }
-  .hero-copy { padding: 1.8rem; }
-  .play-hero { min-height: 22rem; }
-  .hero-footnote { margin-top: 1.2rem; }
-  .hero-footnote > span:last-child { max-width: 9.5rem; }
-  .court-grid { grid-template-columns: repeat(4,minmax(0,1fr)); gap: 1.1rem; }
-  .court-type { font-size: .75rem; }
-  .lower-grid { grid-template-columns: 1.12fr 1fr; gap: 1.25rem; }
+  .next-session { min-height: 12rem; }
+  .session-photo { width: 9rem; height: 9rem; }
+  .booking-summary { grid-template-columns: 4rem minmax(0,1fr) auto; align-items: center; }
+  .session-actions { grid-column: auto; display: grid; justify-items: end; gap: .75rem; padding-left: 1rem; border-left: 1px solid var(--line); }
+  .court-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
+  .court-details { padding: 1rem; }
+  .stats-strip { grid-template-columns: repeat(4,minmax(0,1fr)); }
+  .stat-item + .stat-item { border-left: 1px solid var(--line); }
+  .lower-grid { grid-template-columns: 1.12fr 1fr; }
 }
 @media (min-width: 1450px) {
   :root { --sidebar-width: 16rem; }
-  main { padding: 2rem 2.75rem; }
-  .topbar { padding-inline: 2.75rem; }
-  .hero-copy { padding: 2rem; }
-  .play-hero { min-height: 22.5rem; }
-  .play-hero h2 { font-size: 3.2rem; }
-  .hero-footnote > span:last-child { max-width: none; }
-  .court-visual { height: 8.75rem; }
-  .court-diagram { width: 9.25rem; height: 5.5rem; }
-  .court-type { font-size: .75rem; }
+  main { padding-inline: 2rem; }
+  .court-details { padding: 1.25rem; }
 }
-@media (max-width: 360px) { .topbar-actions { gap: .45rem; } .profile-trigger { gap: .4rem; } .hero-copy { padding: 1.4rem; } .activity-body { display: block; } .activity-chart { margin-top: 1rem; } }
+@media (max-width: 360px) {
+  .topbar-actions { gap: .45rem; }
+  .profile-trigger { gap: .4rem; }
+  .activity-body { display: block; }
+  .activity-chart { margin-top: 1rem; }
+  .segmented-control button { padding-inline: .625rem; }
+}
 
 ```
 
@@ -513,7 +497,7 @@ Place at: `courtline-app/dist/index.html`.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#183d35">
   <meta name="description" content="Your pickleball day, all in one place. A configurable frontend dashboard demonstration.">
-  <title>Home · Courtline</title>
+  <title>Overview · Courtline</title>
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -536,15 +520,12 @@ Place at: `courtline-app/dist/index.html`.
         <button class="nav-item" data-feature="leaderboard"><span data-icon="trophy"></span>Leaderboard</button>
         <button class="nav-item" data-feature="tournaments"><span data-icon="flag"></span>Tournaments</button>
       </nav>
-      <div class="nav-section-label">MY CORNER</div>
+      <div class="nav-section-label">My corner</div>
       <nav aria-label="Player navigation" class="primary-nav">
         <button class="nav-item" data-action="booking"><span data-icon="ticket"></span>My bookings</button>
         <button class="nav-item" data-feature="statistics"><span data-icon="chart"></span>My statistics</button>
         <button class="nav-item" data-action="profile"><span data-icon="user"></span>My profile</button>
       </nav>
-      <div class="sidebar-bottom">
-        <div class="sidebar-note"><span class="small-court" aria-hidden="true"></span><strong>A little play. A better day.</strong><p>Your next rally is waiting.</p></div>
-      </div>
     </aside>
 
     <div class="app-content">
@@ -554,25 +535,24 @@ Place at: `courtline-app/dist/index.html`.
       </header>
 
       <main id="main" tabindex="-1">
-        <header class="page-heading"><h1>Hey, <span data-player-first>Alex</span></h1><p>A good day starts with a great game.</p></header>
+        <header class="page-heading"><h1>Overview</h1><button class="button button-lime" data-feature="booking">Book a court</button></header>
 
         <div id="load-error" class="notice error-notice" role="alert" hidden></div>
         <div id="dashboard-content" aria-busy="true">
-          <section class="hero-grid" aria-label="Start playing">
-            <div class="play-hero">
-              <div class="hero-copy"><h2>Less scrolling.<br>More <em>rallying.</em></h2><p>Find your court, bring your people,<br class="desktop-break"> and make your next game a good one.</p><button class="button button-lime" data-feature="booking">Book a court</button><div class="hero-footnote"><span class="avatar-stack" aria-hidden="true"><b>JM</b><b>KC</b><b>SR</b></span><span><strong id="community-count">32</strong> players in the clubhouse</span></div></div>
-              <div class="hero-art" aria-hidden="true"><img class="hero-photo" src="assets/hero-padel-court.png" alt="" width="1024" height="691" fetchpriority="high" decoding="async"></div>
-            </div>
-            <article class="panel next-session" aria-labelledby="next-session-title"><div class="card-heading"><h2 id="next-session-title">Your next session</h2></div><div id="next-booking" class="loading-placeholder">Loading sample session…</div></article>
-          </section>
+          <p class="demo-note">Demo data · No real reservations or live availability</p>
 
-          <section class="stats-grid" id="stats-grid" aria-label="Your pickleball at a glance"></section>
+          <article class="panel next-session" aria-labelledby="next-session-title">
+            <div class="session-copy"><h2 id="next-session-title">Your next session</h2><div id="next-booking" class="loading-placeholder">Loading sample session…</div></div>
+            <img class="session-photo" src="assets/hero-padel-court.png" alt="" width="1024" height="691" decoding="async">
+          </article>
 
-          <section class="court-section" aria-labelledby="courts-title"><div class="section-heading"><div><div class="section-title-line"><h2 id="courts-title">Find your court</h2><span class="badge badge-neutral" id="court-count">4 courts</span></div></div><div class="segmented-control" role="group" aria-label="Filter courts"><button class="selected" data-court-filter="all" aria-pressed="true">All courts</button><button data-court-filter="available" aria-pressed="false">Available</button><button data-court-filter="in-use" aria-pressed="false">In play</button></div></div><div class="court-grid" id="court-grid"></div><p id="court-results" class="sr-only" role="status"></p><div class="section-footnote"><span data-icon="info"></span>Demo snapshot · Availability is not connected to a live booking system.</div></section>
+          <section class="court-section" aria-labelledby="courts-title"><div class="section-heading"><div><div class="section-title-line"><h2 id="courts-title">Find your court</h2><span class="court-count" id="court-count"></span></div></div><div class="segmented-control" role="group" aria-label="Filter courts"><button class="selected" data-court-filter="all" aria-pressed="true">All courts</button><button data-court-filter="available" aria-pressed="false">Available</button><button data-court-filter="in-use" aria-pressed="false">In play</button></div></div><div class="court-grid" id="court-grid"></div><p id="court-results" class="sr-only" role="status"></p></section>
+
+          <section class="stats-strip" id="stats-grid" aria-label="Your player statistics"></section>
 
           <div class="lower-grid">
-            <section class="panel activity-panel" aria-labelledby="activity-title"><div class="card-heading"><div><h2 id="activity-title">A little better, every game.</h2><p>Your last 7 days on court</p></div></div><div class="activity-body"><div class="activity-summary"><div><strong>4.5<span>hrs</span></strong><p>Time well spent</p></div><span class="positive-chip">+1.5 hrs vs. last week</span><button class="text-button" data-feature="statistics">Explore your stats</button></div><div class="activity-chart" id="activity-chart" role="img" aria-label="Sample court hours by day: Saturday 0.5, Sunday 1, Monday 0, Tuesday 1.5, Wednesday 0, Thursday 1, Friday 0.5. Total 4.5 hours."></div></div></section>
-            <section class="panel community-panel" aria-labelledby="community-title"><div class="card-heading"><h2 id="community-title">Around the clubhouse</h2><span class="badge badge-neutral">UP NEXT</span></div><div class="event-content"><div class="event-date"><strong>28</strong><span>NOV</span></div><div><span class="event-category">SOCIAL PLAY</span><h3>Saturday Social Doubles</h3><p>Good rallies. New friends. All levels.</p><div class="event-meta"><span data-icon="clock"></span>8:00 AM – 12:00 PM</div></div></div><button class="text-button event-details" data-action="event">View details</button></section>
+            <section class="panel activity-panel" aria-labelledby="activity-title"><div class="card-heading"><div><h2 id="activity-title">Your week on court</h2></div></div><div class="activity-body"><div class="activity-summary"><div><strong>4.5<span>hrs</span></strong><p>Hours this week</p></div><span class="positive-chip">+1.5 hrs vs. last week</span><button class="text-button" data-feature="statistics">Explore your stats</button></div><div class="activity-chart" id="activity-chart" role="img" aria-label="Sample court hours by day: Saturday 0.5, Sunday 1, Monday 0, Tuesday 1.5, Wednesday 0, Thursday 1, Friday 0.5. Total 4.5 hours."></div></div></section>
+            <section class="panel community-panel" aria-labelledby="community-title"><div class="card-heading"><h2 id="community-title">Around the clubhouse</h2></div><div class="event-content"><div class="event-date"><strong>28</strong><span>NOV</span></div><div><span class="event-category">SOCIAL PLAY</span><h3>Saturday Social Doubles</h3><div class="event-meta"><span data-icon="clock"></span>8:00 AM – 12:00 PM</div></div></div><button class="text-button event-details" data-action="event">View details</button></section>
           </div>
         </div>
       </main>
@@ -619,7 +599,7 @@ function applyBranding() {
   const variables = { '--brand': b.colors.primary, '--brand-hover': b.colors.primaryHover, '--accent': b.colors.accent, '--accent-ink': b.colors.accentInk };
   Object.entries(variables).forEach(([key, value]) => document.documentElement.style.setProperty(key, value));
   document.querySelectorAll('[data-business-name]').forEach(el => { el.textContent = b.name; });
-  document.title = `Home · ${b.name}`;
+  document.title = `Overview · ${b.name}`;
   document.querySelector('meta[name="theme-color"]').content = b.colors.primary;
   // Accept safe local/HTTPS logo URLs, and use the shared symbol if invalid.
   document.querySelectorAll('.brand-mark').forEach(el => {
@@ -639,21 +619,20 @@ function renderBooking() {
   const root = document.querySelector('#next-booking');
   const court = state.business.courts.find(c => c.id === booking?.courtId);
   if (!booking || !court) { root.innerHTML = '<div class="empty-state">No sample session for these courts.</div>'; return; }
-  const minutes = Math.round((new Date(booking.endsAt) - new Date(booking.startsAt)) / 60000);
-  root.innerHTML = `<div class="booking-date"><div class="date-tile"><span>${esc(date(booking.startsAt, { month: 'short' }).toUpperCase())}</span><strong>${esc(date(booking.startsAt, { day: 'numeric' }))}</strong></div><div><h3>${esc(court.name)}</h3><p>${esc(court.type)} court · ${esc(booking.format)}</p></div></div><div class="booking-info">${icon('clock')}<span>${esc(time(booking.startsAt))} – ${esc(time(booking.endsAt))}</span></div><div class="booking-info">${icon('queue')}<span>${esc(booking.players)} players · ${minutes}-minute session</span></div><p class="booking-format">${esc(money(booking.total))} / session</p><button class="button button-outline button-full" data-action="booking">View booking</button>`;
+  root.innerHTML = `<div class="booking-summary"><div class="date-tile" aria-label="${esc(date(booking.startsAt, { dateStyle: 'full' }))}"><span>${esc(date(booking.startsAt, { month: 'short' }))}</span><strong>${esc(date(booking.startsAt, { day: 'numeric' }))}</strong></div><div class="session-details"><p class="session-time">${esc(time(booking.startsAt))} – ${esc(time(booking.endsAt))}</p><h3>${esc(court.name)}</h3><p class="booking-info">${esc(court.type)} · ${esc(booking.format)} · ${esc(booking.players)} players</p></div><div class="session-actions"><p class="booking-format">${esc(money(booking.total))} / session</p><button class="button button-outline" data-action="booking">View booking</button></div></div>`;
 }
 
 function renderStats() {
   const stats = state.dashboard.stats || [];
   const root = document.querySelector('#stats-grid');
   root.hidden = !stats.length;
-  root.innerHTML = stats.map(stat => `<article class="stat-card" aria-label="${esc(stat.label)}"><div class="stat-value"><strong>${esc(stat.value)}</strong><span>${esc(stat.unit)}</span></div>${stat.caption ? `<p class="stat-caption ${stat.positive ? 'positive' : ''}">${esc(stat.caption)}</p>` : ''}</article>`).join('');
+  root.innerHTML = stats.map(stat => `<dl class="stat-item"><dt>${esc(stat.label)}</dt><dd><strong>${esc(stat.value)}</strong><span>${esc(stat.unit)}</span></dd></dl>`).join('');
 }
 
 function renderCourts() {
   const courts = state.business.courts.map(c => ({ ...c, ...(state.dashboard.courtSnapshots.find(s => s.courtId === c.id) || { status: 'unavailable', label: 'No sample data', note: 'Availability not connected' }) }));
   const filtered = state.courtFilter === 'all' ? courts : courts.filter(c => c.status === state.courtFilter);
-  document.querySelector('#court-count').textContent = `${courts.length} ${courts.length === 1 ? 'court' : 'courts'}`;
+  document.querySelector('#court-count').textContent = `${courts.filter(c => c.status === 'available').length} of ${courts.length} available`;
   document.querySelector('#court-grid').innerHTML = filtered.length ? filtered.map(c => `<article class="court-card"><div class="court-visual ${esc(c.status)}"><div class="court-diagram" aria-hidden="true"><div class="court-lines"><i></i></div></div>${badge(c.label, c.status === 'available' ? 'success' : c.status === 'in-use' ? 'warning' : 'neutral', true)}</div><div class="court-details"><div class="court-title-row"><h3>${esc(c.name)}</h3><span class="court-type">${esc(c.type)}</span></div><p>${esc(c.note)}</p><div class="court-card-footer"><span class="court-price">${esc(money(c.hourlyRate))}<small> / hr</small></span><button class="text-button" data-court="${esc(c.id)}" aria-label="View ${esc(c.name)} details">View court</button></div></div></article>`).join('') : '<div class="empty-state">No courts match this filter. Try All courts.</div>';
   document.querySelector('#court-results').textContent = `${filtered.length} of ${courts.length} courts shown.`;
   document.querySelectorAll('[data-court-filter]').forEach(button => { const selected = button.dataset.courtFilter === state.courtFilter; button.classList.toggle('selected', selected); button.setAttribute('aria-pressed', String(selected)); });
@@ -661,9 +640,7 @@ function renderCourts() {
 
 function renderDashboard() {
   const { dashboard: d } = state;
-  document.querySelectorAll('[data-player-first]').forEach(el => { el.textContent = d.player.firstName; });
   document.querySelectorAll('[data-player-initials]').forEach(el => { el.textContent = d.player.firstName.charAt(0).toUpperCase(); });
-  document.querySelector('#community-count').textContent = d.communityCount;
   renderBooking(); renderStats(); renderCourts();
   const totalHours = d.activity.reduce((sum, item) => sum + item.hours, 0);
   const maxHours = Math.max(1, ...d.activity.map(item => item.hours));
@@ -674,7 +651,7 @@ function renderDashboard() {
   const difference = totalHours - d.previousWeekHours;
   document.querySelector('.positive-chip').textContent = `${difference >= 0 ? '+' : ''}${difference} hrs vs. last week`;
   const eventRoot = document.querySelector('.event-content');
-  eventRoot.innerHTML = d.event ? `<div class="event-date"><strong>${esc(date(d.event.startsAt, { day: 'numeric' }))}</strong><span>${esc(date(d.event.startsAt, { month: 'short' }).toUpperCase())}</span></div><div><span class="event-category">${esc(d.event.category)}</span><h3>${esc(d.event.name)}</h3><p>${esc(d.event.summary)}</p><div class="event-meta">${icon('clock')}${esc(time(d.event.startsAt))} – ${esc(time(d.event.endsAt))}</div></div>` : '<p>No sample events to show.</p>';
+  eventRoot.innerHTML = d.event ? `<div class="event-date"><strong>${esc(date(d.event.startsAt, { day: 'numeric' }))}</strong><span>${esc(date(d.event.startsAt, { month: 'short' }))}</span></div><div><span class="event-category">${esc(d.event.category)}</span><h3>${esc(d.event.name)}</h3><div class="event-meta">${icon('clock')}${esc(time(d.event.startsAt))} – ${esc(time(d.event.endsAt))}</div></div>` : '<p>No sample events to show.</p>';
   document.querySelector('.event-details').hidden = !d.event;
   document.querySelector('#dashboard-content').setAttribute('aria-busy', 'false');
 }
@@ -823,12 +800,12 @@ export const mockDashboard = {
     { label: 'Matches played', value: '24', unit: 'games', caption: '6 games this month', icon: 'paddle', positive: false },
     { label: 'Win rate', value: '68', unit: '%', caption: '+8% vs. last month', icon: 'chart', positive: true },
     { label: 'Current ranking', value: '#12', unit: 'in club', caption: 'Up 3 places this month', icon: 'trophy', positive: true },
-    { label: 'Time on court', value: '18.5', unit: 'hrs', caption: 'This month so far', icon: 'clock', positive: false },
+    { label: 'Hours this month', value: '18.5', unit: 'hrs', caption: 'This month so far', icon: 'clock', positive: false },
   ],
   courtSnapshots: [
-    { courtId: 'court-1', status: 'available', label: 'Available', note: 'Open for your next rally' },
+    { courtId: 'court-1', status: 'available', label: 'Available', note: 'Available now' },
     { courtId: 'court-2', status: 'in-use', label: 'In play', note: 'Session ends at 4:00 PM' },
-    { courtId: 'court-3', status: 'available', label: 'Available', note: 'Open for your next rally' },
+    { courtId: 'court-3', status: 'available', label: 'Available', note: 'Available now' },
     { courtId: 'court-4', status: 'in-use', label: 'In play', note: 'Session ends at 3:30 PM' },
   ],
   activity: [ { day: 'Sat', hours: .5 }, { day: 'Sun', hours: 1 }, { day: 'Mon', hours: 0 }, { day: 'Tue', hours: 1.5 }, { day: 'Wed', hours: 0 }, { day: 'Thu', hours: 1 }, { day: 'Fri', hours: .5 } ],
